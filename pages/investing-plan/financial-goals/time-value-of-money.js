@@ -46,7 +46,7 @@ const links = [
   },
 ];
 
-function index() {
+function Page() {
   const [openModal, setOpenModal] = useState(false);
   const [fields, setFields] = useState([
     {
@@ -129,6 +129,7 @@ function index() {
       formulajs.RATE(periodYear * 12, -cF, -startingAmount, targetAmount) * 12;
 
     console.log("RRRRR", RR);
+
     var newData = [];
 
     for (var i = 1; i <= periodYear; i++) {
@@ -353,4 +354,4 @@ function index() {
   );
 }
 
-export default index;
+export default Page;

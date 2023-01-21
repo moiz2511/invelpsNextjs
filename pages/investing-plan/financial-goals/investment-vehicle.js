@@ -52,7 +52,7 @@ const links = [
   },
 ];
 
-function index() {
+function Page() {
   const [openModal, setOpenModal] = useState(false);
   const [fields, setFields] = useState([
     {
@@ -391,4 +391,4 @@ function index() {
   );
 }
 
-export default index;
+export default Page;

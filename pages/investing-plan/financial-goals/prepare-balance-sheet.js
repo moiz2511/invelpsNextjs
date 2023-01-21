@@ -32,7 +32,7 @@ const links = [
     link: "#increase-networth",
   },
 ];
-function index() {
+function Page() {
   const [openModal, setOpenModal] = useState(false);
   return (
     <Layout>
@@ -147,4 +147,4 @@ function index() {
   );
 }
 
-export default index;
+export default Page;
