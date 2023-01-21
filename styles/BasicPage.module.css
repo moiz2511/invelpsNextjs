@@ -1,0 +1,76 @@
+.container {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+  grid-gap: 10px;
+}
+
+.container > div {
+  border-left: 1px solid #f2f2f2;
+}
+
+.contentContainer {
+  /* box-shadow: 0 3px 10px rgb(0, 0, 0, 0.2); */
+  /* border: 2px solid gray; */
+  /* border-top: none; */
+
+  padding: 10px;
+}
+.content {
+  padding: 20px 10px;
+}
+.content > h1 {
+  font-size: 20px;
+  font-weight: 700;
+  padding-bottom: 10px;
+}
+.content > p {
+}
+/* forms */
+.formContainer {
+  padding: 10px;
+  background-color: var(--primary-color);
+}
+.formFieldContainer {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 0.4fr;
+  align-items: center;
+}
+.formFieldContainer > p {
+  font-weight: 700;
+  font-size: 16px;
+}
+.textFieldContainer {
+}
+
+.textField {
+  background-color: #fff;
+}
+.textField > div > input {
+  /* padding: 5px !important; */
+  background-color: #fff;
+}
+.graphContainer {
+  margin: 20px;
+  width: 50vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  grid-gap: 50px;
+}
+.graphContainer > div > p:nth-child(1) {
+  font-weight: 700;
+}
+.graphContainer > div > p {
+  margin-bottom: 10px;
+}
+.graphContainer > div > p > span {
+  margin-right: 5px;
+  white-space: nowrap;
+}
+.cardContainer {
+  display: grid;
+  padding: 50px;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}

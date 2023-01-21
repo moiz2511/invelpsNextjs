@@ -1,0 +1,38 @@
+.container {
+  color: #fff;
+  background-color: var(--secondary-color);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left !important;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+  position: relative;
+}
+.bgContainer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: #000000;
+}
+.bgContainer > img {
+  object-fit: cover;
+  width: 100% !important;
+  position: relative !important;
+  height: 100% !important;
+  opacity: 0.4;
+}
+.innerContainer {
+  z-index: 2;
+  /* margin-left: -28vw; */
+}
+.parentHeading {
+  padding-bottom: 20px;
+}
+.childHeading {
+  padding-bottom: 20px;
+}

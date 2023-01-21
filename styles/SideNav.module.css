@@ -1,0 +1,54 @@
+.card {
+  /* margin: 20px 0; */
+  padding: 0;
+  /* border: 2px solid gray; */
+  border-radius: 0;
+  height: fit-content;
+}
+.cardContainer {
+  padding: 20px 15px !important;
+  /* background-color: red; */
+}
+.cardContainerFixed {
+  padding: 20px 15px !important;
+  position: fixed;
+  top: 65px;
+  width: 300px;
+}
+.heading {
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+}
+.accordion::before {
+  opacity: 0;
+}
+.accordion {
+  padding: 0 !important;
+  height: fit-content !important;
+  min-height: fit-content !important;
+  box-shadow: none !important;
+  border-bottom: 0;
+}
+.accordionMain {
+  padding: 0 !important;
+  height: fit-content !important;
+  min-height: fit-content !important;
+  box-shadow: none !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+.accordionDetails {
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.accordionDetails > ul {
+  list-style: none;
+}
+.accordionDetails > ul > li {
+  margin: 15px 5px;
+}
+.bold {
+  font-weight: 700;
+}

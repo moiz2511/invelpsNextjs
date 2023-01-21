@@ -1,0 +1,70 @@
+.navbar {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+  position: fixed;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  width: 100vw;
+  top: 0;
+  z-index: 10000000;
+}
+
+.navbar > img {
+  height: 50px;
+  width: auto;
+  margin-left: -100px;
+}
+
+.navbarList {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  width: 300px;
+  padding: 0;
+}
+.navbarList li {
+  cursor: pointer;
+}
+.navbarListSecond {
+  width: 120px;
+  padding: 0;
+}
+.navbarMobileContainer {
+  display: none;
+  margin-right: 50px;
+}
+
+.menuItemStyle {
+  width: 150px;
+  color: "var(--primary-color)";
+}
+.achorStyle {
+  text-decoration: none;
+  color: "var(--primary-color)";
+}
+@media screen and (max-width: 900px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+  .navbar > img {
+    margin-left: 0px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .navbar {
+    padding: 10px 20px;
+    justify-content: space-between;
+  }
+
+  .navbarList {
+    display: none;
+  }
+  .navbarMobileContainer {
+    display: inline-block;
+  }
+}
