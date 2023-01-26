@@ -7,6 +7,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { formatNumber } from "@/helpers/index";
+import Collapse from "@mui/material/Collapse";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -49,25 +52,68 @@ const StyledTableHead = styled(TableHead)(({ theme }) => ({
 
 export default function DataTable({ columns, rows }) {
   return (
-    <TableContainer component={Paper} style={{ maxHeight: 750 }}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table" stickyHeader>
-        <StyledTableHead sx={{ background: "var(--primary-tan)" }}>
-          <TableRow>
+    <Accordion>
+      <AccordionSummary
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+        style={{ padding: 0 }}
+      >
+        <StyledTableHead
+          sx={{
+            background: "var(--primary-tan)",
+            width: "100%",
+          }}
+        >
+          <TableRow style={{ width: "100%" }}>
             {columns.map((col, i) => (
-              <StyledTableCell key={i}>{col}</StyledTableCell>
+              <StyledTableCell
+                key={i}
+                style={{
+                  width: i > 1 && "190px",
+                  // padding: "10px 0",
+                  // textAlign: "center",
+                  // border: "1px solid red",
+                }}
+              >
+                {col}
+              </StyledTableCell>
             ))}
           </TableRow>
         </StyledTableHead>
-        <TableBody>
-          {rows.map((row, index) => (
-            <StyledTableRow key={index}>
-              {Object.keys(row).map((key, i) => (
-                <StyledTableCell key={i}>{row[key]}</StyledTableCell>
+      </AccordionSummary>
+      <AccordionDetails style={{ padding: 0 }}>
+        <TableContainer component={Paper} style={{ maxHeight: 750 }}>
+          <Table aria-label="customized table" stickyHeader>
+            {/* <StyledTableHead sx={{ background: "var(--primary-tan)" }}>
+              <TableRow>
+                {columns.map((col, i) => (
+                  <StyledTableCell key={i}>{col}</StyledTableCell>
+                ))}
+              </TableRow>
+            </StyledTableHead> */}
+            <TableBody>
+              {rows.map((row, index) => (
+                <StyledTableRow key={index}>
+                  {Object.keys(row).map((key, i) => (
+                    <StyledTableCell
+                      key={i}
+                      style={{
+                        width: i > 1 ? "180px" : "80px",
+                        padding: "16px 0",
+                        paddingLeft: i == 0 ? "5px" : "0px",
+                        // textAlign: "center",
+                        // border: "1px solid red",
+                      }}
+                    >
+                      {formatNumber(row[key])}
+                    </StyledTableCell>
+                  ))}
+                </StyledTableRow>
               ))}
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </AccordionDetails>
+    </Accordion>
   );
 }

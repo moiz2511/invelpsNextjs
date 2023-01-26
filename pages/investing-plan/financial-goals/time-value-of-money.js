@@ -18,6 +18,7 @@ import * as formulajs from "@formulajs/formulajs";
 import DataTable from "@/components/investingPlan/DataTable";
 import LineChart from "@/components/LineChart";
 import InfoModal from "@/components/InfoModal";
+import { formatNumber } from "@/helpers/index";
 
 const links = [
   {
@@ -326,15 +327,17 @@ function Page() {
                       <span>
                         $
                         {data.byMonths &&
-                          data.byMonths[
-                            data.byMonths.length - 1
-                          ].endBalance.toFixed(2)}
+                          formatNumber(
+                            data.byMonths[data.byMonths.length - 1].endBalance
+                          )}
                       </span>
                     </p>
                     <p>
                       <span>Starting Amount</span>
                       <span>
-                        ${data.byMonths && data.byMonths[0].startingPrincipal}
+                        $
+                        {data.byMonths &&
+                          formatNumber(data.byMonths[0].startingPrincipal)}
                       </span>
                     </p>
                     <p>
@@ -342,15 +345,16 @@ function Page() {
                       <span>
                         $
                         {data.byMonths &&
-                          data.byMonths[
-                            data.byMonths.length - 1
-                          ].additionalContribution.toFixed(2) *
-                            (data.byMonths.length - 1)}
+                          formatNumber(
+                            data.byMonths[data.byMonths.length - 1]
+                              .additionalContribution *
+                              (data.byMonths.length - 1)
+                          )}
                       </span>
                     </p>
                     <p>
                       <span>Return Rate</span>
-                      <span>{rr > 0 && (rr * 100).toFixed}%</span>
+                      <span>{rr > 0 && formatNumber(rr * 100)}%</span>
                     </p>
                   </div>
                 </div>
