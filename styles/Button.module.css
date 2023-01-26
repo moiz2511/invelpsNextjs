@@ -1,5 +1,5 @@
 .btn {
-  background-color: var(--primary-blue);
+  background-color: var(--primary-blue) !important;
   color: #fff;
   padding: 5px 20px;
   font-weight: bold;
@@ -7,5 +7,5 @@
 }
 
 .btn:hover {
-  background-color: var(--primary-blue);
+  background-color: var(--primary-blue) !important;
 }
