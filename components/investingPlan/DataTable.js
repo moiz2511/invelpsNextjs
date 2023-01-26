@@ -49,8 +49,8 @@ const StyledTableHead = styled(TableHead)(({ theme }) => ({
 
 export default function DataTable({ columns, rows }) {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+    <TableContainer component={Paper} style={{ maxHeight: 750 }}>
+      <Table sx={{ minWidth: 700 }} aria-label="customized table" stickyHeader>
         <StyledTableHead sx={{ background: "var(--primary-tan)" }}>
           <TableRow>
             {columns.map((col, i) => (

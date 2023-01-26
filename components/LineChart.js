@@ -21,45 +21,48 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
+export default function LineChart({
+  principal,
+  balance,
+  interest,
+  years,
+  chartTitle,
+}) {
+  const data = {
+    labels: years,
+    datasets: [
+      {
+        label: "Principal",
+        data: principal,
+        borderColor: "blue",
+        backgroundColor: "blue",
+      },
+      {
+        label: "Interest",
+        data: interest,
+        borderColor: "red",
+        backgroundColor: "red",
+      },
+      {
+        label: "Balance",
+        data: balance,
+        borderColor: "green",
+        backgroundColor: "green",
+      },
+    ],
+  };
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: chartTitle,
+      },
     },
-    title: {
-      display: true,
-      text: "Chart.js Line Chart",
-    },
-  },
-};
+  };
 
-const labels = ["1yr", "2yr", "3yr", "4yr", "5yr", "6yr", "7yr"];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Principal",
-      data: [100, 200, 300, 400, 500, 600, 700],
-      borderColor: "blue",
-      backgroundColor: "blue",
-    },
-    {
-      label: "Interest",
-      data: [500, 200, 300, 300, 100, 400, 100],
-      borderColor: "red",
-      backgroundColor: "red",
-    },
-    {
-      label: "Balance",
-      data: [600, 300, 100, 500, 600, 100, 50],
-      borderColor: "green",
-      backgroundColor: "green",
-    },
-  ],
-};
-
-export default function LineChart() {
   return <Line options={options} data={data} />;
 }

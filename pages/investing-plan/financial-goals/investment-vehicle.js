@@ -57,11 +57,10 @@ function Page() {
   const [fields, setFields] = useState([
     {
       id: 1,
-      label:
-        "What is the amount expected from your investment (Future Value FV)?",
+      label: "What is the expected return rate from your investment?",
       value: "",
       inputProps: {
-        startAdornment: <InputAdornment position="start">$</InputAdornment>,
+        startAdornment: <InputAdornment position="start">%</InputAdornment>,
       },
     },
     {
@@ -81,24 +80,6 @@ function Page() {
       },
     },
     {
-      id: 4,
-      label: "At which frequency will you invest (Compounding frequency)?",
-      value: "Y",
-      options: [
-        { key: "Y", value: "Yearly" },
-        { key: "M", value: "Monthly" },
-      ],
-    },
-    {
-      id: 5,
-      label: "Period of contribution",
-      value: "E",
-      options: [
-        { key: "B", value: "Beginning" },
-        { key: "E", value: "Ending" },
-      ],
-    },
-    {
       id: 6,
       label: "How much could you invest regularly (cashflow)?",
       value: "",
@@ -108,7 +89,7 @@ function Page() {
     },
   ]);
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({ byMonths: [], byYear: [] });
 
   const handleFieldOnChange = (e) => {
     let newFields = fields.map((f) => {
@@ -126,45 +107,51 @@ function Page() {
       setShowAlert({ show: true, message: "Please fill all the fields." });
       return;
     }
-    let targetAmount = parseFloat(fields[0].value);
+    let RR = parseFloat(fields[0].value) / 100;
     let startingAmount = parseFloat(fields[2].value);
     let periodYear = parseInt(fields[1].value);
-    let frequency = fields[3].value;
-    let cF = parseFloat(fields[5].value);
-    // let RR =
-    //   formulajs.POWER(
-    //     1 +
-    //       formulajs.RATE(
-    //         period * formulajs.IF(frequency === "M", 12, 1),
-    //         -cF,
-    //         -startingAmount,
-    //         targetAmount
-    //       ),
-    //     formulajs.IF(frequency === "M", 12, 1) - 1
-    //   ) * 100;
-    // console.log(
-    //   (2000 * 17.961) / 100,
-    //   RR,
-    //   frequency,
-    //   -cF,
-    //   -startingAmount,
-    //   frequency === "M",
-    //   cF
-    // );
-    var newData = [];
+    // let frequency = fields[3].value;
+    let cF = parseFloat(fields[3].value);
+    // calculating montly data
+    let monthlyData = [];
+    let yearlyData = [];
+    let monthlyDataIndex = 0;
 
-    for (var i = 1; i <= periodYear; i++) {
-      newData.push({
-        yearNo: i,
-        startPrincipal: 2000,
-        startBalance: 2500 + i * 2,
-        interest: i * 2,
-        endBalance: startingAmount,
-        endPrincipal: startingAmount + i * 2,
-      });
+    for (let i = 0; i < periodYear; i++) {
+      for (let j = 0; j < 12; j++) {
+        let currentStartingAmount = monthlyData[monthlyDataIndex - 1]
+          ? monthlyData[monthlyDataIndex - 1].endBalance
+          : startingAmount;
+
+        let currentMonthlyInterest = currentStartingAmount * (RR / 12);
+        monthlyData.push({
+          yearNo: i + 1,
+          month: j + 1,
+          additionalContribution: cF,
+          startingPrincipal: currentStartingAmount,
+          monthlyInterest: currentMonthlyInterest,
+          endBalance: currentStartingAmount + currentMonthlyInterest + cF,
+          endPrincipal: currentStartingAmount + cF,
+        });
+        monthlyDataIndex++;
+        j === 11 &&
+          yearlyData.push({
+            yearNo: i,
+            month: j,
+            additionalContribution: cF,
+            startingPrincipal: currentStartingAmount,
+            monthlyInterest: currentMonthlyInterest,
+            endBalance: currentStartingAmount + currentMonthlyInterest + cF,
+            endPrincipal: currentStartingAmount + cF,
+          });
+      }
     }
 
-    setData(newData);
+    // console.log(monthlyData, yearlyData);
+    setData({
+      byMonths: monthlyData,
+      byYear: yearlyData,
+    });
   };
   return (
     <Layout>
@@ -316,27 +303,44 @@ function Page() {
                 Calculate
               </CustomButton>
             </div>
-            {data.length > 0 && (
+            {data.byMonths.length > 0 && (
               <>
                 {/* for end */}
                 <div className={styles.graphContainer}>
-                  <LineChart />
+                  <LineChart
+                    chartTitle="Final Amount chart"
+                    principal={data.byYear.map((d) => d.endPrincipal)}
+                    interest={data.byYear.map((d) => d.monthlyInterest)}
+                    balance={data.byYear.map((d) => d.endBalance)}
+                    years={data.byYear.map((d) => `${d.yearNo + 1}yr`)}
+                  />
                   <div>
                     <p>
                       <span>End Balance</span>
-                      <span>$393,299</span>
+                      <span>
+                        $
+                        {data.byMonths &&
+                          data.byMonths[
+                            data.byMonths.length - 1
+                          ].endBalance.toFixed(2)}
+                      </span>
                     </p>
                     <p>
                       <span>Starting Amount</span>
-                      <span>$393,299</span>
+                      <span>
+                        ${data.byMonths && data.byMonths[0].startingPrincipal}
+                      </span>
                     </p>
                     <p>
                       <span>Total Contributions</span>
-                      <span>$393,299</span>
-                    </p>
-                    <p>
-                      <span>Total Interest</span>
-                      <span>$393,299</span>
+                      <span>
+                        $
+                        {data.byMonths &&
+                          data.byMonths[
+                            data.byMonths.length - 1
+                          ].additionalContribution.toFixed(2) *
+                            (data.byMonths.length - 1)}
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -345,13 +349,14 @@ function Page() {
                   <DataTable
                     columns={[
                       "Year No.",
+                      "Month No.",
                       "Start Principal",
                       "Start Balance",
                       "Interest",
                       "End Balance",
                       "End Principal",
                     ]}
-                    rows={data}
+                    rows={data.byMonths}
                   />
                 </div>
               </>
