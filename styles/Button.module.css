@@ -1,9 +1,9 @@
 .btn {
   background-color: var(--primary-blue) !important;
-  color: #fff;
-  padding: 5px 20px;
-  font-weight: bold;
-  text-transform: capitalize;
+  color: #fff !important;
+  padding: 5px 20px !important;
+  font-weight: bold !important;
+  text-transform: capitalize !important;
 }
 
 .btn:hover {
