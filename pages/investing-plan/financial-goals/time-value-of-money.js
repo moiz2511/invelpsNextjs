@@ -353,6 +353,17 @@ function Page() {
                       </span>
                     </p>
                     <p>
+                      <span>Total Interest</span>
+                      <span>
+                        $
+                        {data.byMonths &&
+                          formatNumber(
+                            data.byMonths[data.byMonths.length - 1]
+                              .monthlyInterest
+                          )}
+                      </span>
+                    </p>
+                    <p>
                       <span>Return Rate</span>
                       <span>{rr > 0 && formatNumber(rr * 100)}%</span>
                     </p>

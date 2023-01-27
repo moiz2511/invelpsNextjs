@@ -346,6 +346,17 @@ function Page() {
                           )}
                       </span>
                     </p>
+                    <p>
+                      <span>Total Interest</span>
+                      <span>
+                        $
+                        {data.byMonths &&
+                          formatNumber(
+                            data.byMonths[data.byMonths.length - 1]
+                              .monthlyInterest
+                          )}
+                      </span>
+                    </p>
                   </div>
                 </div>
                 {/* table */}
