@@ -69,7 +69,7 @@ export default function DataTable({ columns, rows }) {
               <StyledTableCell
                 key={i}
                 style={{
-                  width: i > 1 && "190px",
+                  width: i === 0 ? "135px" : i >= 2 ? "200px" : "190px",
                   // padding: "10px 0",
                   // textAlign: "center",
                   // border: "1px solid red",
@@ -94,20 +94,37 @@ export default function DataTable({ columns, rows }) {
             <TableBody>
               {rows.map((row, index) => (
                 <StyledTableRow key={index}>
-                  {Object.keys(row).map((key, i) => (
-                    <StyledTableCell
-                      key={i}
-                      style={{
-                        width: i > 1 ? "180px" : "80px",
-                        padding: "16px 0",
-                        paddingLeft: i == 0 ? "5px" : "0px",
-                        // textAlign: "center",
-                        // border: "1px solid red",
-                      }}
-                    >
-                      {formatNumber(row[key])}
-                    </StyledTableCell>
-                  ))}
+                  {Object.keys(row).map((key, i) =>
+                    key === "yearNo" ? (
+                      <StyledTableCell
+                        key={i}
+                        style={{
+                          width: "110px",
+                          padding: "16px 0",
+                          paddingLeft: i == 0 ? "10px" : "0px",
+                          // textAlign: "center",
+                          // border: "1px solid green",
+                        }}
+                      >
+                        {`${row["yearNo"]}, ${row["month"]}`}
+                      </StyledTableCell>
+                    ) : key === "month" ? (
+                      ""
+                    ) : (
+                      <StyledTableCell
+                        key={i}
+                        style={{
+                          width: "150px",
+                          padding: "16px 0",
+                          paddingLeft: i < 4 ? "5px" : "10px",
+                          // textAlign: "start",
+                          // border: "1px solid red",
+                        }}
+                      >
+                        {formatNumber(row[key])}
+                      </StyledTableCell>
+                    )
+                  )}
                 </StyledTableRow>
               ))}
             </TableBody>

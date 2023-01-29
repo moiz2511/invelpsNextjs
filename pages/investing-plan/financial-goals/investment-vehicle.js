@@ -340,20 +340,22 @@ function Page() {
                         $
                         {data.byMonths &&
                           formatNumber(
-                            data.byMonths[data.byMonths.length - 1]
-                              .additionalContribution *
-                              (data.byMonths.length - 1)
+                            data.byMonths
+                              .map((l) => l.additionalContribution)
+                              .reduce((a, b) => a + b)
                           )}
                       </span>
                     </p>
                     <p>
                       <span>Total Interest</span>
+
                       <span>
                         $
                         {data.byMonths &&
                           formatNumber(
-                            data.byMonths[data.byMonths.length - 1]
-                              .monthlyInterest
+                            data.byMonths
+                              .map((l) => l.monthlyInterest)
+                              .reduce((a, b) => a + b)
                           )}
                       </span>
                     </p>
@@ -363,9 +365,8 @@ function Page() {
                 <div>
                   <DataTable
                     columns={[
-                      "Year No.",
-                      "Month No.",
-                      "Start Principal",
+                      "Year, Month",
+                      "Contribution",
                       "Start Balance",
                       "Interest",
                       "End Balance",
