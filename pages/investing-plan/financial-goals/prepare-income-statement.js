@@ -8,24 +8,20 @@ import InfoModal from "@/components/InfoModal";
 
 const links = [
   {
-    value: "Funding your investment program",
-    link: "#funding",
+    value: "Revenue generation",
+    link: "#revenue",
   },
   {
-    value: "How much money are coming in?",
+    value: "How much do you earn and from what?",
     link: "#money-coming-in",
   },
   {
-    value: "How much money going out?",
+    value: "Expenses",
+    link: "#expenses",
+  },
+  {
+    value: "How much do you spend and in what?",
     link: "#money-going-out",
-  },
-  {
-    value: "Could you increase your income?",
-    link: "#increase-income",
-  },
-  {
-    value: "Could you decrease your expenses?",
-    link: "#decrease-expenses",
   },
 ];
 
@@ -37,6 +33,7 @@ function Page() {
         parentHeading="Investing plan"
         childHeading="Prepare your income statement"
         setOpenModal={setOpenModal}
+        showMoreInfo={true}
       />
       <InfoModal
         open={openModal}
@@ -89,16 +86,25 @@ function Page() {
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>
-            <div className={styles.content} id="funding">
-              <h1>Funding your investment program</h1>
+            <div className={styles.content} id="revenue">
+              <h1>Revenue generation</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo
                 vitae luctus.{" "}
               </p>
             </div>
+
             <div className={styles.content} id="money-coming-in">
-              <h1>How much money are coming in?</h1>
+              <h1>How much do you earn and from what?</h1>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Praesent ultrices id mi a placerat. In efficitur pulvinar justo
+                vitae luctus.{" "}
+              </p>
+            </div>
+            <div className={styles.content} id="expenses">
+              <h1>Expenses</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo
@@ -106,23 +112,7 @@ function Page() {
               </p>
             </div>
             <div className={styles.content} id="money-going-out">
-              <h1>How much money going out?</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent ultrices id mi a placerat. In efficitur pulvinar justo
-                vitae luctus.{" "}
-              </p>
-            </div>
-            <div className={styles.content} id="increase-income">
-              <h1>Could you increase your income?</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent ultrices id mi a placerat. In efficitur pulvinar justo
-                vitae luctus.{" "}
-              </p>
-            </div>
-            <div className={styles.content} id="decrease-expenses">
-              <h1>Could you decrease your expenses?</h1>
+              <h1>How much do you spend and in what?</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo

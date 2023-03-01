@@ -13,7 +13,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "var(--primary-tan)",
+    backgroundColor: "var(--primary-orange)",
     color: theme.palette.common.white,
     padding: "10px",
   },
@@ -34,7 +34,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const StyledTableHead = styled(TableHead)(({ theme }) => ({
   [`.MuiTableHead-root`]: {
-    backgroundColor: "var(--primary-tan)",
+    backgroundColor: "var(--primary-orange)",
   },
 }));
 
@@ -60,7 +60,7 @@ export default function DataTable({ columns, rows }) {
       >
         <StyledTableHead
           sx={{
-            background: "var(--primary-tan)",
+            background: "var(--primary-orange)",
             width: "100%",
           }}
         >

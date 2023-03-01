@@ -4,6 +4,12 @@ import SideNav from "../SideNav";
 function InvestingPlanSideNav({ activeHeadingId, activeSubheadingId }) {
   const links = [
     {
+      id: 0,
+      main: "0. Introduction",
+      link: "/investing-plan/introduction",
+      subs: [],
+    },
+    {
       id: 1,
       main: "1. Set your financial goals",
       subs: [
@@ -32,22 +38,22 @@ function InvestingPlanSideNav({ activeHeadingId, activeSubheadingId }) {
     {
       id: 2,
       main: "2. Define your needs",
-      subs: [
-        {
-          id: 2.1,
-          value: "1. Time value of money",
-          link: "/investing-plan/financial-goals/time-value-of-money",
-        },
-      ],
+      link: "/investing-plan/financial-goals/time-value-of-money",
+      subs: [],
     },
     {
       id: 3,
-      main: "3. Understand Risk vs Return",
+      main: "3. Understand Risk And Return",
       subs: [
         {
           id: 3.1,
-          value: "1. Investment vehicles",
+          value: "1. Learn investment vehicles",
           link: "/investing-plan/financial-goals/investment-vehicle",
+        },
+        {
+          id: 3.2,
+          value: "2. Define your risk tolerance",
+          link: "/investing-plan/financial-goals/risk-tolerance",
         },
       ],
     },

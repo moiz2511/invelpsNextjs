@@ -19,6 +19,7 @@ import DataTable from "@/components/investingPlan/DataTable";
 import LineChart from "@/components/LineChart";
 import InfoModal from "@/components/InfoModal";
 import { formatNumber } from "@/helpers/index";
+import NumberWithLabel from "@/components/NumberWithLabel";
 
 const links = [
   {
@@ -179,6 +180,7 @@ function Page() {
         parentHeading="Investing plan"
         childHeading="Time value of money"
         setOpenModal={setOpenModal}
+        showMoreInfo={true}
       />
       <AlertPopup
         open={showAlert.show}
@@ -310,8 +312,147 @@ function Page() {
                 Calculate
               </CustomButton>
             </div>
+            <div className={styles.content}>
+              <h1>
+                What is your required rate of return (Internal rate of return)?
+              </h1>
+              <p>
+                You will need an <b>annual return rate of</b>{" "}
+                <span style={{ color: "var(--secondary-color)" }}>
+                  {rr > 0 && formatNumber(rr * 100)}%
+                </span>{" "}
+                to reach{" "}
+                <span style={{ color: "var(--secondary-color)" }}>
+                  {data.byMonths &&
+                    data.byMonths.length > 0 &&
+                    formatNumber(
+                      data.byMonths[data.byMonths.length - 1].endBalance
+                    )}
+                </span>{" "}
+                in{" "}
+                <span style={{ color: "var(--secondary-color)" }}>
+                  {data.byMonths &&
+                    data.byMonths.length > 0 &&
+                    data.byMonths[data.byMonths.length - 1].yearNo}{" "}
+                  years
+                </span>
+              </p>
+            </div>
             {data.byMonths.length > 0 && (
               <>
+                <div style={{ marginLeft: "10px" }}>
+                  <div
+                    style={{
+                      marginTop: "20px",
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                      gridTemplateRows: "1fr 1fr",
+                    }}
+                  >
+                    <NumberWithLabel
+                      labelText={"Target Amount"}
+                      mainText={`$
+                  ${
+                    data.byMonths &&
+                    formatNumber(
+                      data.byMonths[data.byMonths.length - 1].endBalance
+                    )
+                  }`}
+                      mainTextStyle={{
+                        color: "var(--primary-orange)",
+                      }}
+                      style={{ borderRight: "1px solid lightgray" }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Starting Amount"}
+                      mainText={`$ 
+                  ${
+                    data.byMonths &&
+                    formatNumber(data.byMonths[0].startingPrincipal)
+                  }`}
+                      style={{
+                        borderRight: "1px solid lightgray",
+                        paddingLeft: "20px",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Monthly Investment"}
+                      mainText={`$
+                  ${data.byMonths[0].additionalContribution}
+                  `}
+                      style={{
+                        borderRight: "1px solid lightgray",
+                        paddingLeft: "20px",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Time"}
+                      mainText={`
+                  ${data.byMonths[data.byMonths.length - 1].yearNo} years
+                  `}
+                      style={{ paddingLeft: "20px" }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      marginTop: "20px",
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                      gridTemplateRows: "1fr 1fr",
+                    }}
+                  >
+                    <NumberWithLabel
+                      labelText={"Total Interest Earned"}
+                      mainText={`$
+                  ${
+                    data.byMonths &&
+                    formatNumber(
+                      data.byMonths
+                        .map((l) => l.monthlyInterest)
+                        .reduce((a, b) => a + b)
+                    )
+                  }`}
+                      mainTextStyle={{
+                        color: "var(--primary-orange)",
+                      }}
+                      style={{ borderRight: "1px solid lightgray" }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Total Contribution"}
+                      mainText={`$ 
+                  ${
+                    data.byMonths &&
+                    formatNumber(
+                      data.byMonths
+                        .map((l) => l.additionalContribution)
+                        .reduce((a, b) => a + b)
+                    )
+                  }`}
+                      style={{
+                        borderRight: "1px solid lightgray",
+                        paddingLeft: "20px",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Compounding"}
+                      mainText={`Monthly`}
+                      style={{
+                        borderRight: "1px solid lightgray",
+                        paddingLeft: "20px",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Annual Of Return Rate"}
+                      mainText={`
+                    ${rr > 0 && formatNumber(rr * 100)}%
+                  `}
+                      mainTextStyle={{
+                        color: "var(--secondary-color)",
+                      }}
+                      style={{ paddingLeft: "20px" }}
+                    />
+                  </div>
+                </div>
                 {/* for end */}
                 <div className={styles.graphContainer}>
                   <LineChart
@@ -321,54 +462,6 @@ function Page() {
                     balance={data.byYear.map((d) => d.endBalance)}
                     years={data.byYear.map((d) => `${d.yearNo + 1}yr`)}
                   />
-                  <div>
-                    <p>
-                      <span>End Balance</span>
-                      <span>
-                        $
-                        {data.byMonths &&
-                          formatNumber(
-                            data.byMonths[data.byMonths.length - 1].endBalance
-                          )}
-                      </span>
-                    </p>
-                    <p>
-                      <span>Starting Amount</span>
-                      <span>
-                        $
-                        {data.byMonths &&
-                          formatNumber(data.byMonths[0].startingPrincipal)}
-                      </span>
-                    </p>
-                    <p>
-                      <span>Total Contributions</span>
-                      <span>
-                        $
-                        {data.byMonths &&
-                          formatNumber(
-                            data.byMonths
-                              .map((l) => l.additionalContribution)
-                              .reduce((a, b) => a + b)
-                          )}
-                      </span>
-                    </p>
-                    <p>
-                      <span>Total Interest</span>
-                      <span>
-                        $
-                        {data.byMonths &&
-                          formatNumber(
-                            data.byMonths
-                              .map((l) => l.monthlyInterest)
-                              .reduce((a, b) => a + b)
-                          )}
-                      </span>
-                    </p>
-                    <p>
-                      <span>Return Rate</span>
-                      <span>{rr > 0 && formatNumber(rr * 100)}%</span>
-                    </p>
-                  </div>
                 </div>
                 {/* table */}
                 <div>

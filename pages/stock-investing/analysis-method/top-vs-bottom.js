@@ -1,31 +1,28 @@
-import InvestingPlanSideNav from "@/components/investingPlan/InvestingPlanSideNav";
+import StockInvestingSideNav from "@/components/stockInvesting/InvestingPlanSideNav";
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import React, { useState } from "react";
 import styles from "@/styles/BasicPage.module.css";
 import TableOfContent from "@/components/TableOfContent";
 import InfoModal from "@/components/InfoModal";
+import InvestingMethodAnalysisSideNav from "@/components/stockInvesting/analysisMethod/InvestingMethodAnalysisSideNav";
 
 const links = [
   {
-    value: "Funding your investment program",
-    link: "#funding",
+    value: "Setting your sights on your financial goals",
+    link: "#financial-goals",
   },
   {
-    value: "How much money are coming in?",
-    link: "#money-coming-in",
+    value: "Why should you define goals?",
+    link: "#define-goals",
   },
   {
-    value: "How much money going out?",
-    link: "#money-going-out",
+    value: "What do you want to achieve?",
+    link: "#achieve",
   },
   {
-    value: "Could you increase your income?",
-    link: "#increase-income",
-  },
-  {
-    value: "Could you decrease your expenses?",
-    link: "#decrease-expenses",
+    value: "What are your milestones?",
+    link: "#milestones",
   },
 ];
 
@@ -34,15 +31,16 @@ function Page() {
   return (
     <Layout>
       <PageHeader
-        parentHeading="Investing plan"
-        childHeading="Prepare your cashflow statement"
+        parentHeading="Stock Active Investing"
+        childHeading="Top Up vs Bottom Up"
         setOpenModal={setOpenModal}
         showMoreInfo={true}
       />
+
       <InfoModal
         open={openModal}
         setOpen={setOpenModal}
-        heading="Prepare your cashflow statement"
+        heading="Top Up vs Bottom Up"
         content={
           <div>
             <p>
@@ -86,44 +84,39 @@ function Page() {
         }
       />
       <div className={styles.container}>
-        <InvestingPlanSideNav activeHeadingId={1} activeSubheadingId={1.3} />
+        <InvestingMethodAnalysisSideNav
+          activeHeadingId={1}
+          activeSubheadingId={1.1}
+        />
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>
-            <div className={styles.content} id="funding">
-              <h1>Funding your investment program</h1>
+            <div className={styles.content} id="financial-goals">
+              <h1>Setting your sights on your financial goals</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo
                 vitae luctus.{" "}
               </p>
             </div>
-            <div className={styles.content} id="money-coming-in">
-              <h1>How much money are coming in?</h1>
+            <div className={styles.content} id="define-goals">
+              <h1>Why should you define goals?</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo
                 vitae luctus.{" "}
               </p>
             </div>
-            <div className={styles.content} id="money-going-out">
-              <h1>How much money going out?</h1>
+            <div className={styles.content} id="achieve">
+              <h1>What do you want to achieve?</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo
                 vitae luctus.{" "}
               </p>
             </div>
-            <div className={styles.content} id="increase-income">
-              <h1>Could you increase your income?</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent ultrices id mi a placerat. In efficitur pulvinar justo
-                vitae luctus.{" "}
-              </p>
-            </div>
-            <div className={styles.content} id="decrease-expenses">
-              <h1>Could you decrease your expenses?</h1>
+            <div className={styles.content} id="milestones">
+              <h1>What are your milestones?</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo

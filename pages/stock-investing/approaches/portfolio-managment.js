@@ -1,4 +1,4 @@
-import InvestingPlanSideNav from "@/components/investingPlan/InvestingPlanSideNav";
+import StockInvestingSideNav from "@/components/stockInvesting/InvestingPlanSideNav";
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import React, { useState } from "react";
@@ -8,24 +8,26 @@ import InfoModal from "@/components/InfoModal";
 
 const links = [
   {
-    value: "Funding your investment program",
-    link: "#funding",
+    value: "Portfolio management choices",
+    link: "#choices",
   },
   {
-    value: "How much money are coming in?",
-    link: "#money-coming-in",
+    value: "How involved do you want to be in your portfolio management ?",
+    link: "#portfolio-management",
   },
   {
-    value: "How much money going out?",
-    link: "#money-going-out",
+    value: "How much complexity are you willing to tolerate ?",
+    link: "#complexity",
   },
   {
-    value: "Could you increase your income?",
-    link: "#increase-income",
+    value:
+      "Is minimizing costs and taxes key or are you willing to incur some higher costs ?",
+    link: "#minimizing-costs",
   },
   {
-    value: "Could you decrease your expenses?",
-    link: "#decrease-expenses",
+    value:
+      "Would you prefer a professional to make the investment decisions for you ?",
+    link: "#professional-decisions",
   },
 ];
 
@@ -34,15 +36,16 @@ function Page() {
   return (
     <Layout>
       <PageHeader
-        parentHeading="Investing plan"
-        childHeading="Prepare your cashflow statement"
+        parentHeading="Stock Investing"
+        childHeading="Portfolio management choices"
         setOpenModal={setOpenModal}
         showMoreInfo={true}
       />
+
       <InfoModal
         open={openModal}
         setOpen={setOpenModal}
-        heading="Prepare your cashflow statement"
+        heading="Stock Investing"
         content={
           <div>
             <p>
@@ -86,44 +89,55 @@ function Page() {
         }
       />
       <div className={styles.container}>
-        <InvestingPlanSideNav activeHeadingId={1} activeSubheadingId={1.3} />
+        <StockInvestingSideNav activeHeadingId={1} activeSubheadingId={1.1} />
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>
-            <div className={styles.content} id="funding">
-              <h1>Funding your investment program</h1>
+            <div className={styles.content} id="choices">
+              <h1>Portfolio management choices</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo
                 vitae luctus.{" "}
               </p>
             </div>
-            <div className={styles.content} id="money-coming-in">
-              <h1>How much money are coming in?</h1>
+            <div className={styles.content} id="portfolio-management">
+              <h1>
+                How involved do you want to be in your portfolio management ?
+              </h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo
                 vitae luctus.{" "}
               </p>
             </div>
-            <div className={styles.content} id="money-going-out">
-              <h1>How much money going out?</h1>
+
+            <div className={styles.content} id="complexity">
+              <h1>How much complexity are you willing to tolerate ?</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo
                 vitae luctus.{" "}
               </p>
             </div>
-            <div className={styles.content} id="increase-income">
-              <h1>Could you increase your income?</h1>
+
+            <div className={styles.content} id="minimizing-costs">
+              <h1>
+                Is minimizing costs and taxes key or are you willing to incur
+                some higher costs ?
+              </h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo
                 vitae luctus.{" "}
               </p>
             </div>
-            <div className={styles.content} id="decrease-expenses">
-              <h1>Could you decrease your expenses?</h1>
+
+            <div className={styles.content} id="professional-decisions">
+              <h1>
+                Would you prefer a professional to make the investment decisions
+                for you ?
+              </h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo

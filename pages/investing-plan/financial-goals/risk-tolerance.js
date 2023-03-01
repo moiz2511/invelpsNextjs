@@ -8,24 +8,17 @@ import InfoModal from "@/components/InfoModal";
 
 const links = [
   {
-    value: "Funding your investment program",
-    link: "#funding",
+    value: "Investor profile",
+    link: "#profile",
   },
   {
-    value: "How much money are coming in?",
-    link: "#money-coming-in",
+    value: "What are different investor profile?",
+    link: "#different-profile",
   },
   {
-    value: "How much money going out?",
-    link: "#money-going-out",
-  },
-  {
-    value: "Could you increase your income?",
-    link: "#increase-income",
-  },
-  {
-    value: "Could you decrease your expenses?",
-    link: "#decrease-expenses",
+    value:
+      "What is the maximum loss you are willing to accept on your portfolio?",
+    link: "#max-loss",
   },
 ];
 
@@ -35,14 +28,15 @@ function Page() {
     <Layout>
       <PageHeader
         parentHeading="Investing plan"
-        childHeading="Prepare your cashflow statement"
+        childHeading="Investor profile"
         setOpenModal={setOpenModal}
         showMoreInfo={true}
       />
+
       <InfoModal
         open={openModal}
         setOpen={setOpenModal}
-        heading="Prepare your cashflow statement"
+        heading="Investor profile"
         content={
           <div>
             <p>
@@ -86,44 +80,32 @@ function Page() {
         }
       />
       <div className={styles.container}>
-        <InvestingPlanSideNav activeHeadingId={1} activeSubheadingId={1.3} />
+        <InvestingPlanSideNav activeHeadingId={3} activeSubheadingId={3.2} />
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>
-            <div className={styles.content} id="funding">
-              <h1>Funding your investment program</h1>
+            <div className={styles.content} id="profile">
+              <h1>Investor profile</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo
                 vitae luctus.{" "}
               </p>
             </div>
-            <div className={styles.content} id="money-coming-in">
-              <h1>How much money are coming in?</h1>
+            <div className={styles.content} id="different-profile">
+              <h1>What are the different investor profile ?</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo
                 vitae luctus.{" "}
               </p>
             </div>
-            <div className={styles.content} id="money-going-out">
-              <h1>How much money going out?</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent ultrices id mi a placerat. In efficitur pulvinar justo
-                vitae luctus.{" "}
-              </p>
-            </div>
-            <div className={styles.content} id="increase-income">
-              <h1>Could you increase your income?</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent ultrices id mi a placerat. In efficitur pulvinar justo
-                vitae luctus.{" "}
-              </p>
-            </div>
-            <div className={styles.content} id="decrease-expenses">
-              <h1>Could you decrease your expenses?</h1>
+
+            <div className={styles.content} id="max-loss">
+              <h1>
+                What is the maximum loss you are willing to accept on your
+                portfolio ?
+              </h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo

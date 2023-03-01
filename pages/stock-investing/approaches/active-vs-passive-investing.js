@@ -1,10 +1,11 @@
-import InvestingPlanSideNav from "@/components/investingPlan/InvestingPlanSideNav";
+import StockInvestingSideNav from "@/components/stockInvesting/InvestingPlanSideNav";
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import React, { useState } from "react";
 import styles from "@/styles/BasicPage.module.css";
 import TableOfContent from "@/components/TableOfContent";
 import InfoModal from "@/components/InfoModal";
+import CustomTable from "@/components/Table";
 
 const links = [
   {
@@ -30,8 +31,8 @@ function Page() {
   return (
     <Layout>
       <PageHeader
-        parentHeading="Investing plan"
-        childHeading="Set your financial goals"
+        parentHeading="Stock Investing"
+        childHeading="Active vs Passive Investing"
         setOpenModal={setOpenModal}
         showMoreInfo={true}
       />
@@ -83,7 +84,7 @@ function Page() {
         }
       />
       <div className={styles.container}>
-        <InvestingPlanSideNav activeHeadingId={1} activeSubheadingId={1.4} />
+        <StockInvestingSideNav activeHeadingId={1} activeSubheadingId={1.2} />
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>
@@ -94,6 +95,107 @@ function Page() {
                 Praesent ultrices id mi a placerat. In efficitur pulvinar justo
                 vitae luctus.{" "}
               </p>
+            </div>
+            <div>
+              <CustomTable
+                columns={["Type", "Active Approach", "Passive Approach"]}
+                rows={[
+                  {
+                    type: "Goals",
+                    active: "Beat market performance",
+                    passive: "Replicate market performance",
+                  },
+                  {
+                    type: "Preferred instrument",
+                    active: "Stock",
+                    passive: "ETF (Tracker)",
+                  },
+                  {
+                    type: "Portfolio",
+                    active: "Focused",
+                    passive: "Highly diversified",
+                  },
+                  {
+                    type: "Analysis Method",
+                    active: (
+                      <ul>
+                        Stock picking
+                        <li style={{ marginLeft: "20px" }}>
+                          Fundamental analysis (top-down)
+                        </li>
+                        <li style={{ marginLeft: "20px" }}>
+                          Fundamental analysis (bottom-up)
+                        </li>
+                        <li style={{ marginLeft: "20px" }}>
+                          Technical analysis
+                        </li>
+                      </ul>
+                    ),
+                    passive: "Buy and hold",
+                  },
+                  {
+                    type: "Philosophy",
+                    active: "Market inefficiency",
+                    passive: "Market efficiency",
+                  },
+                  {
+                    type: "Transaction frequency",
+                    active: "High frequency",
+                    passive: "Low frequency",
+                  },
+                  {
+                    type: "Transaction costs",
+                    active: "High",
+                    passive: "Low",
+                  },
+                  {
+                    type: "Return / Risk",
+                    active: "Potentially high return due to high risk",
+                    passive: "Medium return due to medium risk",
+                  },
+                  {
+                    type: "Risk type",
+                    active: (
+                      <ul>
+                        <li style={{ marginLeft: "20px" }}>
+                          Idiosyncratic risk
+                        </li>
+                        <li style={{ marginLeft: "20px" }}>Market risk</li>
+                      </ul>
+                    ),
+                    passive: (
+                      <ul>
+                        <li style={{ marginLeft: "20px" }}>Market risk</li>
+                      </ul>
+                    ),
+                  },
+                  {
+                    type: "Transaction frequency",
+                    active: "High frequency",
+                    passive: "Low frequency",
+                  },
+                  {
+                    type: "Transaction costs",
+                    active: "High",
+                    passive: "Low",
+                  },
+                  {
+                    type: "Timing",
+                    active: "Take advantage of price movements (volatility)",
+                    passive: "Ignore price movements (volatility)",
+                  },
+                  {
+                    type: "Required knowledge",
+                    active: "Important",
+                    passive: "Low",
+                  },
+                  {
+                    type: "Duration of analysis",
+                    active: "High",
+                    passive: "Low",
+                  },
+                ]}
+              />
             </div>
             <div className={styles.content} id="define-goals">
               <h1>Why should you define goals?</h1>

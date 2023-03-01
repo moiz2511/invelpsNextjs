@@ -1,0 +1,11 @@
+.container {
+  padding: 10px 50px 50px 50px;
+}
+.container > p {
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 30px;
+}
+.container > p:first {
+  margin-top: 0;
+}

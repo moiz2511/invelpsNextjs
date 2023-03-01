@@ -19,6 +19,7 @@ import DataTable from "@/components/investingPlan/DataTable";
 import LineChart from "@/components/LineChart";
 import InfoModal from "@/components/InfoModal";
 import { formatNumber } from "@/helpers/index";
+import NumberWithLabel from "@/components/NumberWithLabel";
 
 const links = [
   {
@@ -91,7 +92,7 @@ function Page() {
   ]);
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
   const [data, setData] = useState({ byMonths: [], byYear: [] });
-
+  const [returnRate, setReturnRate] = useState(0);
   const handleFieldOnChange = (e) => {
     let newFields = fields.map((f) => {
       if (f.id === parseInt(e.target.name)) {
@@ -149,6 +150,7 @@ function Page() {
     }
 
     // console.log(monthlyData, yearlyData);
+    setReturnRate(RR);
     setData({
       byMonths: monthlyData,
       byYear: yearlyData,
@@ -160,6 +162,7 @@ function Page() {
         parentHeading="Investing plan"
         childHeading="Investment vehicles"
         setOpenModal={setOpenModal}
+        showMoreInfo={true}
       />
       <AlertPopup
         open={showAlert.show}
@@ -304,8 +307,123 @@ function Page() {
                 Calculate
               </CustomButton>
             </div>
+
             {data.byMonths.length > 0 && (
               <>
+                {/*  */}
+                <div className={styles.content}>
+                  <h1>
+                    What is your required rate of return (Internal rate of
+                    return)?
+                  </h1>
+                  <p>
+                    You will need an <b>annual return rate of</b>{" "}
+                    <span style={{ color: "var(--secondary-color)" }}>
+                      {returnRate * 100}%
+                    </span>{" "}
+                    to reach{" "}
+                    <span style={{ color: "var(--secondary-color)" }}>
+                      {data.byMonths &&
+                        formatNumber(
+                          data.byMonths[data.byMonths.length - 1].endBalance
+                        )}
+                    </span>{" "}
+                    in{" "}
+                    <span style={{ color: "var(--secondary-color)" }}>
+                      {data.byMonths[data.byMonths.length - 1].yearNo} years
+                    </span>
+                  </p>
+                </div>
+                {/*  */}
+                <div style={{ marginLeft: "10px" }}>
+                  <div
+                    style={{
+                      marginTop: "20px",
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                      gridTemplateRows: "1fr 1fr",
+                    }}
+                  >
+                    <NumberWithLabel
+                      labelText={"Target Amount"}
+                      mainText={`$
+                  ${
+                    data.byMonths &&
+                    formatNumber(
+                      data.byMonths[data.byMonths.length - 1].endBalance
+                    )
+                  }`}
+                      mainTextStyle={{
+                        color: "var(--primary-orange)",
+                      }}
+                      style={{ borderRight: "1px solid lightgray" }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Starting Amount"}
+                      mainText={`$ 
+                  ${
+                    data.byMonths &&
+                    formatNumber(data.byMonths[0].startingPrincipal)
+                  }`}
+                      style={{
+                        borderRight: "1px solid lightgray",
+                        paddingLeft: "20px",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Monthly Investment"}
+                      mainText={`$
+                  ${data.byMonths[0].additionalContribution}
+                  `}
+                      style={{
+                        borderRight: "1px solid lightgray",
+                        paddingLeft: "20px",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Time"}
+                      mainText={`
+                  ${data.byMonths[data.byMonths.length - 1].yearNo} years
+                  `}
+                      style={{ paddingLeft: "20px" }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      marginTop: "20px",
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                      gridTemplateRows: "1fr 1fr",
+                    }}
+                  >
+                    <NumberWithLabel
+                      labelText={"Total Contribution"}
+                      mainText={`$ 
+                  ${
+                    data.byMonths &&
+                    formatNumber(
+                      data.byMonths
+                        .map((l) => l.additionalContribution)
+                        .reduce((a, b) => a + b)
+                    )
+                  }`}
+                      style={{
+                        borderRight: "1px solid lightgray",
+                      }}
+                    />
+
+                    <NumberWithLabel
+                      labelText={"Annual Of Return Rate"}
+                      mainText={`
+                    ${formatNumber(returnRate * 100)}%
+                  `}
+                      mainTextStyle={{
+                        color: "var(--secondary-color)",
+                      }}
+                      style={{ paddingLeft: "20px" }}
+                    />
+                  </div>
+                </div>
                 {/* for end */}
                 <div className={styles.graphContainer}>
                   <LineChart
@@ -315,51 +433,6 @@ function Page() {
                     balance={data.byYear.map((d) => d.endBalance)}
                     years={data.byYear.map((d) => `${d.yearNo + 1}yr`)}
                   />
-                  <div>
-                    <p>
-                      <span>End Balance</span>
-                      <span>
-                        $
-                        {data.byMonths &&
-                          formatNumber(
-                            data.byMonths[data.byMonths.length - 1].endBalance
-                          )}
-                      </span>
-                    </p>
-                    <p>
-                      <span>Starting Amount</span>
-                      <span>
-                        $
-                        {data.byMonths &&
-                          formatNumber(data.byMonths[0].startingPrincipal)}
-                      </span>
-                    </p>
-                    <p>
-                      <span>Total Contributions</span>
-                      <span>
-                        $
-                        {data.byMonths &&
-                          formatNumber(
-                            data.byMonths
-                              .map((l) => l.additionalContribution)
-                              .reduce((a, b) => a + b)
-                          )}
-                      </span>
-                    </p>
-                    <p>
-                      <span>Total Interest</span>
-
-                      <span>
-                        $
-                        {data.byMonths &&
-                          formatNumber(
-                            data.byMonths
-                              .map((l) => l.monthlyInterest)
-                              .reduce((a, b) => a + b)
-                          )}
-                      </span>
-                    </p>
-                  </div>
                 </div>
                 {/* table */}
                 <div>

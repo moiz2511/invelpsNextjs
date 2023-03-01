@@ -1,0 +1,54 @@
+.container {
+  /* max-width: 300px; */
+}
+.innerContainer {
+  /* padding: 10px 2px; */
+}
+.header {
+  font-size: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  background-color: var(--primary-orange);
+  padding: 5px 15px;
+}
+.row {
+  /* border: 1px solid red; */
+  display: grid;
+  grid-template-columns: 1fr 0.3fr;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 0 2px;
+}
+.row > p {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+.row div {
+  border-radius: 0;
+  padding: 0;
+  /* margin-left: 5px; */
+}
+.row div > p {
+  margin: 5px;
+}
+.row input {
+  padding: 3px;
+}
+
+.inputRow {
+}
+
+.displayRow {
+}
+.displayRow > p {
+  font-weight: 800;
+  background-color: lightgray;
+}
+.displayRow input {
+  background-color: lightgray;
+}
+.final {
+  font-size: 18px;
+}

@@ -10,26 +10,32 @@ const links = [
   {
     name: "Stock",
     img: "https://images.unsplash.com/photo-1579407364450-481fe19dbfaa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80",
+    link: "/stock-investing/approaches/portfolio-managment",
   },
   {
     name: "Gold",
     img: "https://images.unsplash.com/photo-1610375461246-83df859d849d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    link: "/stock-investing/approaches/portfolio-managment",
   },
   {
     name: "Cash",
     img: "https://images.unsplash.com/photo-1621981386829-9b458a2cddde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    link: "/stock-investing/approaches/portfolio-managment",
   },
   {
     name: "Real State",
     img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    link: "/stock-investing/approaches/portfolio-managment",
   },
   {
     name: "Bond Market",
     img: "https://images.unsplash.com/photo-1555421689-d68471e189f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    link: "/stock-investing/approaches/portfolio-managment",
   },
   {
     name: "Tresury Bills",
     img: "https://images.unsplash.com/photo-1632809199725-72a4245e846b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80",
+    link: "/stock-investing/approaches/portfolio-managment",
   },
 ];
 function Page() {
@@ -42,6 +48,7 @@ function Page() {
         parentHeading="Investing plan"
         childHeading="Choose an investment vehicle"
         setOpenModal={setOpenModal}
+        showMoreInfo={true}
       />
       <AlertPopup
         open={showAlert.show}
@@ -97,7 +104,12 @@ function Page() {
       />
       <div className={styles.cardContainer}>
         {links.map((link, key) => (
-          <InvestmentVehicleCard key={key} name={link.name} img={link.img} />
+          <InvestmentVehicleCard
+            key={key}
+            name={link.name}
+            img={link.img}
+            link={link.link}
+          />
         ))}
       </div>
     </Layout>

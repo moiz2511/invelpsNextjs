@@ -1,48 +1,45 @@
-import InvestingPlanSideNav from "@/components/investingPlan/InvestingPlanSideNav";
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import React, { useState } from "react";
 import styles from "@/styles/BasicPage.module.css";
-import TableOfContent from "@/components/TableOfContent";
+import AlertPopup from "@/components/AlertPopup";
+import InvestmentVehicleCard from "@/components/investingPlan/InvestmentVehicleCard";
 import InfoModal from "@/components/InfoModal";
 
 const links = [
   {
-    value: "Funding your investment program",
-    link: "#funding",
+    name: "ACTIVE INVESTING",
+    img: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    link: "/stock-investing/analysis-method/top-vs-bottom",
   },
   {
-    value: "How much money are coming in?",
-    link: "#money-coming-in",
-  },
-  {
-    value: "How much money going out?",
-    link: "#money-going-out",
-  },
-  {
-    value: "Could you increase your income?",
-    link: "#increase-income",
-  },
-  {
-    value: "Could you decrease your expenses?",
-    link: "#decrease-expenses",
+    name: "PASSIVE INVESTING",
+    img: "https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    link: "/stock-investing/analysis-method/top-vs-bottom",
   },
 ];
-
 function Page() {
   const [openModal, setOpenModal] = useState(false);
+  const [showAlert, setShowAlert] = useState({ show: false, message: "" });
+
   return (
     <Layout>
       <PageHeader
-        parentHeading="Investing plan"
-        childHeading="Prepare your cashflow statement"
+        parentHeading="Stock investing"
+        childHeading="Choose your stock investing approach"
         setOpenModal={setOpenModal}
         showMoreInfo={true}
+      />
+      <AlertPopup
+        open={showAlert.show}
+        message={showAlert.message}
+        handleClose={() => setShowAlert({ show: false, message: "" })}
+        severity="error"
       />
       <InfoModal
         open={openModal}
         setOpen={setOpenModal}
-        heading="Prepare your cashflow statement"
+        heading="Choose an investment vehicle"
         content={
           <div>
             <p>
@@ -85,53 +82,15 @@ function Page() {
           </div>
         }
       />
-      <div className={styles.container}>
-        <InvestingPlanSideNav activeHeadingId={1} activeSubheadingId={1.3} />
-        <div>
-          <TableOfContent links={links} />
-          <div className={styles.contentContainer}>
-            <div className={styles.content} id="funding">
-              <h1>Funding your investment program</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent ultrices id mi a placerat. In efficitur pulvinar justo
-                vitae luctus.{" "}
-              </p>
-            </div>
-            <div className={styles.content} id="money-coming-in">
-              <h1>How much money are coming in?</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent ultrices id mi a placerat. In efficitur pulvinar justo
-                vitae luctus.{" "}
-              </p>
-            </div>
-            <div className={styles.content} id="money-going-out">
-              <h1>How much money going out?</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent ultrices id mi a placerat. In efficitur pulvinar justo
-                vitae luctus.{" "}
-              </p>
-            </div>
-            <div className={styles.content} id="increase-income">
-              <h1>Could you increase your income?</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent ultrices id mi a placerat. In efficitur pulvinar justo
-                vitae luctus.{" "}
-              </p>
-            </div>
-            <div className={styles.content} id="decrease-expenses">
-              <h1>Could you decrease your expenses?</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent ultrices id mi a placerat. In efficitur pulvinar justo
-                vitae luctus.{" "}
-              </p>
-            </div>
-          </div>
-        </div>
+      <div className={styles.cardContainer}>
+        {links.map((link, key) => (
+          <InvestmentVehicleCard
+            key={key}
+            name={link.name}
+            img={link.img}
+            link={link.link}
+          />
+        ))}
       </div>
     </Layout>
   );
