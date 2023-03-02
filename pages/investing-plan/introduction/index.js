@@ -25,9 +25,9 @@ function Page() {
 
       <div className={styles.container}>
         <p>
-          Whether you're saving for your first car or you want to live abroad
-          for a semester, some financial dreams are bigger than others. If the
-          money seems out of reach, it may be time to create a plan—or a
+          Whether you&apos;re saving for your first car or you want to live
+          abroad for a semester, some financial dreams are bigger than others.
+          If the money seems out of reach, it may be time to create a plan—or a
           roadmap. Here are some steps you can take:
         </p>
         <p>
@@ -43,9 +43,9 @@ function Page() {
         </p>
         <p>
           <b>3. Fuel up: </b>Once you have a number in mind, you need a way
-          reach it. Whether it's through a part-time job, allowance, gifts, or
-          even starting a small business, making and saving money will take work
-          and some time.
+          reach it. Whether it&apos;s through a part-time job, allowance, gifts,
+          or even starting a small business, making and saving money will take
+          work and some time.
         </p>
         <p>
           <b>4. Pack up the car:</b>
@@ -55,8 +55,8 @@ function Page() {
           consider investing your money instead.
         </p>
         <p>
-          When you have a roadmap, it's much easier to reach a goal. With a plan
-          in hand, you'll be cruising along in no time.
+          When you have a roadmap, it&apos;s much easier to reach a goal. With a
+          plan in hand, you&apos;ll be cruising along in no time.
         </p>
         <div style={{ textAlign: "center", marginTop: "20px" }}>
           <Link href="/investing-plan/financial-goals/prepare-balance-sheet">
