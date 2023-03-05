@@ -9,6 +9,9 @@ import modalStyles from "@/styles/InfoModal.module.css";
 import CustomTable from "@/components/Table";
 import NetIncomeCalculator from "@/components/investingPlan/NetIncomeCalculator";
 import CashflowCalculator from "@/components/investingPlan/CashflowCalculator";
+import NumberWithLabel from "@/components/NumberWithLabel";
+import PieChart from "@/components/PieChart";
+import SwitchButton from "@/components/SwitchButton";
 
 const links = [
   {
@@ -43,6 +46,40 @@ const links = [
 
 function Page() {
   const [openModal, setOpenModal] = useState(false);
+  const [showMonthlyNetincomGraph, setShowMonthlyNetincomeGraph] =
+    useState(false);
+  const [monthlyNetincome, setMonthlyNetincome] = useState({
+    totalIncome: 0,
+    totalExpenses: 0,
+    netIncome: 0,
+  });
+  const [yearlyNetincome, setYearlyNetincome] = useState({
+    totalIncome: 0,
+    totalExpenses: 0,
+    netIncome: 0,
+  });
+  const [marginNetincome, setMarginNetincome] = useState({
+    totalIncome: 0,
+    totalExpenses: 0,
+    netIncome: 0,
+  });
+  // ---------
+  const [showMonthlyCashflowGraph, setShowMonthlyCashflowGraph] =
+    useState(false);
+  const [monthlyCashflow, setMonthlyCashflow] = useState({
+    economicActivities: 0,
+    investingActivities: 0,
+    financingActivities: 0,
+    netCashFlow: 0,
+  });
+  const [yearlyCashflow, setYearlyCashflow] = useState({
+    economicActivities: 0,
+    investingActivities: 0,
+    financingActivities: 0,
+    netCashFlow: 0,
+  });
+  // ----------
+
   return (
     <Layout>
       <PageHeader
@@ -385,7 +422,11 @@ function Page() {
                 Personal Income statement: Fill the different item to calculate
                 your net income
               </p>
-              <NetIncomeCalculator />
+              <NetIncomeCalculator
+                setMonthlyNetincome={setMonthlyNetincome}
+                setYearlyNetincome={setYearlyNetincome}
+                setMarginNetincome={setMarginNetincome}
+              />
             </div>
             <div className={styles.content} id="net-income">
               <h1>What is your net Income?</h1>
@@ -394,6 +435,181 @@ function Page() {
                 your incomes and all your costs and expenses. It is the profit
                 or the loss after all expenses are deducted from Revenue.
               </p>
+              <div style={{ margin: "20px 0" }}>
+                <SwitchButton
+                  checked={showMonthlyNetincomGraph}
+                  onChecked={setShowMonthlyNetincomeGraph}
+                  onOnLabel={"Monthly"}
+                  onOffLabel={"Yearly"}
+                />
+              </div>
+              {/*  */}
+              {!showMonthlyNetincomGraph ? (
+                <div
+                  style={{
+                    display: "flex",
+                    marginTop: "20px",
+                    alignItems: "center",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <div style={{ width: "400px" }}>
+                    {monthlyNetincome.netIncome ? (
+                      <PieChart
+                        data={{
+                          labels: [
+                            "Total Income",
+                            "Net Income",
+                            "Total Expenses",
+                          ],
+                          datasets: [
+                            {
+                              label: "",
+                              data: [
+                                monthlyNetincome.totalIncome,
+                                monthlyNetincome.netIncome,
+                                monthlyNetincome.totalExpenses,
+                              ],
+                              backgroundColor: [
+                                "#ccbf90",
+                                "#407879",
+                                "#cb6843",
+                              ],
+                              hoverOffset: 4,
+                            },
+                          ],
+                        }}
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr",
+                      alignItems: "center",
+                      justifyContent: "",
+                      gridGap: "50px",
+                      height: "fit-content",
+                    }}
+                  >
+                    <NumberWithLabel
+                      labelText={"Total Income"}
+                      mainText={`$${
+                        monthlyNetincome.totalIncome <= 0
+                          ? "0"
+                          : monthlyNetincome.totalIncome
+                      }`}
+                    />
+                    <NumberWithLabel
+                      labelText={"Total Expenses"}
+                      mainText={`$${
+                        monthlyNetincome.totalExpenses <= 0
+                          ? "0"
+                          : monthlyNetincome.totalExpenses
+                      }`}
+                      mainTextStyle={{
+                        color: "var(--primary-orange)",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Net Income"}
+                      mainText={`$${
+                        monthlyNetincome.netIncome <= 0
+                          ? "0"
+                          : monthlyNetincome.netIncome
+                      }`}
+                      mainTextStyle={{
+                        color: "var(--secondary-color)",
+                      }}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div
+                  style={{
+                    display: "flex",
+                    marginTop: "20px",
+                    alignItems: "center",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <div style={{ width: "400px" }}>
+                    {yearlyNetincome.netIncome ? (
+                      <PieChart
+                        data={{
+                          labels: [
+                            "Total Income",
+                            "Net Income",
+                            "Total Expenses",
+                          ],
+                          datasets: [
+                            {
+                              label: "",
+                              data: [
+                                yearlyNetincome.totalIncome,
+                                yearlyNetincome.netIncome,
+                                yearlyNetincome.totalExpenses,
+                              ],
+                              backgroundColor: [
+                                "#ccbf90",
+                                "#407879",
+                                "#cb6843",
+                              ],
+                              hoverOffset: 4,
+                            },
+                          ],
+                        }}
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr",
+                      alignItems: "center",
+                      justifyContent: "",
+                      gridGap: "50px",
+                      height: "fit-content",
+                    }}
+                  >
+                    <NumberWithLabel
+                      labelText={"Total Income"}
+                      mainText={`$${
+                        yearlyNetincome.totalIncome <= 0
+                          ? "0"
+                          : yearlyNetincome.totalIncome
+                      }`}
+                    />
+                    <NumberWithLabel
+                      labelText={"Total Expenses"}
+                      mainText={`$${
+                        yearlyNetincome.totalExpenses <= 0
+                          ? "0"
+                          : yearlyNetincome.totalExpenses
+                      }`}
+                      mainTextStyle={{
+                        color: "var(--primary-orange)",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Net Income"}
+                      mainText={`$${
+                        yearlyNetincome.netIncome <= 0
+                          ? "0"
+                          : yearlyNetincome.netIncome
+                      }`}
+                      mainTextStyle={{
+                        color: "var(--secondary-color)",
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+              {/*  */}
             </div>
             <div className={styles.content} id="coming-in-going-out">
               <h1>How much are coming in and going out?</h1>
@@ -419,7 +635,10 @@ function Page() {
             <div className={styles.content} id="net-income">
               <h1>Net Cash flow calculator – Cash flow statement:</h1>
               <p>Fill the different item to calculate your net cash flow</p>
-              <CashflowCalculator />
+              <CashflowCalculator
+                setMonthlyCashflow={setMonthlyCashflow}
+                setYearlyCashflow={setYearlyCashflow}
+              />
             </div>
 
             <div className={styles.content} id="positive-cash-flow">
@@ -430,6 +649,216 @@ function Page() {
                 and foremost, it’s about your financial well-being. Are you
                 managing your finances well or not?
               </p>
+
+              <div style={{ margin: "20px 0" }}>
+                <SwitchButton
+                  checked={showMonthlyCashflowGraph}
+                  onChecked={setShowMonthlyCashflowGraph}
+                  onOnLabel={"Monthly"}
+                  onOffLabel={"Yearly"}
+                />
+              </div>
+              {/*  */}
+              {!showMonthlyCashflowGraph ? (
+                <div
+                  style={{
+                    display: "flex",
+                    marginTop: "20px",
+                    alignItems: "center",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <div style={{ width: "400px" }}>
+                    {monthlyCashflow.netCashFlow ? (
+                      <PieChart
+                        data={{
+                          labels: [
+                            "Cash flow income from economic activities",
+                            "Cash flow income from investing activities",
+                            "Cash flow income from financing activities",
+                            "Cash on hand",
+                          ],
+                          datasets: [
+                            {
+                              label: "",
+                              data: [
+                                monthlyCashflow.economicActivities,
+                                monthlyCashflow.investingActivities,
+                                monthlyCashflow.financingActivities,
+                                monthlyCashflow.netCashFlow,
+                              ],
+                              backgroundColor: [
+                                "#ccbf90",
+                                "#407879",
+                                "#cb6843",
+                                "#ffba00",
+                              ],
+                              hoverOffset: 4,
+                            },
+                          ],
+                        }}
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr",
+                      alignItems: "center",
+                      justifyContent: "",
+                      gridGap: "50px",
+                      height: "fit-content",
+                    }}
+                  >
+                    <NumberWithLabel
+                      labelText={"Cash flow income from economic activities"}
+                      mainText={`$${
+                        monthlyCashflow.economicActivities <= 0
+                          ? "0"
+                          : monthlyCashflow.economicActivities
+                      }`}
+                      mainTextStyle={{
+                        color: "#ccbf90",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Cash flow income from investing activities"}
+                      mainText={`$${
+                        monthlyCashflow.investingActivities <= 0
+                          ? "0"
+                          : monthlyCashflow.investingActivities
+                      }`}
+                      mainTextStyle={{
+                        color: "#407879",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Cash flow income from financing activities"}
+                      mainText={`$${
+                        monthlyCashflow.financingActivities <= 0
+                          ? "0"
+                          : monthlyCashflow.financingActivities
+                      }`}
+                      mainTextStyle={{
+                        color: "#cb6843",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Cash on hand"}
+                      mainText={`$${
+                        monthlyCashflow.netCashFlow <= 0
+                          ? "0"
+                          : monthlyCashflow.netCashFlow
+                      }`}
+                      mainTextStyle={{
+                        color: "#ffba00",
+                      }}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div
+                  style={{
+                    display: "flex",
+                    marginTop: "20px",
+                    alignItems: "center",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <div style={{ width: "400px" }}>
+                    {yearlyCashflow.netCashFlow ? (
+                      <PieChart
+                        data={{
+                          labels: [
+                            "Cash flow income from economic activities",
+                            "Cash flow income from investing activities",
+                            "Cash flow income from financing activities",
+                            "Cash on hand",
+                          ],
+                          datasets: [
+                            {
+                              label: "",
+                              data: [
+                                yearlyCashflow.economicActivities,
+                                yearlyCashflow.investingActivities,
+                                yearlyCashflow.financingActivities,
+                                yearlyCashflow.netCashFlow,
+                              ],
+                              backgroundColor: [
+                                "#ccbf90",
+                                "#407879",
+                                "#cb6843",
+                                "#ffba00",
+                              ],
+                              hoverOffset: 4,
+                            },
+                          ],
+                        }}
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr",
+                      alignItems: "center",
+                      justifyContent: "",
+                      gridGap: "50px",
+                      height: "fit-content",
+                    }}
+                  >
+                    <NumberWithLabel
+                      labelText={"Cash flow income from economic activities"}
+                      mainText={`$${
+                        yearlyCashflow.economicActivities <= 0
+                          ? "0"
+                          : yearlyCashflow.economicActivities
+                      }`}
+                      mainTextStyle={{
+                        color: "#ccbf90",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Cash flow income from investing activities"}
+                      mainText={`$${
+                        yearlyCashflow.investingActivities <= 0
+                          ? "0"
+                          : yearlyCashflow.investingActivities
+                      }`}
+                      mainTextStyle={{
+                        color: "#407879",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Cash flow income from financing activities"}
+                      mainText={`$${
+                        yearlyCashflow.financingActivities <= 0
+                          ? "0"
+                          : yearlyCashflow.financingActivities
+                      }`}
+                      mainTextStyle={{
+                        color: "#cb6843",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Cash on hand"}
+                      mainText={`$${
+                        yearlyCashflow.netCashFlow <= 0
+                          ? "0"
+                          : yearlyCashflow.netCashFlow
+                      }`}
+                      mainTextStyle={{
+                        color: "#ffba00",
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+              {/*  */}
             </div>
             <div className={styles.content} id="positive-cash-flow">
               <h1>Where can you improve the results? </h1>

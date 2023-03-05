@@ -3,7 +3,7 @@ import TableCalculator from "../TableCalculator";
 import { uuid } from "uuidv4";
 import TableMultiCalculator from "../TableMultiCalculator";
 
-function TotalAssetCalculator() {
+function TotalAssetCalculator({ setMonthlyCashflow, setYearlyCashflow }) {
   const [monthlyFields, setMonthlyFields] = useState([
     {
       id: uuid(),
@@ -17,6 +17,7 @@ function TotalAssetCalculator() {
       label: "Cash flow income from economic activities",
       tooltip: "",
       type: "display",
+      value: "",
       valueOf: [0],
       subFrom: [],
     },
@@ -32,6 +33,7 @@ function TotalAssetCalculator() {
       label: "Cash flow income from investing activities",
       tooltip: "",
       type: "display",
+      value: "",
       valueOf: [2],
       subFrom: [],
     },
@@ -40,6 +42,7 @@ function TotalAssetCalculator() {
       label: "Free cash flow",
       tooltip: "",
       type: "display",
+      value: "",
       valueOf: [3],
       subFrom: [1],
     },
@@ -56,6 +59,7 @@ function TotalAssetCalculator() {
       label: "Cash flow income from financing activities",
       tooltip: "",
       type: "display",
+      value: "",
       valueOf: [5],
       subFrom: [],
     },
@@ -64,6 +68,7 @@ function TotalAssetCalculator() {
       label: "Net Cash flow",
       tooltip: "",
       type: "display",
+      value: "",
       valueOf: [6],
       subFrom: [4],
     },
@@ -81,6 +86,7 @@ function TotalAssetCalculator() {
       // label: "Cash flow income from economic activities",
       // tooltip: "",
       type: "display",
+      value: "",
       valueOf: [0],
       subFrom: [],
     },
@@ -96,6 +102,7 @@ function TotalAssetCalculator() {
       // label: "Cash flow income from investing activities",
       // tooltip: "",
       type: "display",
+      value: "",
       valueOf: [2],
       subFrom: [],
     },
@@ -104,6 +111,7 @@ function TotalAssetCalculator() {
       // label: "Free cash flow",
       // tooltip: "",
       type: "display",
+      value: "",
       valueOf: [3],
       subFrom: [1],
     },
@@ -120,6 +128,7 @@ function TotalAssetCalculator() {
       // label: "Cash flow income from financing activities",
       // tooltip: "",
       type: "display",
+      value: "",
       valueOf: [5],
       subFrom: [],
     },
@@ -128,6 +137,7 @@ function TotalAssetCalculator() {
       // label: "Net Cash flow",
       // tooltip: "",
       type: "display",
+      value: "",
       valueOf: [6],
       subFrom: [4],
     },
@@ -135,10 +145,22 @@ function TotalAssetCalculator() {
 
   useEffect(() => {
     // setTotalAssets(fields[fields.length - 1].value);
+    setMonthlyCashflow({
+      economicActivities: monthlyFields[1].value,
+      investingActivities: monthlyFields[3].value,
+      financingActivities: monthlyFields[6].value,
+      netCashFlow: monthlyFields[7].value,
+    });
   }, [monthlyFields]);
 
   useEffect(() => {
     // setTotalAssets(fields[fields.length - 1].value);
+    setYearlyCashflow({
+      economicActivities: yearlyFields[1].value,
+      investingActivities: yearlyFields[3].value,
+      financingActivities: yearlyFields[6].value,
+      netCashFlow: yearlyFields[7].value,
+    });
   }, [yearlyFields]);
 
   const handleOnChange = (e) => {

@@ -3,7 +3,11 @@ import TableCalculator from "../TableCalculator";
 import { uuid } from "uuidv4";
 import TableMultiCalculator from "../TableMultiCalculator";
 
-function TotalAssetCalculator() {
+function TotalAssetCalculator({
+  setMonthlyNetincome,
+  setYearlyNetincome,
+  setMarginNetincome,
+}) {
   const [monthlyFields, setMonthlyFields] = useState([
     {
       id: uuid(),
@@ -441,15 +445,27 @@ function TotalAssetCalculator() {
   ]);
 
   useEffect(() => {
-    // setTotalAssets(fields[fields.length - 1].value);
+    setMonthlyNetincome({
+      totalIncome: monthlyFields[4].value,
+      totalExpenses: monthlyFields[13].value,
+      netIncome: monthlyFields[17].value,
+    });
   }, [monthlyFields]);
 
   useEffect(() => {
-    // setTotalAssets(fields[fields.length - 1].value);
+    setYearlyNetincome({
+      totalIncome: yearlyFields[4].value,
+      totalExpenses: yearlyFields[13].value,
+      netIncome: yearlyFields[17].value,
+    });
   }, [yearlyFields]);
 
   useEffect(() => {
-    // setTotalAssets(fields[fields.length - 1].value);
+    setMarginNetincome({
+      totalIncome: marginFields[4].value,
+      totalExpenses: marginFields[13].value,
+      netIncome: marginFields[17].value,
+    });
   }, [marginFields]);
 
   const handleOnChange = (e) => {

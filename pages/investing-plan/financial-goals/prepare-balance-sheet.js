@@ -302,42 +302,83 @@ function Page() {
               </p>
               <div
                 style={{
+                  display: "flex",
                   marginTop: "20px",
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                  alignItems: "center",
+                  justifyContent: "space-around",
                 }}
               >
-                <NumberWithLabel
-                  labelText={"As at Date"}
-                  mainText={DateTime.now().toFormat("yyyy.MM.dd")}
-                  tyle={{ borderRight: "1px solid lightgray" }}
-                />
-                <NumberWithLabel
-                  labelText={"Total Assets"}
-                  mainText={`$${totalAssets <= 0 ? "0" : totalAssets}`}
-                  style={{ borderRight: "1px solid lightgray" }}
-                />
-                <NumberWithLabel
-                  labelText={"Total Liabilities"}
-                  mainText={`$${
-                    totalLiabilities <= 0 ? "0" : totalLiabilities
-                  }`}
-                  mainTextStyle={{
-                    color: "var(--primary-orange)",
-                  }}
+                <div style={{ width: "400px" }}>
+                  {netWorth ? (
+                    <PieChart
+                      data={{
+                        labels: [
+                          "Total Assets",
+                          "Net Worth",
+                          "Total Liabilities",
+                        ],
+                        datasets: [
+                          {
+                            label: "",
+                            data: [
+                              totalAssets,
+                              netWorth < 0 ? 0 : netWorth,
+                              totalLiabilities,
+                            ],
+                            backgroundColor: ["#ccbf90", "#407879", "#cb6843"],
+                            hoverOffset: 4,
+                          },
+                        ],
+                      }}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <div
                   style={{
-                    borderRight: "1px solid lightgray",
-                    paddingLeft: "20px",
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    alignItems: "center",
+                    justifyContent: "",
+                    gridGap: "50px",
+                    height: "fit-content",
                   }}
-                />
-                <NumberWithLabel
-                  labelText={"Net Worth"}
-                  mainText={`$${netWorth <= 0 ? "0" : netWorth}`}
-                  mainTextStyle={{
-                    color: "var(--secondary-color)",
-                  }}
-                  style={{ paddingLeft: "20px" }}
-                />
+                >
+                  <NumberWithLabel
+                    labelText={"As at Date"}
+                    mainText={DateTime.now().toFormat("yyyy.MM.dd")}
+                    // tyle={{ borderRight: "1px solid lightgray" }}
+                  />
+                  <NumberWithLabel
+                    labelText={"Total Assets"}
+                    mainText={`$${totalAssets <= 0 ? "0" : totalAssets}`}
+                    // style={{ width: "1px solid lightgray" }}
+                  />
+                  <NumberWithLabel
+                    labelText={"Total Liabilities"}
+                    mainText={`$${
+                      totalLiabilities <= 0 ? "0" : totalLiabilities
+                    }`}
+                    mainTextStyle={{
+                      color: "var(--primary-orange)",
+                    }}
+                    style={
+                      {
+                        // borderRight: "1px solid lightgray",
+                        // paddingLeft: "20px",
+                      }
+                    }
+                  />
+                  <NumberWithLabel
+                    labelText={"Net Worth"}
+                    mainText={`$${netWorth <= 0 ? "0" : netWorth}`}
+                    mainTextStyle={{
+                      color: "var(--secondary-color)",
+                    }}
+                    // style={{ paddingLeft: "20px" }}
+                  />
+                </div>
               </div>
             </div>
             <div className={styles.content} id="increase-networth">

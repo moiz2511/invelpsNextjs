@@ -9,6 +9,7 @@ function CustomButton({ children, onClick, disabled, style }) {
       disabled={disabled}
       className={styles.btn}
       style={style}
+      sx={style}
     >
       {children}
     </Button>

@@ -6,6 +6,7 @@ import styles from "@/styles/BasicPage.module.css";
 import modalStyles from "@/styles/InfoModal.module.css";
 import TableOfContent from "@/components/TableOfContent";
 import InfoModal from "@/components/InfoModal";
+import FinancialGoalsCalculator from "@/components/investingPlan/FinancialGoalsCalculator";
 
 const links = [
   {
@@ -203,7 +204,7 @@ function Page() {
               </p>
             </div>
             <div className={styles.content} id="investing-for">
-              <h1>Why should you define goals?</h1>
+              <h1>What are you investing for?</h1>
               <p>
                 Successful investing generally starts with what you're
                 investing for, not what you're investing in. You want to move
@@ -222,6 +223,7 @@ function Page() {
             <div className={styles.content} id="investing-for">
               <h1>Set your investing goals:</h1>
               <p>Please answer all the below questions:</p>
+              <FinancialGoalsCalculator />
               <p>
                 Whether it's a short-term or long-term goal, know that your goal
                 is the destination. Your current net worth is the starting
