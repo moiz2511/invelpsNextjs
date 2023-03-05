@@ -11,12 +11,13 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "50vw",
+  width: "60vw",
   height: 500,
   bgcolor: "background.paper",
   border: "1px solid #000",
   boxShadow: 24,
   overflowY: "scroll",
+  borderRadius: "10px",
 };
 
 function InfoModal({ open, setOpen, content, heading }) {
@@ -35,9 +36,9 @@ function InfoModal({ open, setOpen, content, heading }) {
           <Image src={CloseIcon} onClick={() => setOpen(false)} />
         </div>
         <div className={styles.content}>{content}</div>
-        <div className={styles.footer}>
+        {/* <div className={styles.footer}>
           <CustomButton onClick={() => setOpen(false)}>Close</CustomButton>
-        </div>
+        </div> */}
       </Box>
     </Modal>
   );

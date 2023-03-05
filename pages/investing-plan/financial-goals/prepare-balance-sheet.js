@@ -10,6 +10,9 @@ import TotalAssetCalculator from "@/components/investingPlan/TotalAssetCalculato
 import TotalLiabilitiesCalculator from "@/components/investingPlan/TotalLiabilitiesCalculator";
 import { DateTime } from "luxon";
 import PieChart from "@/components/PieChart";
+import modalStyles from "@/styles/InfoModal.module.css";
+import CustomTable from "@/components/Table";
+
 const links = [
   {
     value: "Establish your current situation.",
@@ -67,49 +70,165 @@ function Page() {
         setOpen={setOpenModal}
         heading="Prepare your balance sheet"
         content={
-          <div>
-            <p>
-              {" "}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              aliquet sapien euismod feugiat consequat. Sed at vulputate urna,
-              eu varius lacus. Fusce elementum libero congue augue laoreet,
-              vitae laoreet orci faucibus. Etiam tristique nibh elit, a tempus
-              ipsum ultricies at. Sed aliquet magna nec nunc lacinia, eu tempor
-              purus hendrerit. Nunc vitae bibendum mi, cursus scelerisque
-              mauris. Donec at lorem sit amet diam fermentum aliquam a porttitor
-              mauris. Suspendisse sapien nibh, placerat ac pharetra vel, lacinia
-              ut lacus. Donec ultricies tellus sit amet ultrices vehicula.
-              Praesent eu ligula eu urna aliquam tempus eu quis leo. Suspendisse
-              commodo nulla turpis, at ultricies urna finibus in. Phasellus quis
-              condimentum diam. Sed et laoreet dui. Sed at ante ac purus
-              porttitor bibendum at ut enim. Aenean ipsum magna, rutrum id velit
-              non, rhoncus semper ipsum.
-            </p>
-            <p>
-              Nam quis purus tincidunt, eleifend risus vitae, sollicitudin
-              lorem. Praesent feugiat arcu ac massa ullamcorper iaculis sed eu
-              massa. Suspendisse ac cursus nisi, non faucibus leo. Nulla lectus
-              mi, tincidunt non libero a, facilisis accumsan odio. Aliquam
-              posuere malesuada nulla. Proin nunc diam, tempus eget vehicula
-              eget, fermentum nec augue. Vestibulum pharetra, sem et venenatis
-              iaculis, dolor libero malesuada purus, ac aliquet odio erat eget
-              risus.
-            </p>
-            <p>
-              In quis augue vel dui tempus dignissim ac in urna. Sed commodo
-              purus eu consectetur convallis. Fusce porttitor volutpat
-              elementum. Nunc velit purus, vehicula at pulvinar accumsan,
-              consectetur euismod ex. Vestibulum ante ipsum primis in faucibus
-              orci luctus et ultrices posuere cubilia curae; Donec fermentum,
-              elit eu semper efficitur, nisl mauris bibendum mauris, ac cursus
-              magna eros non elit. Pellentesque sodales dolor vel sollicitudin
-              tempus.
-            </p>{" "}
+          <div className={styles}>
+            <div className={styles.content}>
+              <h1>What is a personal balance sheet?</h1>
+              <p>
+                The personal Balance sheet provides a snapshot of a individual’s
+                wealth at a specific point in time. It shows the the carrying
+                values of an individual’s assets and liabilities at a specific
+                point in time. Conceptually, the assets of an individual (i.e.
+                the resources belonging to the indivudal) have all been funded
+                somehow, and its liabilities present the funding source of some
+                of his assets (i.e. how the resourceswere purchased).
+              </p>
+            </div>
+            <div className={styles.content}>
+              <h1>What are a the assets?</h1>
+              <p>
+                Assets describe resources belonging to the individual with an
+                economic value that can be sold for money or have the potential
+                to provide monetary benefits someday in the future. The assets
+                section in Balance sheet is ordered in terms of liquidity i.e.
+                the individual’s assets are ranked by how quickly the asset can
+                be liquidated and turned into cash on hand.
+                <p>Consequently, they are separated in two main categories :</p>
+              </p>
+              <ul className={modalStyles.list}>
+                {/* --- */}
+                <li>
+                  Current or Short term assets: They are assets than can be
+                  converted into cash quickly
+                </li>
+                {/* -- */}
+                <li>
+                  Non Current or Long term assets: they are assets than cannot
+                  be converted into cash in short term period.
+                </li>
+                {/* --- */}
+              </ul>
+            </div>
+            <div className={styles.content}>
+              <CustomTable
+                primary={true}
+                columns={["Current Asset (Short term)", "Description"]}
+                rows={[
+                  {
+                    first: "Cash and Cash Equivalents",
+                    second:
+                      "The starting line item for practically all balance sheet, cash and other highly liquid cash-like  cash on Hand, outstanding money in checking and saving account",
+                  },
+                  {
+                    first: "Short term investment",
+                    second:
+                      "Short-term investment owned by an individual that can be liquidated to cash relatively quickly like stock, funds, life insurance, treasury bills.",
+                  },
+                  {
+                    first: "Other current assets",
+                    second:
+                      "In this item, we include the unfulfilled payments owed to an individual by its borrowers, or advance tax credit from government or any other resource owned that can be turned into cash.",
+                  },
+                ]}
+              />
+            </div>
+            <div className={styles.content}>
+              <CustomTable
+                primary={true}
+                columns={["Non Current Asset (Long term)", "Description"]}
+                rows={[
+                  {
+                    first: "Property and Equipment",
+                    second:
+                      "Those assets refer to fixed asses like your home, vehicles and other tangible assets with an economic value that cannot be liquidated in a short term period.",
+                  },
+                  {
+                    first: "Long term investment",
+                    second:
+                      "Long-term investment refer to financial investment such as Retirement plan, real estate investment, or tax incentive investment.",
+                  },
+                  {
+                    first: "Other non current assets",
+                    second:
+                      "In this last item, we gather any other iliquid assets which don’t fall in above items like art, antique, wine.",
+                  },
+                ]}
+              />
+            </div>
+            <div className={styles.content}>
+              <h1>What are a the Liabilities?</h1>
+              <p>
+                Liabilities are the amount of money owed to others. They include
+                all kinds of obligations like money borrowed from a bank, money
+                owed to suppliers for services or goods delivered. Similar to
+                assets, they are listed in terms of how soon you need to pay
+                them, ie short or long term maturity.
+              </p>
+              <ul className={modalStyles.list}>
+                {/* --- */}
+                <li>
+                  <b>Current liabilities:</b> the short term liabilities that
+                  have to be paid in near term, within one year max.
+                </li>
+                {/* -- */}
+                <li>
+                  <b>Non Current or Long term liabilities:</b> the long-term
+                  liabilities that are not expected to be paid for at least one
+                  year
+                </li>
+                {/* --- */}
+              </ul>
+            </div>
+            <div className={styles.content}>
+              <CustomTable
+                primary={true}
+                columns={["Current Liabilities (Short term)", "Description"]}
+                rows={[
+                  {
+                    first: "Invoices payable",
+                    second:
+                      "They represent the unpaid bills owed to suppliers and vendors for services or products already received (Communication bills, energy bills)",
+                  },
+                  {
+                    first: "Short term debt",
+                    second:
+                      "Short-term debt have maturity dates that are coming due within the next twelve months (including the current portion of long-term debt) like the current portion of the car lease, credit card, consummer loan.",
+                  },
+                  {
+                    first: "Other current liabilities",
+                    second:
+                      "Other current liabilities gather items like Income tax, property tax.",
+                  },
+                ]}
+              />
+            </div>
+            <div className={styles.content}>
+              <CustomTable
+                primary={true}
+                columns={["Non Current Liabilities (L term)", "Description"]}
+                rows={[
+                  {
+                    first: "Long term liabilities",
+                    second:
+                      "Long term obligation like car Lease  which allows an individual to lease a car  for an agreed-upon duration in exchange for regular payments.",
+                  },
+                  {
+                    first: "Long term debt",
+                    second:
+                      "Long-term debt represents any debt obligations with maturity dates that do not come due for at least one year, i.e. maturity exceeds twelve months like Bank loan, Mortgage.",
+                  },
+                  {
+                    first: "Other Long term liabilities",
+                    second:
+                      "Other Long term liabilities are items like Deferred taxes.",
+                  },
+                ]}
+              />
+            </div>
           </div>
         }
       />
       <div className={styles.container}>
-        <InvestingPlanSideNav activeHeadingId={1} activeSubheadingId={1.1} />
+        <InvestingPlanSideNav activeHeadingId={1} activeSubheadingId={1.2} />
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>
@@ -181,36 +300,6 @@ function Page() {
                 your assets and all your liabilities. It is an indication of
                 your net worth at a given time.
               </p>
-              <PieChart
-                data={{
-                  labels: [
-                    "Total Libailities",
-                    "Total Assets",
-                    "Total Networth",
-                  ],
-                  datasets: [
-                    {
-                      label: "",
-                      data: [
-                        totalLiabilities || 0,
-                        totalAssets || 0,
-                        netWorth || 0,
-                      ],
-                      backgroundColor: [
-                        "rgba(255, 99, 132, 0.2)",
-                        "rgba(54, 162, 235, 0.2)",
-                        "rgba(255, 206, 86, 0.2)",
-                      ],
-                      borderColor: [
-                        "rgba(255, 99, 132, 1)",
-                        "rgba(54, 162, 235, 1)",
-                        "rgba(255, 206, 86, 1)",
-                      ],
-                      borderWidth: 1,
-                    },
-                  ],
-                }}
-              />
               <div
                 style={{
                   marginTop: "20px",

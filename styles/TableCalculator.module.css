@@ -10,6 +10,9 @@
   text-transform: uppercase;
   background-color: var(--primary-orange);
   padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .row {
   /* border: 1px solid red; */

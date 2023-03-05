@@ -5,7 +5,7 @@ function InvestingPlanSideNav({ activeHeadingId, activeSubheadingId }) {
   const links = [
     {
       id: 0,
-      main: "0. Introduction",
+      main: "Introduction",
       link: "/investing-plan/introduction",
       subs: [],
     },
@@ -15,23 +15,18 @@ function InvestingPlanSideNav({ activeHeadingId, activeSubheadingId }) {
       subs: [
         {
           id: 1.1,
-          value: "1. Prepare your balance sheet",
-          link: "/investing-plan/financial-goals/prepare-balance-sheet",
+          value: "1. Set your financial goals",
+          link: "/investing-plan/financial-goals/set-financial-goals",
         },
         {
           id: 1.2,
-          value: "2. Prepare your income statement",
-          link: "/investing-plan/financial-goals/prepare-income-statement",
+          value: "2. Prepare your balance sheet",
+          link: "/investing-plan/financial-goals/prepare-balance-sheet",
         },
         {
           id: 1.3,
-          value: "3. Prepare your cashflow statement",
+          value: "3. Prepare your income and cashflow statement",
           link: "/investing-plan/financial-goals/prepare-cashflow-statement",
-        },
-        {
-          id: 1.4,
-          value: "4. Set your financial goals",
-          link: "/investing-plan/financial-goals/set-financial-goals",
         },
       ],
     },

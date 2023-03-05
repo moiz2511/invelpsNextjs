@@ -8,34 +8,36 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "var(--primary-orange)",
-    color: theme.palette.common.white,
-    // padding: "10px",
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
+const CustomTable = ({ primary, columns, rows }) => {
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: primary ? "white" : "var(--primary-orange)",
+      color: primary ? "var(--primary-orange)" : theme.palette.common.white,
+      whiteSpace: primary ? "nowrap" : "wrap",
+      fontWeight: primary ? "700" : "500",
+      // padding: "10px",
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    // backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      // backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
 
-const StyledTableHead = styled(TableHead)(({ theme }) => ({
-  [`.MuiTableHead-root`]: {
-    backgroundColor: "var(--primary-orange)",
-  },
-}));
+  const StyledTableHead = styled(TableHead)(({ theme }) => ({
+    [`.MuiTableHead-root`]: {
+      backgroundColor: "var(--primary-orange)",
+    },
+  }));
 
-const CustomTable = ({ columns, rows }) => {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="customized table" stickyHeader>

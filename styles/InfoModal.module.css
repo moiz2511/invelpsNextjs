@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #000;
-  padding: 15px 10px;
+  padding: 16px 16px;
   font-size: 14px;
 }
 .header > img {
@@ -15,8 +15,10 @@
   cursor: pointer;
 }
 .content {
-  padding: 20px 20px 80px 20px;
+  padding: 5px 10px;
+  /* padding: 20px 20px 80px 20px; */
 }
+
 .footer {
   bottom: 0;
   position: absolute;
@@ -28,6 +30,23 @@
   justify-content: flex-end;
 }
 .box {
+  /* padding: 20px 10px; */
 }
 .header {
+}
+
+.list {
+  margin: 30px 15px 0 15px;
+}
+.list > li {
+  margin: 10px 0px;
+}
+.codebox {
+  background-color: lightgray;
+  padding: 20px 10px;
+  font-size: 20px;
+}
+.greenColor {
+  color: var(--secondary-color);
+  font-weight: 700;
 }
