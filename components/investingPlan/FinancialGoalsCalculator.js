@@ -4,6 +4,7 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CustomButton from "../Button";
+import PieChart from "../PieChart";
 
 const containerStyle = {
   display: "flex",
@@ -20,6 +21,7 @@ function FinancialGoalsCalculator() {
     when: new Date(),
     saving: "",
   });
+  const [showChart, setShowChart] = useState(false);
   return (
     <div style={{ padding: "30px 0" }}>
       <div style={containerStyle}>
@@ -53,7 +55,7 @@ function FinancialGoalsCalculator() {
       <div style={containerStyle}>
         <p style={textStyle}>Have you saved anything yet ? If no enter 0</p>
         <TextField
-          value={values.need}
+          value={values.saving}
           sx={{
             width: "300px",
           }}
@@ -74,10 +76,56 @@ function FinancialGoalsCalculator() {
             fontSize: "700 !important",
             marginRight: "20px",
           }}
+          onClick={() => {
+            setValues({
+              need: "",
+              when: new Date(),
+              saving: "",
+            });
+            setShowChart(false);
+          }}
         >
           Cancel
         </Button>
-        <CustomButton>View Results</CustomButton>
+        <CustomButton
+          onClick={() => {
+            if (values.need.length > 0 && values.saving.length > 0) {
+              setShowChart(true);
+            }
+          }}
+        >
+          View Results
+        </CustomButton>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: "20px",
+        }}
+      >
+        <div style={{ width: "500px" }}>
+          {showChart && values.need && values.saving && (
+            <PieChart
+              data={{
+                labels: ["What you have", "What you need", "Current gap"],
+                datasets: [
+                  {
+                    label: "",
+                    data: [
+                      values.saving,
+                      values.need,
+                      values.need - values.saving,
+                    ],
+                    backgroundColor: ["#ccbf90", "#407879", "#cb6843"],
+                    hoverOffset: 4,
+                  },
+                ],
+              }}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

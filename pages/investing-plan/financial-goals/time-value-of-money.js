@@ -132,6 +132,9 @@ function Page() {
     let RR =
       formulajs.RATE(periodYear * 12, -cF, -startingAmount, targetAmount) * 12;
 
+    RR = RR > 1 ? 1 : RR;
+    console.log("ammar", RR);
+    // return;
     setRR(RR);
     // calculating montly data
     let monthlyData = [];

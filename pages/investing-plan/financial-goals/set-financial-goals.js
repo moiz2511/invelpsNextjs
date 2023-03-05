@@ -39,18 +39,18 @@ function Page() {
             <div className={styles.content}>
               <h1>What are you investing for?</h1>
               <p>
-                Successful investing generally starts with what you're
-                investing for, not what you're investing in. You want to move
-                forward with your finances. Maybe you long for financial
+                Successful investing generally starts with what you&apos;re
+                investing for, not what you&apos;re investing in. You want to
+                move forward with your finances. Maybe you long for financial
                 security, that your family will always be taken care of, that
                 you can finally relax and enjoy your money. If you dig a little
                 deeper into this vision, what specifically do you want to
                 accomplish? Do you imagine owning your own home or living
-                debt-free? Do you think about paying for your children's
+                debt-free? Do you think about paying for your children&apos;s
                 education; retiring earlier or affording yourself some comfort
-                in retirement. These specific items are your savings goals. It's
-                important to take the time to name them and describe them in as
-                much detail as possible.
+                in retirement. These specific items are your savings goals.
+                It&apos;s important to take the time to name them and describe
+                them in as much detail as possible.
               </p>
             </div>
             <div className={styles.content} id="investing-for">
@@ -88,7 +88,7 @@ function Page() {
                 <li>
                   <b>Fine-tune your contribution amounts:</b> Planning out your
                   goals can help you figure out how much to contribute to each
-                  goal—whether you're crunching the numbers on your own or
+                  goal—whether you&apos;re crunching the numbers on your own or
                   working through them with a financial professional.
                 </li>
                 <li>
@@ -102,17 +102,18 @@ function Page() {
               <p>
                 Finally, identifying your goals can give you a sense of purpose
                 for all the hard work you put into your finances, and a feeling
-                of accomplishment when you reach those mile markers you've set
-                for yourself. After all, you can't cross the finish line if
-                there is no finish line. When you have a clear goal, you'll have
-                a way of knowing when you've arrived.
+                of accomplishment when you reach those mile markers you&apos;ve
+                set for yourself. After all, you can&apos;t cross the finish
+                line if there is no finish line. When you have a clear goal,
+                you&apos;ll have a way of knowing when you&apos;ve arrived.
               </p>
             </div>
             <div className={styles.content}>
               <h1>What you need to identify?</h1>
               <p>
                 As your vision of your future starts to come into focus, there
-                are a few details you'll want to try to pin down for each one
+                are a few details you&apos;ll want to try to pin down for each
+                one
               </p>
               <p>
                 <b>What it is:</b> Defining your goals is a good way to express
@@ -120,25 +121,25 @@ function Page() {
               </p>
               <p>
                 <b>When it is:</b> The time frame in which you want to achieve
-                your goal also called your time horizon. It's important because
-                it informs how much risk to consider when building your
+                your goal also called your time horizon. It&apos;s important
+                because it informs how much risk to consider when building your
                 investment mix for that goal, and determines how long you have
                 to build up your savings
               </p>
               <p>
-                <b>How much you'll need:</b> Putting a price tag on each goal is
-                a crucial detail that can help you determine the right savings
-                or investment rates, and help you track your progress to the
-                finish line
+                <b>How much you&apos;ll need:</b> Putting a price tag on each
+                goal is a crucial detail that can help you determine the right
+                savings or investment rates, and help you track your progress to
+                the finish line
               </p>
             </div>
             <div className={styles.content}>
               <p>
                 Consider writing your goals down so you have a tangible reminder
-                of what you're working toward. And know that it's OK at this
-                stage to name some goals that feel more like dreams than sure
-                things. After all, figuring out your goals is partly about
-                defining your financial aspirations, and you'll be able to
+                of what you&apos;re working toward. And know that it&apos;s OK
+                at this stage to name some goals that feel more like dreams than
+                sure things. After all, figuring out your goals is partly about
+                defining your financial aspirations, and you&apos;ll be able to
                 revise your list as you go along
               </p>
             </div>
@@ -156,34 +157,34 @@ function Page() {
               </p>
               <ul className={modalStyles.list}>
                 <li>
-                  <b>You're worried your goals might change.</b> In fact,
-                  there's a good chance they will, and that's OK. Do your best
-                  to think through your plans, but know that whatever you come
-                  up with will still only be a draft.
+                  <b>You&apos;re worried your goals might change.</b> In fact,
+                  there&apos;s a good chance they will, and that&apos;s OK. Do
+                  your best to think through your plans, but know that whatever
+                  you come up with will still only be a draft.
                 </li>
                 <li>
-                  <b>You don't know how much you need. </b>Picking price tags
-                  for your goals can be intimidating. Calculators and rules of
-                  thumb might help you start to narrow down your estimate, but
-                  many people find it helpful to work through the numbers with a
-                  financial professional. (Learn more about how much to save
-                  for retirement and college goals.)
+                  <b>You don&apos;t know how much you need. </b>Picking price
+                  tags for your goals can be intimidating. Calculators and rules
+                  of thumb might help you start to narrow down your estimate,
+                  but many people find it helpful to work through the numbers
+                  with a financial professional. (Learn more about how much to
+                  save for retirement and college goals.)
                 </li>
                 <li>
-                  <b>Your future is a blank slate. </b> Maybe you truly aren't
-                  in the right place in life to choose concrete savings goals
-                  (beyond the 2 essential ones of retirement and emergency
-                  savings). In that case, you can consider adopting a catchall
-                  goal for now, such as "building wealth," until more definite
-                  plans start to emerge on your horizon.
+                  <b>Your future is a blank slate. </b> Maybe you truly
+                  aren&apos;t in the right place in life to choose concrete
+                  savings goals (beyond the 2 essential ones of retirement and
+                  emergency savings). In that case, you can consider adopting a
+                  catchall goal for now, such as &quot;building wealth,&quot;
+                  until more definite plans start to emerge on your horizon.
                 </li>
               </ul>
             </div>
             <div className={styles.content}>
               <p>
-                Don't let perfection be the enemy of financial progress. And
-                know that whatever your dream board ends up looking like, we're
-                here to help.
+                Don&apos;t let perfection be the enemy of financial progress.
+                And know that whatever your dream board ends up looking like,
+                we&apos;re here to help.
               </p>
             </div>
           </div>
@@ -206,18 +207,18 @@ function Page() {
             <div className={styles.content} id="investing-for">
               <h1>What are you investing for?</h1>
               <p>
-                Successful investing generally starts with what you're
-                investing for, not what you're investing in. You want to move
-                forward with your finances. Maybe you long for financial
+                Successful investing generally starts with what you&apos;re
+                investing for, not what you&apos;re investing in. You want to
+                move forward with your finances. Maybe you long for financial
                 security, that your family will always be taken care of, that
                 you can finally relax and enjoy your money. If you dig a little
                 deeper into this vision, what specifically do you want to
                 accomplish? Do you imagine owning your own home or living
-                debt-free? Do you think about paying for your children's
+                debt-free? Do you think about paying for your children&apos;s
                 education; retiring earlier or affording yourself some comfort
-                in retirement. These specific items are your savings goals. It's
-                important to take the time to name them and describe them in as
-                much detail as possible.
+                in retirement. These specific items are your savings goals.
+                It&apos;s important to take the time to name them and describe
+                them in as much detail as possible.
               </p>
             </div>
             <div className={styles.content} id="investing-for">
@@ -225,13 +226,13 @@ function Page() {
               <p>Please answer all the below questions:</p>
               <FinancialGoalsCalculator />
               <p>
-                Whether it's a short-term or long-term goal, know that your goal
-                is the destination. Your current net worth is the starting
+                Whether it&apos;s a short-term or long-term goal, know that your
+                goal is the destination. Your current net worth is the starting
                 point. Identify your income, cash inflows and outflows and
-                you'll know how much money you have left - that's money you can
-                save. A close look at your spending can also help you identify
-                areas where you could spend less if you want to spend more money
-                on your goals.
+                you&apos;ll know how much money you have left - that&apos;s
+                money you can save. A close look at your spending can also help
+                you identify areas where you could spend less if you want to
+                spend more money on your goals.
               </p>
             </div>
           </div>

@@ -137,8 +137,8 @@ function Page() {
             <div className={styles.content}>
               <h1>What is a gross income?</h1>
               <p>
-                <b> Gross Income</b> represents an individual’s total annual
-                earnings prior to any deductions or taxes paid to the
+                <b> Gross Income</b> represents an individual&apos;s total
+                annual earnings prior to any deductions or taxes paid to the
                 government.
                 <p>
                   In the case of a business, gross income, or “gross profit”, is
@@ -235,8 +235,8 @@ function Page() {
                 expenditure, although changing over time, remain fairly stable.
               </p>
               <p>
-                A company's expenses, on the other hand, are impacted by a
-                greater number of variables that affect the company's
+                A company&apos;s expenses, on the other hand, are impacted by a
+                greater number of variables that affect the company&apos;s
                 profitability.
               </p>
               <p>
@@ -363,12 +363,12 @@ function Page() {
               </p>
               <ul className={modalStyles.list}>
                 <li>
-                  <b>Cash Inflows:</b> Money that comes into an individual's
-                  pocket ("Sources")
+                  <b>Cash Inflows:</b> Money that comes into an
+                  individual&apos;s pocket (&quot;Sources&quot;)
                 </li>
                 <li>
                   <b>Cash Outflows:</b> The money that comes out of pockets
-                  ("Use").
+                  (&quot;Use&quot;).
                 </li>
               </ul>
               <div className={modalStyles.codebox}>
@@ -896,11 +896,12 @@ function Page() {
               <p style={{ marginTop: "20px" }}>
                 Just meeting our daily needs (rent, food, bills, clothing,
                 transportation, health) can take up a large portion of your
-                monthly income. But life doesn't stop there, we also have medium
-                and long term goals, travel or buying a house, children's
-                education, retirement and sometimes unplanned emergencies to
-                consider. Know that you can build your financial future to
-                achieve your goals while enjoying life with a financial plan.
+                monthly income. But life doesn&apos;t stop there, we also have
+                medium and long term goals, travel or buying a house,
+                children&apos;s education, retirement and sometimes unplanned
+                emergencies to consider. Know that you can build your financial
+                future to achieve your goals while enjoying life with a
+                financial plan.
               </p>
             </div>
           </div>
