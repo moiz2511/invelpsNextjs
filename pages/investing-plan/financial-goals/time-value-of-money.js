@@ -178,7 +178,7 @@ function Page() {
     });
   };
   return (
-    <Layout>
+    <Layout nextUrl={"/investing-plan/financial-goals/investment-vehicle"}>
       <PageHeader
         parentHeading="Investing plan"
         childHeading="Time value of money"

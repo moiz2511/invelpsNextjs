@@ -25,7 +25,7 @@ const links = [
 function Page() {
   const [openModal, setOpenModal] = useState(false);
   return (
-    <Layout>
+    <Layout nextUrl={"/investing-plan/investment-vehicles"}>
       <PageHeader
         parentHeading="Investing plan"
         childHeading="Investor profile"

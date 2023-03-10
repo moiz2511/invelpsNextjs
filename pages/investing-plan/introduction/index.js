@@ -59,7 +59,7 @@ function Page() {
           plan in hand, you&apos;ll be cruising along in no time.
         </p>
         <div style={{ textAlign: "center", marginTop: "20px" }}>
-          <Link href="/investing-plan/financial-goals/prepare-balance-sheet">
+          <Link href="/investing-plan/financial-goals/set-financial-goals">
             <CustomButton
               style={{
                 borderRadius: "50px",

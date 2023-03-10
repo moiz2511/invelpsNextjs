@@ -29,7 +29,7 @@ const links = [
 function Page() {
   const [openModal, setOpenModal] = useState(false);
   return (
-    <Layout>
+    <Layout nextUrl={"/stock-investing/analysis-method/choose-your-approach"}>
       <PageHeader
         parentHeading="Stock Active Investing"
         childHeading="Top Up vs Bottom Up"

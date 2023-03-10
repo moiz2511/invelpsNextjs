@@ -58,7 +58,9 @@ function Page() {
     setNetWorth(totalAssets - totalLiabilities);
   }, [totalLiabilities, totalAssets]);
   return (
-    <Layout>
+    <Layout
+      nextUrl={"/investing-plan/financial-goals/prepare-cashflow-statement"}
+    >
       <PageHeader
         parentHeading="Investing plan"
         childHeading="Prepare your balance sheet"

@@ -81,7 +81,7 @@ function Page() {
   // ----------
 
   return (
-    <Layout>
+    <Layout nextUrl={"/investing-plan/financial-goals/time-value-of-money"}>
       <PageHeader
         parentHeading="Investing plan"
         childHeading="Prepare your cashflow statement"

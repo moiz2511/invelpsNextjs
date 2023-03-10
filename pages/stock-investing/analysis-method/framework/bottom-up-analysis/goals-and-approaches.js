@@ -31,7 +31,11 @@ const links = [
 function Page() {
   const [openModal, setOpenModal] = useState(false);
   return (
-    <Layout>
+    <Layout
+      nextUrl={
+        "/stock-investing/analysis-method/framework/bottom-up-analysis/strategy-or-model"
+      }
+    >
       <PageHeader
         parentHeading="Stock Investing"
         childHeading="Goals and Approachs"

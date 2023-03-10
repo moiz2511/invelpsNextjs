@@ -157,7 +157,7 @@ function Page() {
     });
   };
   return (
-    <Layout>
+    <Layout nextUrl={"/investing-plan/financial-goals/risk-tolerance"}>
       <PageHeader
         parentHeading="Investing plan"
         childHeading="Investment vehicles"

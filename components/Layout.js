@@ -4,8 +4,9 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import styles from "@/styles/Layout.module.css";
 import { useRouter } from "next/router";
+import CustomButton from "./Button";
 
-function Layout({ title, keywords, description, children }) {
+function Layout({ title, keywords, description, children, nextUrl }) {
   const router = useRouter();
 
   return (
@@ -18,6 +19,17 @@ function Layout({ title, keywords, description, children }) {
       <Navbar />
 
       <div className={styles.container}>{children}</div>
+      {nextUrl && (
+        <div className={styles.buttonContainer}>
+          <CustomButton
+            style={{ marginRight: "20px" }}
+            onClick={() => router.back()}
+          >
+            Prev
+          </CustomButton>
+          <CustomButton onClick={() => router.push(nextUrl)}>Next</CustomButton>
+        </div>
+      )}
       <Footer />
     </div>
   );

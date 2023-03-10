@@ -22,7 +22,7 @@ const links = [
 function Page() {
   const [openModal, setOpenModal] = useState(false);
   return (
-    <Layout>
+    <Layout nextUrl={"/investing-plan/financial-goals/prepare-balance-sheet"}>
       <PageHeader
         parentHeading="Investing plan"
         childHeading="Set your financial goals"

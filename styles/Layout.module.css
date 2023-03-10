@@ -2,3 +2,9 @@
   padding-top: 70px;
   /* margin: 5px; */
 }
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 50px 20px;
+}

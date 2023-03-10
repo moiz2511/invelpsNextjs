@@ -34,7 +34,7 @@ const links = [
 function Page() {
   const [openModal, setOpenModal] = useState(false);
   return (
-    <Layout>
+    <Layout nextUrl={"/stock-investing/approaches/active-vs-passive-investing"}>
       <PageHeader
         parentHeading="Stock Investing"
         childHeading="Portfolio management choices"
