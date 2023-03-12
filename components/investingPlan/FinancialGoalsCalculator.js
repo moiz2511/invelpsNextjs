@@ -1,10 +1,13 @@
 import { Button, InputAdornment, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CustomButton from "../Button";
 import PieChart from "../PieChart";
+import { DatePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
+var duration = require("dayjs/plugin/duration");
+dayjs.extend(duration);
 
 const containerStyle = {
   display: "flex",
@@ -24,6 +27,12 @@ function FinancialGoalsCalculator() {
   const [showChart, setShowChart] = useState(false);
   return (
     <div style={{ padding: "30px 0" }}>
+      {/* {console.log(
+        "ammar",
+        values.when,
+        new Date(),
+        dayjs.duration(dayjs(values.when).diff(new Date()))
+      )} */}
       <div style={containerStyle}>
         <p style={textStyle}>How much will you need ?</p>
         <TextField
@@ -43,7 +52,7 @@ function FinancialGoalsCalculator() {
       <div style={containerStyle}>
         <p style={textStyle}>When will you need the money ?</p>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateTimePicker
+          <DatePicker
             onChange={(e) => setValues((prv) => ({ ...prv, when: e.$d }))}
             // value={values.when}
             sx={{
@@ -51,6 +60,19 @@ function FinancialGoalsCalculator() {
             }}
           />
         </LocalizationProvider>
+
+        <TextField
+          value={`${
+            dayjs.duration(dayjs(values.when).diff(new Date())).$d.years
+          } year ${
+            dayjs.duration(dayjs(values.when).diff(new Date())).$d.days
+          } days `}
+          disabled={true}
+          sx={{
+            width: "150px",
+            marginLeft: "20px",
+          }}
+        />
       </div>
       <div style={containerStyle}>
         <p style={textStyle}>Have you saved anything yet ? If no enter 0</p>

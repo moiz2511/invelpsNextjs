@@ -551,7 +551,7 @@ function TotalAssetCalculator({
       style={{
         marginTop: "20px",
         display: "grid",
-        gridTemplateColumns: "1fr 0.4fr 0.4fr",
+        gridTemplateColumns: "1fr 0.2fr 0.2fr",
       }}
     >
       <TableMultiCalculator
