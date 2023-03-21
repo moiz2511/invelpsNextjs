@@ -474,6 +474,10 @@ function TotalAssetCalculator({
       if (f.id === e.target.name) {
         f.value = e.target.value;
         handleYearlyOnChange(index, e.target.value * 12);
+        handleMarginyOnChange(
+          index,
+          (((e.target.value * 12) / yearlyFields[4].value) * 100).toFixed(1)
+        );
       }
       if (f.type === "display") {
         f.value = f.valueOf
@@ -524,10 +528,10 @@ function TotalAssetCalculator({
     setYearlyFields(newFields);
   };
 
-  const handleMarginyOnChange = (e) => {
-    let newFields = marginFields.map((f) => {
-      if (f.id === e.target.name) {
-        f.value = e.target.value;
+  const handleMarginyOnChange = (index, value) => {
+    let newFields = marginFields.map((f, i) => {
+      if (i === index) {
+        f.value = value;
       }
       if (f.type === "display") {
         f.value = f.valueOf

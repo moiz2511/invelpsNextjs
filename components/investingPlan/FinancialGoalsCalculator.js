@@ -6,6 +6,7 @@ import CustomButton from "../Button";
 import PieChart from "../PieChart";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
+import BarChart from "../BarChart";
 var duration = require("dayjs/plugin/duration");
 dayjs.extend(duration);
 
@@ -127,21 +128,60 @@ function FinancialGoalsCalculator() {
           marginTop: "20px",
         }}
       >
-        <div style={{ width: "500px" }}>
+        <div style={{ width: "800px" }}>
           {showChart && values.need && values.saving && (
-            <PieChart
+            // <PieChart
+            //   data={{
+            //     labels: ["What you have", "What you need", "Current gap"],
+            //     datasets: [
+            //       {
+            //         label: "",
+            //         data: [
+            //           values.saving,
+            //           values.need,
+            //           values.need - values.saving,
+            //         ],
+            //         backgroundColor: ["#ccbf90", "#407879", "#cb6843"],
+            //         hoverOffset: 4,
+            //       },
+            //     ],
+            //   }}
+            // />
+
+            <BarChart
+              options={{
+                plugins: {},
+                responsive: true,
+                indexAxis: "y",
+                scales: {
+                  x: {
+                    stacked: true,
+                  },
+                  y: {
+                    stacked: true,
+                  },
+                },
+              }}
+              //           values.saving,
+              //           values.need,
+              //           values.need - values.saving,
               data={{
-                labels: ["What you have", "What you need", "Current gap"],
+                labels: [""],
                 datasets: [
                   {
-                    label: "",
-                    data: [
-                      values.saving,
-                      values.need,
-                      values.need - values.saving,
-                    ],
-                    backgroundColor: ["#ccbf90", "#407879", "#cb6843"],
-                    hoverOffset: 4,
+                    label: "What you have",
+                    data: [values.saving],
+                    backgroundColor: "#ccbf90",
+                  },
+                  {
+                    label: "Current gap",
+                    data: [values.need - values.saving],
+                    backgroundColor: "#cb6843",
+                  },
+                  {
+                    label: "What you need",
+                    data: [values.need],
+                    backgroundColor: "#407879",
                   },
                 ],
               }}
