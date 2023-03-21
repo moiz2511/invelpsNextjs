@@ -8,12 +8,19 @@ function TableMultiCalculator({
   fields,
   handleFieldOnChange,
   valueSign,
+  disableFields,
 }) {
   return (
     <div className={styles.container}>
-      <h2 className={styles.header} style={{ whiteSpace: "nowrap" }}>
+      <h2
+        className={styles.header}
+        style={{
+          whiteSpace: "wrap",
+          fontSize: "14px",
+        }}
+      >
         <span> {heading}</span>
-        {heading2 && <span style={{ marginRight: "30px" }}>{heading2}</span>}
+        {heading2 && <span>{heading2}</span>}
       </h2>
 
       <div className={styles.innerContainer}>
@@ -23,7 +30,7 @@ function TableMultiCalculator({
             className={`${styles.row} ${
               field.type == "input" ? styles.inputRow : styles.displayRow
             } ${i === fields.length - 1 && styles.final}`}
-            style={{ gridTemplateColumns: field.label ? "1fr 0.5fr" : "0 1fr" }}
+            style={{ gridTemplateColumns: field.label ? "1fr 120px" : "0 1fr" }}
           >
             <p className={styles.label}>
               <Tooltip title={field.tooltip} placement="right-end">

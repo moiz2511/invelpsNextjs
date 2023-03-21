@@ -469,9 +469,11 @@ function TotalAssetCalculator({
   }, [marginFields]);
 
   const handleOnChange = (e) => {
-    let newFields = monthlyFields.map((f) => {
+    // handleYearlyOnChange(e);
+    let newFields = monthlyFields.map((f, index) => {
       if (f.id === e.target.name) {
         f.value = e.target.value;
+        handleYearlyOnChange(index, e.target.value * 12);
       }
       if (f.type === "display") {
         f.value = f.valueOf
@@ -494,10 +496,12 @@ function TotalAssetCalculator({
     setMonthlyFields(newFields);
   };
 
-  const handleYearlyOnChange = (e) => {
-    let newFields = yearlyFields.map((f) => {
-      if (f.id === e.target.name) {
-        f.value = e.target.value;
+  const handleYearlyOnChange = (index, value) => {
+    // console.log("ammar", e, e.target.value, e.target.name);
+    // return;
+    let newFields = yearlyFields.map((f, i) => {
+      if (i === index) {
+        f.value = value;
       }
       if (f.type === "display") {
         f.value = f.valueOf
@@ -551,7 +555,7 @@ function TotalAssetCalculator({
       style={{
         marginTop: "20px",
         display: "grid",
-        gridTemplateColumns: "1fr 0.2fr 0.2fr",
+        gridTemplateColumns: "1fr 120px 120px",
       }}
     >
       <TableMultiCalculator
@@ -566,12 +570,14 @@ function TotalAssetCalculator({
         fields={yearlyFields}
         valueSign={"$"}
         handleFieldOnChange={handleYearlyOnChange}
+        disableField={true}
       />
       <TableMultiCalculator
         heading={"Margin"}
         fields={marginFields}
         valueSign={"%"}
         handleFieldOnChange={handleMarginyOnChange}
+        disableField={true}
       />
     </div>
   );

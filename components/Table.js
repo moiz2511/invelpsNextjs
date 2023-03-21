@@ -13,7 +13,6 @@ const CustomTable = ({ primary, columns, rows }) => {
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: primary ? "white" : "var(--primary-orange)",
       color: primary ? "var(--primary-orange)" : theme.palette.common.white,
-      whiteSpace: primary ? "nowrap" : "wrap",
       fontWeight: primary ? "700" : "500",
       // padding: "10px",
     },

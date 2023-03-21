@@ -220,12 +220,12 @@ function TotalAssetCalculator({ setMonthlyCashflow, setYearlyCashflow }) {
       style={{
         marginTop: "20px",
         display: "grid",
-        gridTemplateColumns: "1fr 0.4fr",
+        gridTemplateColumns: "1fr 120px",
       }}
     >
       <TableMultiCalculator
         heading={"Item"}
-        heading2={<span style={{ marginRight: "60px" }}>Monthly Amount</span>}
+        heading2={"Monthly Amount"}
         fields={monthlyFields}
         valueSign={"$"}
         handleFieldOnChange={handleOnChange}
