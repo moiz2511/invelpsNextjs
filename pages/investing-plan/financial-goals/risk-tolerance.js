@@ -24,8 +24,17 @@ const links = [
 
 function Page() {
   const [openModal, setOpenModal] = useState(false);
+  const [displaySidebar, setDisplaySidebar] = useState(true);
+
+  const toggleSidebarOnPhone = () => {
+    setDisplaySidebar(!displaySidebar);
+  };
   return (
-    <Layout nextUrl={"/investing-plan/investment-vehicles"}>
+    <Layout
+      nextUrl={"/investing-plan/investment-vehicles"}
+      toggleSidebarOnPhone={toggleSidebarOnPhone}
+      phoneSidebarOpen={displaySidebar}
+    >
       <PageHeader
         parentHeading="Investing plan"
         childHeading="Investor profile"
@@ -80,7 +89,13 @@ function Page() {
         }
       />
       <div className={styles.container}>
-        <InvestingPlanSideNav activeHeadingId={3} activeSubheadingId={3.2} />
+        <InvestingPlanSideNav
+          activeHeadingId={3}
+          activeSubheadingId={3.2}
+          sidebarStyle={{
+            left: displaySidebar ? "0px" : "-1000px",
+          }}
+        />
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>

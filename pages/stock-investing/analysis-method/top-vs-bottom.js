@@ -28,8 +28,18 @@ const links = [
 
 function Page() {
   const [openModal, setOpenModal] = useState(false);
+  const [displaySidebar, setDisplaySidebar] = useState(true);
+
+  const toggleSidebarOnPhone = () => {
+    setDisplaySidebar(!displaySidebar);
+  };
+
   return (
-    <Layout nextUrl={"/stock-investing/analysis-method/choose-your-approach"}>
+    <Layout
+      nextUrl={"/stock-investing/analysis-method/choose-your-approach"}
+      toggleSidebarOnPhone={toggleSidebarOnPhone}
+      phoneSidebarOpen={displaySidebar}
+    >
       <PageHeader
         parentHeading="Stock Active Investing"
         childHeading="Top Up vs Bottom Up"
@@ -87,6 +97,9 @@ function Page() {
         <InvestingMethodAnalysisSideNav
           activeHeadingId={1}
           activeSubheadingId={1.1}
+          sidebarStyle={{
+            left: displaySidebar ? "0px" : "-1000px",
+          }}
         />
         <div>
           <TableOfContent links={links} />

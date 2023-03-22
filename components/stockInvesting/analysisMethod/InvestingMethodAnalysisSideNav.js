@@ -4,6 +4,7 @@ import SideNav from "../../SideNav";
 function InvestingMethodAnalysisSideNav({
   activeHeadingId,
   activeSubheadingId,
+  sidebarStyle,
 }) {
   const links = [
     {
@@ -30,6 +31,7 @@ function InvestingMethodAnalysisSideNav({
       links={links}
       activeParent={activeHeadingId}
       activeChild={activeSubheadingId}
+      style={sidebarStyle}
     />
   );
 }

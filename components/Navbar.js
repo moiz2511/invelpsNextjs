@@ -6,8 +6,11 @@ import MenuIcon from "../public/images/menu.png";
 import Link from "next/link";
 import styles from "@/styles/Navbar.module.css"; // import "../assets/styles/Navbar.css";
 import Image from "next/image";
+import PhoneMenuIcon from "@mui/icons-material/Menu";
+import PhoneMenuOpenIcon from "@mui/icons-material/MenuOpen";
+import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
 
-function Navbar() {
+function Navbar({ toggleSidebarOnPhone, phoneSidebarOpen }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -19,6 +22,15 @@ function Navbar() {
 
   return (
     <div className={styles.navbar}>
+      {toggleSidebarOnPhone && (
+        <div className={styles.sidebarButton} onClick={toggleSidebarOnPhone}>
+          {phoneSidebarOpen ? (
+            <PhoneMenuOpenIcon style={{ height: "34px", width: "34px" }} />
+          ) : (
+            <PhoneMenuIcon style={{ height: "34px", width: "34px" }} />
+          )}
+        </div>
+      )}
       <Image src={Logo} alt="invelps" />
       <ul className={styles.navbarList}>
         <a href="#home" className={styles.achorStyle}>
@@ -39,7 +51,10 @@ function Navbar() {
         <li>Signup</li>
       </ul>
       <div className={styles.navbarMobileContainer}>
-        <Image src={MenuIcon} alt="" onClick={handleClick} height="30" />
+        <ArrowDropDownCircleIcon
+          onClick={handleClick}
+          style={{ height: "34px", width: "34px" }}
+        />
         <Menu
           id="basic-menu"
           anchorEl={anchorEl}

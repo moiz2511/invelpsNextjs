@@ -12,6 +12,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@formulajs/formulajs": "^4.0.0",
+    "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.4",
     "@mui/x-date-pickers": "^6.0.0",
     "@next/font": "^13.1.1",

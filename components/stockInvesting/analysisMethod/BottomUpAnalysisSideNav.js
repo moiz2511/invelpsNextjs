@@ -1,7 +1,11 @@
 import React from "react";
 import SideNav from "../../SideNav";
 
-function BottomUpAnalysisSideNav({ activeHeadingId, activeSubheadingId }) {
+function BottomUpAnalysisSideNav({
+  activeHeadingId,
+  activeSubheadingId,
+  sidebarStyle,
+}) {
   const links = [
     {
       id: 1,
@@ -31,6 +35,7 @@ function BottomUpAnalysisSideNav({ activeHeadingId, activeSubheadingId }) {
       links={links}
       activeParent={activeHeadingId}
       activeChild={activeSubheadingId}
+      style={sidebarStyle}
     />
   );
 }

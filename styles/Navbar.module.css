@@ -13,7 +13,9 @@
   top: 0;
   z-index: 10000000;
 }
-
+.sidebarButton {
+  display: none;
+}
 .navbar > img {
   height: 50px;
   width: auto;
@@ -47,6 +49,13 @@
   text-decoration: none;
   color: "var(--primary-color)";
 }
+
+@media screen and (max-width: 1100px) {
+  .sidebarButton {
+    display: block;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .navbar {
     padding: 10px 20px;

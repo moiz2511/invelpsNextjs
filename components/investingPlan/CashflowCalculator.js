@@ -14,7 +14,7 @@ function TotalAssetCalculator({ setMonthlyCashflow, setYearlyCashflow }) {
     },
     {
       id: uuid(),
-      label: "Cash flow income from economic activities",
+      label: "Cash flow from economic activities",
       tooltip: "",
       type: "display",
       value: "",
@@ -30,7 +30,7 @@ function TotalAssetCalculator({ setMonthlyCashflow, setYearlyCashflow }) {
     },
     {
       id: uuid(),
-      label: "Cash flow income from investing activities",
+      label: "Cash flow from investing activities",
       tooltip: "",
       type: "display",
       value: "",
@@ -56,7 +56,7 @@ function TotalAssetCalculator({ setMonthlyCashflow, setYearlyCashflow }) {
     },
     {
       id: uuid(),
-      label: "Cash flow income from financing activities",
+      label: "Cash flow from financing activities",
       tooltip: "",
       type: "display",
       value: "",

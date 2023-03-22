@@ -6,7 +6,15 @@ import styles from "@/styles/Layout.module.css";
 import { useRouter } from "next/router";
 import CustomButton from "./Button";
 
-function Layout({ title, keywords, description, children, nextUrl }) {
+function Layout({
+  title,
+  keywords,
+  description,
+  children,
+  nextUrl,
+  toggleSidebarOnPhone,
+  phoneSidebarOpen,
+}) {
   const router = useRouter();
 
   return (
@@ -16,7 +24,10 @@ function Layout({ title, keywords, description, children, nextUrl }) {
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
       </Head>
-      <Navbar />
+      <Navbar
+        toggleSidebarOnPhone={toggleSidebarOnPhone}
+        phoneSidebarOpen={phoneSidebarOpen}
+      />
 
       <div className={styles.container}>{children}</div>
       {nextUrl && (

@@ -44,6 +44,11 @@ function Page() {
   const [totalAssets, setTotalAssets] = useState(0);
   const [totalLiabilities, setTotalLiabilities] = useState(0);
   const [netWorth, setNetWorth] = useState(0);
+  const [displaySidebar, setDisplaySidebar] = useState(true);
+
+  const toggleSidebarOnPhone = () => {
+    setDisplaySidebar(!displaySidebar);
+  };
 
   const changeTotalAssets = useCallback((e) => {
     setTotalAssets(e);
@@ -60,6 +65,8 @@ function Page() {
   return (
     <Layout
       nextUrl={"/investing-plan/financial-goals/prepare-cashflow-statement"}
+      toggleSidebarOnPhone={toggleSidebarOnPhone}
+      phoneSidebarOpen={displaySidebar}
     >
       <PageHeader
         parentHeading="Investing plan"
@@ -230,7 +237,13 @@ function Page() {
         }
       />
       <div className={styles.container}>
-        <InvestingPlanSideNav activeHeadingId={1} activeSubheadingId={1.2} />
+        <InvestingPlanSideNav
+          activeHeadingId={1}
+          activeSubheadingId={1.2}
+          sidebarStyle={{
+            left: displaySidebar ? "0px" : "-1000px",
+          }}
+        />
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>

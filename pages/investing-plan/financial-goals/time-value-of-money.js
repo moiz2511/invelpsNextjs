@@ -106,6 +106,11 @@ function Page() {
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
   const [data, setData] = useState({ byMonths: [], byYear: [] });
   const [rr, setRR] = useState(0);
+  const [displaySidebar, setDisplaySidebar] = useState(true);
+
+  const toggleSidebarOnPhone = () => {
+    setDisplaySidebar(!displaySidebar);
+  };
 
   const handleFieldOnChange = (e) => {
     let newFields = fields.map((f) => {
@@ -117,6 +122,35 @@ function Page() {
     console.log(newFields);
     setFields(newFields);
   };
+  function excelRate(nper, pmt, pv, fv, type, guess, tol) {
+    // Set default values for optional arguments
+    type = type || 0;
+    guess = guess || 0.1;
+    tol = tol || 0.0000001;
+
+    // Define the rate function to be solved
+    function rateFunc(rate) {
+      var f =
+        pv * Math.pow(1 + rate, nper) +
+        (pmt * (1 + rate * type) * (Math.pow(1 + rate, nper) - 1)) / rate +
+        fv;
+      return f;
+    }
+
+    // Use the Newton-Raphson method to find the rate
+    var rate = guess;
+    var i = 0;
+    do {
+      i++;
+      var f = rateFunc(rate);
+      var df = (rateFunc(rate + tol) - f) / tol;
+      var delta = f / df;
+      rate -= delta;
+    } while (Math.abs(delta) > tol && i < 100);
+
+    return rate;
+  }
+
   const handleOnCalculateClick = () => {
     let check = fields.map((f) => f.value).includes("");
     if (check) {
@@ -130,10 +164,11 @@ function Page() {
     let cF = parseFloat(fields[3].value);
 
     let RR =
-      formulajs.RATE(periodYear * 12, -cF, -startingAmount, targetAmount) * 12;
+      excelRate(periodYear * 12, -cF, -startingAmount, targetAmount) * 12;
+    // formulajs.RATE(periodYear * 12, -cF, -startingAmount, targetAmount) * 12;
 
-    RR = RR > 1 ? 1 : RR;
-    console.log("ammar", RR);
+    // RR = RR > 1 ? 1 : RR;
+    console.log("ammar", RR, periodYear, -cF, -startingAmount, targetAmount);
     // return;
     setRR(RR);
     // calculating montly data
@@ -178,7 +213,11 @@ function Page() {
     });
   };
   return (
-    <Layout nextUrl={"/investing-plan/financial-goals/investment-vehicle"}>
+    <Layout
+      nextUrl={"/investing-plan/financial-goals/investment-vehicle"}
+      toggleSidebarOnPhone={toggleSidebarOnPhone}
+      phoneSidebarOpen={displaySidebar}
+    >
       <PageHeader
         parentHeading="Investing plan"
         childHeading="Time value of money"
@@ -238,7 +277,13 @@ function Page() {
         }
       />
       <div className={styles.container}>
-        <InvestingPlanSideNav activeHeadingId={2} activeSubheadingId={2.1} />
+        <InvestingPlanSideNav
+          activeHeadingId={2}
+          activeSubheadingId={2.1}
+          sidebarStyle={{
+            left: displaySidebar ? "0px" : "-1000px",
+          }}
+        />
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>

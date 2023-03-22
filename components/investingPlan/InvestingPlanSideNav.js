@@ -1,7 +1,11 @@
 import React from "react";
 import SideNav from "../SideNav";
 
-function InvestingPlanSideNav({ activeHeadingId, activeSubheadingId }) {
+function InvestingPlanSideNav({
+  activeHeadingId,
+  activeSubheadingId,
+  sidebarStyle,
+}) {
   const links = [
     {
       id: 0,
@@ -65,6 +69,7 @@ function InvestingPlanSideNav({ activeHeadingId, activeSubheadingId }) {
       links={links}
       activeParent={activeHeadingId}
       activeChild={activeSubheadingId}
+      style={sidebarStyle}
     />
   );
 }

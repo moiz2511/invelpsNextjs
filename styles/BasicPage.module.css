@@ -79,3 +79,8 @@
   grid-template-columns: 1fr 1fr;
   margin-top: 20px;
 }
+@media screen and (max-width: 1100px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}

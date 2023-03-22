@@ -29,11 +29,19 @@ const links = [
 
 function Page() {
   const [openModal, setOpenModal] = useState(false);
+  const [displaySidebar, setDisplaySidebar] = useState(true);
+
+  const toggleSidebarOnPhone = () => {
+    setDisplaySidebar(!displaySidebar);
+  };
+
   return (
     <Layout
       nextUrl={
         "/stock-investing/analysis-method/framework/top-down-analysis/goals-and-approaches"
       }
+      toggleSidebarOnPhone={toggleSidebarOnPhone}
+      phoneSidebarOpen={displaySidebar}
     >
       <PageHeader
         parentHeading="Stock Investing"
@@ -89,7 +97,13 @@ function Page() {
         }
       />
       <div className={styles.container}>
-        <TopDownAnalysisSideNav activeHeadingId={1} activeSubheadingId={1.1} />
+        <TopDownAnalysisSideNav
+          activeHeadingId={1}
+          activeSubheadingId={1.1}
+          sidebarStyle={{
+            left: displaySidebar ? "0px" : "-1000px",
+          }}
+        />
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>

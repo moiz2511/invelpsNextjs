@@ -10,6 +10,7 @@ function TotalAssetCalculator({
 }) {
   const [monthlyFields, setMonthlyFields] = useState([
     {
+      //0
       id: uuid(),
       label: "Salary",
       //   tooltip: "cash on hand, checking, saving account",
@@ -17,6 +18,7 @@ function TotalAssetCalculator({
       value: "",
     },
     {
+      //1
       id: uuid(),
       label: "Business income",
       tooltip: "revenue generated from side economic activities",
@@ -24,6 +26,7 @@ function TotalAssetCalculator({
       value: "",
     },
     {
+      //2
       id: uuid(),
       label: "Financial income",
       tooltip: "interest or dividend from investment, received rent",
@@ -31,6 +34,7 @@ function TotalAssetCalculator({
       value: "",
     },
     {
+      //3
       id: uuid(),
       label: "Other income",
       tooltip: "(Royalties, Pensions, Inheritance, tax credit, others)",
@@ -39,6 +43,7 @@ function TotalAssetCalculator({
       value: "",
     },
     {
+      //4
       id: uuid(),
       label: "Total gross income",
       tooltip: "",
@@ -48,6 +53,7 @@ function TotalAssetCalculator({
       subFrom: [],
     },
     {
+      //5
       id: uuid(),
       label: "Taxes",
       tooltip: "Real estate tax, Payroll tax, income tax, other taxes",
@@ -55,6 +61,7 @@ function TotalAssetCalculator({
       value: "",
     },
     {
+      //6
       id: uuid(),
       label: "Real Estate",
       tooltip: "Rent",
@@ -62,6 +69,7 @@ function TotalAssetCalculator({
       value: "",
     },
     {
+      //7
       id: uuid(),
       label: "Utilities",
       tooltip: "Electricity, Gas, Water",
@@ -69,6 +77,7 @@ function TotalAssetCalculator({
       value: "",
     },
     {
+      //8
       id: uuid(),
       label: "Consumer Staples",
       tooltip: "Food, Cosmetics, Household products",
@@ -76,6 +85,7 @@ function TotalAssetCalculator({
       value: "",
     },
     {
+      //9
       id: uuid(),
       label: "Healthcare",
       tooltip: "Drugs, Medical Equipment and Services, Insurance",
@@ -84,6 +94,7 @@ function TotalAssetCalculator({
       value: "",
     },
     {
+      //10
       id: uuid(),
       label: "Consumer Discretionary",
       tooltip: "Home furnishing, Clothing, ",
@@ -92,6 +103,7 @@ function TotalAssetCalculator({
       value: "",
     },
     {
+      //11
       id: uuid(),
       label: "Communication and Services",
       tooltip: "Internet, Telephone,",
@@ -100,6 +112,7 @@ function TotalAssetCalculator({
       value: "",
     },
     {
+      //12
       id: uuid(),
       label: "Transportation",
       tooltip: "Public transportation, Car expenses",
@@ -108,6 +121,7 @@ function TotalAssetCalculator({
       value: "",
     },
     {
+      //13
       id: uuid(),
       label: "Total Cost of Living",
       tooltip: "",
@@ -116,7 +130,9 @@ function TotalAssetCalculator({
       valueOf: [5, 6, 7, 8, 9, 10, 11, 12],
       subFrom: [],
     },
+
     {
+      //14
       id: uuid(),
       label: "Other expenses",
       tooltip: "Entertainment, Leisure, Travel, Restaurants",
@@ -125,6 +141,17 @@ function TotalAssetCalculator({
       value: "",
     },
     {
+      //15
+      id: uuid(),
+      label: "Saving capacity",
+      tooltip: "Saving capacity",
+      type: "display",
+      value: "",
+      valueOf: [13, 17, 14],
+      subFrom: [4],
+    },
+    {
+      //16
       id: uuid(),
       label: "Financial expenses",
       tooltip: "interest  and Annuity paid from Loans",
@@ -134,22 +161,24 @@ function TotalAssetCalculator({
     },
 
     {
+      //17
       id: uuid(),
-      label: "Total Cost of Living",
+      label: "Total Cost and Expenses",
       tooltip: "",
       type: "display",
       value: "",
-      valueOf: [14, 15],
+      valueOf: [14, 16],
       subFrom: [],
     },
     {
+      //18
       id: uuid(),
       label: "Net income",
       tooltip:
         "The amount from Salary, Wages or Business income remaining after all expenses",
       type: "display",
       value: "",
-      valueOf: [13, 16],
+      valueOf: [13, 17],
       subFrom: [4],
     },
   ]);
@@ -261,6 +290,7 @@ function TotalAssetCalculator({
       valueOf: [5, 6, 7, 8, 9, 10, 11, 12],
       subFrom: [],
     },
+
     {
       id: uuid(),
       //   label: "Other expenses",
@@ -268,6 +298,16 @@ function TotalAssetCalculator({
       type: "display",
       type: "input",
       value: "",
+    },
+    {
+      //15
+      id: uuid(),
+      // label: "Saving capacity",
+      // tooltip: "Saving capacity",
+      type: "display",
+      value: "",
+      valueOf: [13, 17, 14],
+      subFrom: [4],
     },
     {
       id: uuid(),
@@ -413,6 +453,16 @@ function TotalAssetCalculator({
       type: "display",
       type: "input",
       value: "",
+    },
+    {
+      //15
+      id: uuid(),
+      // label: "Saving capacity",
+      // tooltip: "Saving capacity",
+      type: "display",
+      value: "",
+      valueOf: [13, 17, 14],
+      subFrom: [4],
     },
     {
       id: uuid(),

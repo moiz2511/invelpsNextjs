@@ -21,8 +21,17 @@ const links = [
 
 function Page() {
   const [openModal, setOpenModal] = useState(false);
+  const [displaySidebar, setDisplaySidebar] = useState(true);
+
+  const toggleSidebarOnPhone = () => {
+    setDisplaySidebar(!displaySidebar);
+  };
   return (
-    <Layout nextUrl={"/investing-plan/financial-goals/prepare-balance-sheet"}>
+    <Layout
+      nextUrl={"/investing-plan/financial-goals/prepare-balance-sheet"}
+      toggleSidebarOnPhone={toggleSidebarOnPhone}
+      phoneSidebarOpen={displaySidebar}
+    >
       <PageHeader
         parentHeading="Investing plan"
         childHeading="Set your financial goals"
@@ -191,7 +200,14 @@ function Page() {
         }
       />
       <div className={styles.container}>
-        <InvestingPlanSideNav activeHeadingId={1} activeSubheadingId={1.1} />
+        <InvestingPlanSideNav
+          activeHeadingId={1}
+          activeSubheadingId={1.1}
+          sidebarStyle={{
+            left: displaySidebar ? "0px" : "-1000px",
+          }}
+        />
+
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>

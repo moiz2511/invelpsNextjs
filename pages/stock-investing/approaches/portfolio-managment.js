@@ -33,8 +33,18 @@ const links = [
 
 function Page() {
   const [openModal, setOpenModal] = useState(false);
+  const [displaySidebar, setDisplaySidebar] = useState(true);
+
+  const toggleSidebarOnPhone = () => {
+    setDisplaySidebar(!displaySidebar);
+  };
+
   return (
-    <Layout nextUrl={"/stock-investing/approaches/active-vs-passive-investing"}>
+    <Layout
+      nextUrl={"/stock-investing/approaches/active-vs-passive-investing"}
+      toggleSidebarOnPhone={toggleSidebarOnPhone}
+      phoneSidebarOpen={displaySidebar}
+    >
       <PageHeader
         parentHeading="Stock Investing"
         childHeading="Portfolio management choices"
@@ -89,7 +99,13 @@ function Page() {
         }
       />
       <div className={styles.container}>
-        <StockInvestingSideNav activeHeadingId={1} activeSubheadingId={1.1} />
+        <StockInvestingSideNav
+          activeHeadingId={1}
+          activeSubheadingId={1.1}
+          sidebarStyle={{
+            left: displaySidebar ? "0px" : "-1000px",
+          }}
+        />
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>

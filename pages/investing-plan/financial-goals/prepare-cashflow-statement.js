@@ -79,9 +79,17 @@ function Page() {
     netCashFlow: 0,
   });
   // ----------
+  const [displaySidebar, setDisplaySidebar] = useState(true);
 
+  const toggleSidebarOnPhone = () => {
+    setDisplaySidebar(!displaySidebar);
+  };
   return (
-    <Layout nextUrl={"/investing-plan/financial-goals/time-value-of-money"}>
+    <Layout
+      nextUrl={"/investing-plan/financial-goals/time-value-of-money"}
+      toggleSidebarOnPhone={toggleSidebarOnPhone}
+      phoneSidebarOpen={displaySidebar}
+    >
       <PageHeader
         parentHeading="Investing plan"
         childHeading="Prepare your cashflow statement"
@@ -384,7 +392,13 @@ function Page() {
         }
       />
       <div className={styles.container}>
-        <InvestingPlanSideNav activeHeadingId={1} activeSubheadingId={1.3} />
+        <InvestingPlanSideNav
+          activeHeadingId={1}
+          activeSubheadingId={1.3}
+          sidebarStyle={{
+            left: displaySidebar ? "0px" : "-1000px",
+          }}
+        />
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>
@@ -673,9 +687,9 @@ function Page() {
                       <PieChart
                         data={{
                           labels: [
-                            "Cash flow income from economic activities",
-                            "Cash flow income from investing activities",
-                            "Cash flow income from financing activities",
+                            "Cash flow from economic activities",
+                            "Cash flow from investing activities",
+                            "Cash flow from financing activities",
                             "Cash on hand",
                           ],
                           datasets: [

@@ -25,7 +25,7 @@ const CustomAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
   },
 }));
 
-function SideNav({ activeParent, activeChild, heading, links }) {
+function SideNav({ activeParent, activeChild, heading, links, style }) {
   const [expandedKey, setExpandedKey] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
 
@@ -46,7 +46,7 @@ function SideNav({ activeParent, activeChild, heading, links }) {
   }, []);
 
   return (
-    <Card className={styles.card} elevation={0}>
+    <Card className={`${styles.card}`} style={style} elevation={0}>
       <CardContent
         className={isFixed ? styles.cardContainerFixed : styles.cardContainer}
       >

@@ -93,6 +93,12 @@ function Page() {
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
   const [data, setData] = useState({ byMonths: [], byYear: [] });
   const [returnRate, setReturnRate] = useState(0);
+  const [displaySidebar, setDisplaySidebar] = useState(true);
+
+  const toggleSidebarOnPhone = () => {
+    setDisplaySidebar(!displaySidebar);
+  };
+
   const handleFieldOnChange = (e) => {
     let newFields = fields.map((f) => {
       if (f.id === parseInt(e.target.name)) {
@@ -157,7 +163,11 @@ function Page() {
     });
   };
   return (
-    <Layout nextUrl={"/investing-plan/financial-goals/risk-tolerance"}>
+    <Layout
+      nextUrl={"/investing-plan/financial-goals/risk-tolerance"}
+      toggleSidebarOnPhone={toggleSidebarOnPhone}
+      phoneSidebarOpen={displaySidebar}
+    >
       <PageHeader
         parentHeading="Investing plan"
         childHeading="Investment vehicles"
@@ -217,7 +227,13 @@ function Page() {
         }
       />
       <div className={styles.container}>
-        <InvestingPlanSideNav activeHeadingId={3} activeSubheadingId={3.1} />
+        <InvestingPlanSideNav
+          activeHeadingId={3}
+          activeSubheadingId={3.1}
+          sidebarStyle={{
+            left: displaySidebar ? "0px" : "-1000px",
+          }}
+        />
         <div>
           <TableOfContent links={links} />
           <div className={styles.contentContainer}>
