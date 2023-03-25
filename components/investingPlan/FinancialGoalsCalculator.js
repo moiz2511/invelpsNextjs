@@ -178,11 +178,6 @@ function FinancialGoalsCalculator() {
                     data: [values.need - values.saving],
                     backgroundColor: "#cb6843",
                   },
-                  {
-                    label: "What you need",
-                    data: [values.need],
-                    backgroundColor: "#407879",
-                  },
                 ],
               }}
             />

@@ -12,6 +12,7 @@ import { DateTime } from "luxon";
 import PieChart from "@/components/PieChart";
 import modalStyles from "@/styles/InfoModal.module.css";
 import CustomTable from "@/components/Table";
+import Link from "next/link";
 
 const links = [
   {
@@ -69,7 +70,11 @@ function Page() {
       phoneSidebarOpen={displaySidebar}
     >
       <PageHeader
-        parentHeading="Investing plan"
+        parentHeading={
+          <Link href="/investing-plan/financial-goals/set-financial-goals">
+            Investing plan
+          </Link>
+        }
         childHeading="Prepare your balance sheet"
         setOpenModal={setOpenModal}
         showMoreInfo={true}

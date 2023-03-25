@@ -12,6 +12,7 @@ import CashflowCalculator from "@/components/investingPlan/CashflowCalculator";
 import NumberWithLabel from "@/components/NumberWithLabel";
 import PieChart from "@/components/PieChart";
 import SwitchButton from "@/components/SwitchButton";
+import Link from "next/link";
 
 const links = [
   {
@@ -52,17 +53,15 @@ function Page() {
     totalIncome: 0,
     totalExpenses: 0,
     netIncome: 0,
+    savingCapacity: 0,
   });
   const [yearlyNetincome, setYearlyNetincome] = useState({
     totalIncome: 0,
     totalExpenses: 0,
     netIncome: 0,
+    savingCapacity: 0,
   });
-  const [marginNetincome, setMarginNetincome] = useState({
-    totalIncome: 0,
-    totalExpenses: 0,
-    netIncome: 0,
-  });
+
   // ---------
   const [showMonthlyCashflowGraph, setShowMonthlyCashflowGraph] =
     useState(false);
@@ -91,7 +90,11 @@ function Page() {
       phoneSidebarOpen={displaySidebar}
     >
       <PageHeader
-        parentHeading="Investing plan"
+        parentHeading={
+          <Link href="/investing-plan/financial-goals/set-financial-goals">
+            Investing plan
+          </Link>
+        }
         childHeading="Prepare your cashflow statement"
         setOpenModal={setOpenModal}
         showMoreInfo={true}
@@ -439,7 +442,6 @@ function Page() {
               <NetIncomeCalculator
                 setMonthlyNetincome={setMonthlyNetincome}
                 setYearlyNetincome={setYearlyNetincome}
-                setMarginNetincome={setMarginNetincome}
               />
             </div>
             <div className={styles.content} id="net-income">
@@ -475,6 +477,7 @@ function Page() {
                             "Total Income",
                             "Net Income",
                             "Total Expenses",
+                            "Saving Capacity",
                           ],
                           datasets: [
                             {
@@ -483,11 +486,13 @@ function Page() {
                                 monthlyNetincome.totalIncome,
                                 monthlyNetincome.netIncome,
                                 monthlyNetincome.totalExpenses,
+                                monthlyNetincome.savingCapacity,
                               ],
                               backgroundColor: [
                                 "#ccbf90",
                                 "#407879",
                                 "#cb6843",
+                                "#ff9002",
                               ],
                               hoverOffset: 4,
                             },
@@ -516,6 +521,7 @@ function Page() {
                           : monthlyNetincome.totalIncome
                       }`}
                     />
+
                     <NumberWithLabel
                       labelText={"Total Expenses"}
                       mainText={`$${
@@ -538,6 +544,17 @@ function Page() {
                         color: "var(--secondary-color)",
                       }}
                     />
+                    <NumberWithLabel
+                      labelText={"Saving Capacity"}
+                      mainText={`$${
+                        monthlyNetincome.savingCapacity <= 0
+                          ? "0"
+                          : monthlyNetincome.savingCapacity
+                      }`}
+                      mainTextStyle={{
+                        color: "#ff9002",
+                      }}
+                    />
                   </div>
                 </div>
               ) : (
@@ -557,6 +574,7 @@ function Page() {
                             "Total Income",
                             "Net Income",
                             "Total Expenses",
+                            "Saving Capacity",
                           ],
                           datasets: [
                             {
@@ -565,11 +583,13 @@ function Page() {
                                 yearlyNetincome.totalIncome,
                                 yearlyNetincome.netIncome,
                                 yearlyNetincome.totalExpenses,
+                                yearlyNetincome.savingCapacity,
                               ],
                               backgroundColor: [
                                 "#ccbf90",
                                 "#407879",
                                 "#cb6843",
+                                "#ff9002",
                               ],
                               hoverOffset: 4,
                             },
@@ -618,6 +638,17 @@ function Page() {
                       }`}
                       mainTextStyle={{
                         color: "var(--secondary-color)",
+                      }}
+                    />
+                    <NumberWithLabel
+                      labelText={"Saving Capacity"}
+                      mainText={`$${
+                        yearlyNetincome.savingCapacity <= 0
+                          ? "0"
+                          : yearlyNetincome.savingCapacity
+                      }`}
+                      mainTextStyle={{
+                        color: "#ff9002",
                       }}
                     />
                   </div>

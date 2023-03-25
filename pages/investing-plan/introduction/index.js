@@ -12,7 +12,11 @@ function Page() {
   return (
     <Layout>
       <PageHeader
-        parentHeading="Investing plan"
+        parentHeading={
+          <Link href="/investing-plan/financial-goals/set-financial-goals">
+            Investing plan
+          </Link>
+        }
         childHeading="A roadmap for long term goals"
         showMoreInfo={false}
       />

@@ -20,6 +20,7 @@ import LineChart from "@/components/LineChart";
 import InfoModal from "@/components/InfoModal";
 import { formatNumber } from "@/helpers/index";
 import NumberWithLabel from "@/components/NumberWithLabel";
+import Link from "next/link";
 
 const links = [
   {
@@ -169,7 +170,11 @@ function Page() {
       phoneSidebarOpen={displaySidebar}
     >
       <PageHeader
-        parentHeading="Investing plan"
+        parentHeading={
+          <Link href="/investing-plan/financial-goals/set-financial-goals">
+            Investing plan
+          </Link>
+        }
         childHeading="Investment vehicles"
         setOpenModal={setOpenModal}
         showMoreInfo={true}

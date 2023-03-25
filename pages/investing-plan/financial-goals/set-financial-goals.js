@@ -7,6 +7,7 @@ import modalStyles from "@/styles/InfoModal.module.css";
 import TableOfContent from "@/components/TableOfContent";
 import InfoModal from "@/components/InfoModal";
 import FinancialGoalsCalculator from "@/components/investingPlan/FinancialGoalsCalculator";
+import Link from "next/link";
 
 const links = [
   {
@@ -33,7 +34,11 @@ function Page() {
       phoneSidebarOpen={displaySidebar}
     >
       <PageHeader
-        parentHeading="Investing plan"
+        parentHeading={
+          <Link href="/investing-plan/financial-goals/set-financial-goals">
+            Investing plan
+          </Link>
+        }
         childHeading="Set your financial goals"
         setOpenModal={setOpenModal}
         showMoreInfo={true}

@@ -3,11 +3,7 @@ import TableCalculator from "../TableCalculator";
 import { uuid } from "uuidv4";
 import TableMultiCalculator from "../TableMultiCalculator";
 
-function TotalAssetCalculator({
-  setMonthlyNetincome,
-  setYearlyNetincome,
-  setMarginNetincome,
-}) {
+function TotalAssetCalculator({ setMonthlyNetincome, setYearlyNetincome }) {
   const [monthlyFields, setMonthlyFields] = useState([
     {
       //0
@@ -134,8 +130,8 @@ function TotalAssetCalculator({
     {
       //14
       id: uuid(),
-      label: "Other expenses",
-      tooltip: "Entertainment, Leisure, Travel, Restaurants",
+      label: "Interest expenses",
+      tooltip: "interest  and Annuity paid from Loans",
       type: "display",
       type: "input",
       value: "",
@@ -147,19 +143,18 @@ function TotalAssetCalculator({
       tooltip: "Saving capacity",
       type: "display",
       value: "",
-      valueOf: [13, 17, 14],
+      valueOf: [13, 14],
       subFrom: [4],
     },
     {
       //16
       id: uuid(),
-      label: "Financial expenses",
-      tooltip: "interest  and Annuity paid from Loans",
+      label: "Other expenses",
+      tooltip: "Entertainment, Leisure, Travel, Restaurants",
       type: "display",
       type: "input",
       value: "",
     },
-
     {
       //17
       id: uuid(),
@@ -167,7 +162,7 @@ function TotalAssetCalculator({
       tooltip: "",
       type: "display",
       value: "",
-      valueOf: [14, 16],
+      valueOf: [13, 14, 16],
       subFrom: [],
     },
     {
@@ -178,318 +173,7 @@ function TotalAssetCalculator({
         "The amount from Salary, Wages or Business income remaining after all expenses",
       type: "display",
       value: "",
-      valueOf: [13, 17],
-      subFrom: [4],
-    },
-  ]);
-  const [yearlyFields, setYearlyFields] = useState([
-    {
-      id: uuid(),
-      //   label: "Salary",
-      //   tooltip: "cash on hand, checking, saving account",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Business income",
-      //   tooltip: "revenue generated from side economic activities",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Financial income",
-      //   tooltip: "interest or dividend from investment, received rent",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Other income",
-      //   tooltip: "(Royalties, Pensions, Inheritance, tax credit, others)",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Total gross income",
-      //   tooltip: "",
-      type: "display",
-      value: "",
-      valueOf: [0, 1, 2, 3],
-      subFrom: [],
-    },
-    {
-      id: uuid(),
-      //   label: "Taxes",
-      //   tooltip: "Real estate tax, Payroll tax, income tax, other taxes",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Real Estate",
-      //   tooltip: "Rent",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Utilities",
-      //   tooltip: "Electricity, Gas, Water",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Consumer Staples",
-      //   tooltip: "Food, Cosmetics, Household products",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Healthcare",
-      //   tooltip: "Drugs, Medical Equipment and Services, Insurance",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Consumer Discretionary",
-      //   tooltip: "Home furnishing, Clothing, ",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Communication and Services",
-      //   tooltip: "Internet, Telephone,",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Transportation",
-      //   tooltip: "Public transportation, Car expenses",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Total Cost of Living",
-      //   tooltip: "",
-      type: "display",
-      value: "",
-      valueOf: [5, 6, 7, 8, 9, 10, 11, 12],
-      subFrom: [],
-    },
-
-    {
-      id: uuid(),
-      //   label: "Other expenses",
-      //   tooltip: "Entertainment, Leisure, Travel, Restaurants",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-    {
-      //15
-      id: uuid(),
-      // label: "Saving capacity",
-      // tooltip: "Saving capacity",
-      type: "display",
-      value: "",
-      valueOf: [13, 17, 14],
-      subFrom: [4],
-    },
-    {
-      id: uuid(),
-      //   label: "Financial expenses",
-      //   tooltip: "interest  and Annuity paid from Loans",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-
-    {
-      id: uuid(),
-      //   label: "Total Cost of Living",
-      //   tooltip: "",
-      type: "display",
-      value: "",
-      valueOf: [14, 15],
-      subFrom: [],
-    },
-    {
-      id: uuid(),
-      //   label: "Net income",
-      //   tooltip:
-      // "The amount from Salary, Wages or Business income remaining after all expenses",
-      type: "display",
-      value: "",
-      valueOf: [13, 16],
-      subFrom: [4],
-    },
-  ]);
-  const [marginFields, setMarginFields] = useState([
-    {
-      id: uuid(),
-      //   label: "Salary",
-      //   tooltip: "cash on hand, checking, saving account",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Business income",
-      //   tooltip: "revenue generated from side economic activities",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Financial income",
-      //   tooltip: "interest or dividend from investment, received rent",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Other income",
-      //   tooltip: "(Royalties, Pensions, Inheritance, tax credit, others)",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Total gross income",
-      //   tooltip: "",
-      type: "display",
-      value: "",
-      valueOf: [0, 1, 2, 3],
-      subFrom: [],
-    },
-    {
-      id: uuid(),
-      //   label: "Taxes",
-      //   tooltip: "Real estate tax, Payroll tax, income tax, other taxes",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Real Estate",
-      //   tooltip: "Rent",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Utilities",
-      //   tooltip: "Electricity, Gas, Water",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Consumer Staples",
-      //   tooltip: "Food, Cosmetics, Household products",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Healthcare",
-      //   tooltip: "Drugs, Medical Equipment and Services, Insurance",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Consumer Discretionary",
-      //   tooltip: "Home furnishing, Clothing, ",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Communication and Services",
-      //   tooltip: "Internet, Telephone,",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Transportation",
-      //   tooltip: "Public transportation, Car expenses",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-    {
-      id: uuid(),
-      //   label: "Total Cost of Living",
-      //   tooltip: "",
-      type: "display",
-      value: "",
-      valueOf: [5, 6, 7, 8, 9, 10, 11, 12],
-      subFrom: [],
-    },
-    {
-      id: uuid(),
-      //   label: "Other expenses",
-      //   tooltip: "Entertainment, Leisure, Travel, Restaurants",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-    {
-      //15
-      id: uuid(),
-      // label: "Saving capacity",
-      // tooltip: "Saving capacity",
-      type: "display",
-      value: "",
-      valueOf: [13, 17, 14],
-      subFrom: [4],
-    },
-    {
-      id: uuid(),
-      //   label: "Financial expenses",
-      //   tooltip: "interest  and Annuity paid from Loans",
-      type: "display",
-      type: "input",
-      value: "",
-    },
-
-    {
-      id: uuid(),
-      //   label: "Total Cost of Living",
-      //   tooltip: "",
-      type: "display",
-      value: "",
-      valueOf: [14, 15],
-      subFrom: [],
-    },
-    {
-      id: uuid(),
-      //   label: "Net income",
-      //   tooltip:
-      // "The amount from Salary, Wages or Business income remaining after all expenses",
-      type: "display",
-      value: "",
-      valueOf: [13, 16],
+      valueOf: [17],
       subFrom: [4],
     },
   ]);
@@ -497,111 +181,49 @@ function TotalAssetCalculator({
   useEffect(() => {
     setMonthlyNetincome({
       totalIncome: monthlyFields[4].value,
-      totalExpenses: monthlyFields[13].value,
-      netIncome: monthlyFields[17].value,
+      totalExpenses: monthlyFields[17].value,
+      netIncome: monthlyFields[18].value,
+      savingCapacity: monthlyFields[15].value,
+    });
+    setYearlyNetincome({
+      totalIncome: monthlyFields[4].value * 12,
+      totalExpenses: monthlyFields[17].value * 12,
+      netIncome: monthlyFields[18].value * 12,
+      savingCapacity: monthlyFields[15].value * 12,
     });
   }, [monthlyFields]);
 
-  useEffect(() => {
-    setYearlyNetincome({
-      totalIncome: yearlyFields[4].value,
-      totalExpenses: yearlyFields[13].value,
-      netIncome: yearlyFields[17].value,
-    });
-  }, [yearlyFields]);
-
-  useEffect(() => {
-    setMarginNetincome({
-      totalIncome: marginFields[4].value,
-      totalExpenses: marginFields[13].value,
-      netIncome: marginFields[17].value,
-    });
-  }, [marginFields]);
-
-  const handleOnChange = (e) => {
-    // handleYearlyOnChange(e);
-    let newFields = monthlyFields.map((f, index) => {
+  const fieldChanges = (e, type) => {
+    let newFields = type.map((f, index) => {
       if (f.id === e.target.name) {
         f.value = e.target.value;
-        handleYearlyOnChange(index, e.target.value * 12);
-        handleMarginyOnChange(
-          index,
-          (((e.target.value * 12) / yearlyFields[4].value) * 100).toFixed(1)
-        );
       }
+      return f;
+    });
+
+    newFields = newFields.map((f, index) => {
       if (f.type === "display") {
         f.value = f.valueOf
-          .map((l) =>
-            monthlyFields[l].value ? parseInt(monthlyFields[l].value) : 0
-          )
+          .map((l) => (newFields[l].value ? parseInt(newFields[l].value) : 0))
           .reduce((a, b) => a + b, 0);
 
         if (f.subFrom.length > 0) {
           f.value =
             f.subFrom
               .map((l) =>
-                monthlyFields[l].value ? parseInt(monthlyFields[l].value) : 0
+                newFields[l].value ? parseInt(newFields[l].value) : 0
               )
               .reduce((a, b) => a + b, 0) - f.value;
         }
       }
       return f;
     });
-    setMonthlyFields(newFields);
+
+    return newFields;
   };
-
-  const handleYearlyOnChange = (index, value) => {
-    // console.log("ammar", e, e.target.value, e.target.name);
-    // return;
-    let newFields = yearlyFields.map((f, i) => {
-      if (i === index) {
-        f.value = value;
-      }
-      if (f.type === "display") {
-        f.value = f.valueOf
-          .map((l) =>
-            yearlyFields[l].value ? parseInt(yearlyFields[l].value) : 0
-          )
-          .reduce((a, b) => a + b, 0);
-
-        if (f.subFrom.length > 0) {
-          f.value =
-            f.subFrom
-              .map((l) =>
-                yearlyFields[l].value ? parseInt(yearlyFields[l].value) : 0
-              )
-              .reduce((a, b) => a + b, 0) - f.value;
-        }
-      }
-      return f;
-    });
-    setYearlyFields(newFields);
-  };
-
-  const handleMarginyOnChange = (index, value) => {
-    let newFields = marginFields.map((f, i) => {
-      if (i === index) {
-        f.value = value;
-      }
-      if (f.type === "display") {
-        f.value = f.valueOf
-          .map((l) =>
-            marginFields[l].value ? parseInt(marginFields[l].value) : 0
-          )
-          .reduce((a, b) => a + b, 0);
-
-        if (f.subFrom.length > 0) {
-          f.value =
-            f.subFrom
-              .map((l) =>
-                marginFields[l].value ? parseInt(marginFields[l].value) : 0
-              )
-              .reduce((a, b) => a + b, 0) - f.value;
-        }
-      }
-      return f;
-    });
-    setMarginFields(newFields);
+  const handleOnChange = (e) => {
+    const fields = fieldChanges(e, monthlyFields);
+    setMonthlyFields(fields);
   };
 
   return (
@@ -614,24 +236,35 @@ function TotalAssetCalculator({
     >
       <TableMultiCalculator
         heading={"Item"}
-        heading2={"Monthly Amount"}
+        heading2={"Monthly"}
         fields={monthlyFields}
         valueSign={"$"}
         handleFieldOnChange={handleOnChange}
       />
       <TableMultiCalculator
-        heading={"Yearly Amount"}
-        fields={yearlyFields}
+        heading={"Yearly"}
+        fields={monthlyFields.map((v) => ({
+          id: v.id,
+          type: v.type,
+          value: v.value * 12,
+        }))}
         valueSign={"$"}
-        handleFieldOnChange={handleYearlyOnChange}
-        disableField={true}
+        handleFieldOnChange={() => {}}
+        disableFields={true}
       />
       <TableMultiCalculator
         heading={"Margin"}
-        fields={marginFields}
+        fields={monthlyFields.map((v) => ({
+          id: v.id,
+          type: v.type,
+          value: (
+            ((v.value * 12) / (monthlyFields[4].value * 12)) *
+            100
+          ).toFixed(1),
+        }))}
         valueSign={"%"}
-        handleFieldOnChange={handleMarginyOnChange}
-        disableField={true}
+        handleFieldOnChange={() => {}}
+        disableFields={true}
       />
     </div>
   );

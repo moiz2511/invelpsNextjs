@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import styles from "@/styles/BasicPage.module.css";
 import TableOfContent from "@/components/TableOfContent";
 import InfoModal from "@/components/InfoModal";
+import Link from "next/link";
 
 const links = [
   {
@@ -36,7 +37,11 @@ function Page() {
       phoneSidebarOpen={displaySidebar}
     >
       <PageHeader
-        parentHeading="Investing plan"
+        parentHeading={
+          <Link href="/investing-plan/financial-goals/set-financial-goals">
+            Investing plan
+          </Link>
+        }
         childHeading="Investor profile"
         setOpenModal={setOpenModal}
         showMoreInfo={true}

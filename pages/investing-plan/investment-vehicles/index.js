@@ -5,6 +5,7 @@ import styles from "@/styles/BasicPage.module.css";
 import AlertPopup from "@/components/AlertPopup";
 import InvestmentVehicleCard from "@/components/investingPlan/InvestmentVehicleCard";
 import InfoModal from "@/components/InfoModal";
+import Link from "next/link";
 
 const links = [
   {
@@ -45,7 +46,11 @@ function Page() {
   return (
     <Layout>
       <PageHeader
-        parentHeading="Investing plan"
+        parentHeading={
+          <Link href="/investing-plan/financial-goals/set-financial-goals">
+            Investing plan
+          </Link>
+        }
         childHeading="Choose an investment vehicle"
         setOpenModal={setOpenModal}
         showMoreInfo={true}

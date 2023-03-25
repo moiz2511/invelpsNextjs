@@ -20,7 +20,7 @@ function TableMultiCalculator({
         }}
       >
         <span> {heading}</span>
-        {heading2 && <span>{heading2}</span>}
+        {heading2 && <span style={{ marginRight: "55px" }}>{heading2}</span>}
       </h2>
 
       <div className={styles.innerContainer}>
@@ -41,7 +41,9 @@ function TableMultiCalculator({
               name={`${field.id}`}
               type="number"
               fullWidth
-              disabled={field.type === "input" ? false : true}
+              disabled={
+                disableFields ? true : field.type === "input" ? false : true
+              }
               size="small"
               InputProps={{
                 startAdornment: (
