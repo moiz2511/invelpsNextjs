@@ -225,13 +225,13 @@ function TotalAssetCalculator({ setMonthlyCashflow, setYearlyCashflow }) {
     >
       <TableMultiCalculator
         heading={"Item"}
-        heading2={"Monthly Amount"}
+        heading2={"Monthly"}
         fields={monthlyFields}
         valueSign={"$"}
         handleFieldOnChange={handleOnChange}
       />
       <TableMultiCalculator
-        heading={"Yearly Amount"}
+        heading={"Yearly"}
         fields={yearlyFields}
         valueSign={"$"}
         handleFieldOnChange={handleYearlyOnChange}

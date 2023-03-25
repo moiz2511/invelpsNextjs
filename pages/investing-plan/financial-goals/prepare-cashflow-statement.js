@@ -758,7 +758,7 @@ function Page() {
                     }}
                   >
                     <NumberWithLabel
-                      labelText={"Cash flow income from economic activities"}
+                      labelText={"Cash flow from economic activities"}
                       mainText={`$${
                         monthlyCashflow.economicActivities <= 0
                           ? "0"
@@ -769,7 +769,7 @@ function Page() {
                       }}
                     />
                     <NumberWithLabel
-                      labelText={"Cash flow income from investing activities"}
+                      labelText={"Cash flow from investing activities"}
                       mainText={`$${
                         monthlyCashflow.investingActivities <= 0
                           ? "0"
@@ -780,7 +780,7 @@ function Page() {
                       }}
                     />
                     <NumberWithLabel
-                      labelText={"Cash flow income from financing activities"}
+                      labelText={"Cash flow from financing activities"}
                       mainText={`$${
                         monthlyCashflow.financingActivities <= 0
                           ? "0"
@@ -817,9 +817,9 @@ function Page() {
                       <PieChart
                         data={{
                           labels: [
-                            "Cash flow income from economic activities",
-                            "Cash flow income from investing activities",
-                            "Cash flow income from financing activities",
+                            "Cash flow from economic activities",
+                            "Cash flow from investing activities",
+                            "Cash flow from financing activities",
                             "Cash on hand",
                           ],
                           datasets: [
@@ -857,7 +857,7 @@ function Page() {
                     }}
                   >
                     <NumberWithLabel
-                      labelText={"Cash flow income from economic activities"}
+                      labelText={"Cash flow from economic activities"}
                       mainText={`$${
                         yearlyCashflow.economicActivities <= 0
                           ? "0"
@@ -868,7 +868,7 @@ function Page() {
                       }}
                     />
                     <NumberWithLabel
-                      labelText={"Cash flow income from investing activities"}
+                      labelText={"Cash flow from investing activities"}
                       mainText={`$${
                         yearlyCashflow.investingActivities <= 0
                           ? "0"
@@ -879,7 +879,7 @@ function Page() {
                       }}
                     />
                     <NumberWithLabel
-                      labelText={"Cash flow income from financing activities"}
+                      labelText={"Cash flow from financing activities"}
                       mainText={`$${
                         yearlyCashflow.financingActivities <= 0
                           ? "0"
