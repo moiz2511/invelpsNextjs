@@ -397,7 +397,7 @@ function Page() {
       <div className={styles.container}>
         <InvestingPlanSideNav
           activeHeadingId={2}
-          activeSubheadingId={2.3}
+          activeSubheadingId={2.2}
           sidebarStyle={{
             left: displaySidebar ? "0px" : "-1000px",
           }}
@@ -423,8 +423,8 @@ function Page() {
                 sources of money coming in and the monthly and yearly amount
                 received from each source.
               </p>
-            </div> */}
-            {/* <div className={styles.content} id="spend">
+            </div>
+            <div className={styles.content} id="spend">
               <h1>How much do you spend and in what?</h1>
               <p>
                 Individual income is also called gross income because it is
@@ -433,18 +433,15 @@ function Page() {
                 monthly and annually on each item.
               </p>
             </div> */}
-            {/* <div className={styles.content} id="net-income">
-              <h1> Net income calculator:</h1>
-              <p>
-                Personal Income statement: Fill the different item to calculate
-                your net income
-              </p>
+            <div className={styles.content} id="net-income">
+              <h1>Prepare income statement:</h1>
+              <p>Fill the different item to calculate your net income</p>
               <NetIncomeCalculator
                 setMonthlyNetincome={setMonthlyNetincome}
                 setYearlyNetincome={setYearlyNetincome}
               />
-            </div> */}
-            {/* <div className={styles.content} id="net-income">
+            </div>
+            <div className={styles.content} id="net-income">
               <h1>What is your net Income?</h1>
               <p>
                 Your net income is the difference between the total value of all
@@ -458,9 +455,9 @@ function Page() {
                   onOnLabel={"Monthly"}
                   onOffLabel={"Yearly"}
                 />
-              </div> */}
-            {/*  */}
-            {/* {!showMonthlyNetincomGraph ? (
+              </div>
+              {/*  */}
+              {!showMonthlyNetincomGraph ? (
                 <div
                   style={{
                     display: "flex",
@@ -653,9 +650,9 @@ function Page() {
                     />
                   </div>
                 </div>
-              )} */}
-            {/*  */}
-            {/* </div> */}
+              )}
+              {/*  */}
+            </div>
             {/* <div className={styles.content} id="coming-in-going-out">
               <h1>How much are coming in and going out?</h1>
               <p>
@@ -677,16 +674,15 @@ function Page() {
                 net cash flow.
               </p>
             </div> */}
-            <div className={styles.content} id="net-income">
+            {/* <div className={styles.content} id="net-income">
               <h1>Net Cash flow calculator – Cash flow statement:</h1>
               <p>Fill the different item to calculate your net cash flow</p>
               <CashflowCalculator
                 setMonthlyCashflow={setMonthlyCashflow}
                 setYearlyCashflow={setYearlyCashflow}
               />
-            </div>
-
-            <div className={styles.content} id="positive-cash-flow">
+            </div> */}
+            {/* <div className={styles.content} id="positive-cash-flow">
               <h1>Do you have a positive net cash flow?</h1>
               <p>
                 Doing a cash flow statement is not just about finding money in
@@ -703,7 +699,6 @@ function Page() {
                   onOffLabel={"Yearly"}
                 />
               </div>
-              {/*  */}
               {!showMonthlyCashflowGraph ? (
                 <div
                   style={{
@@ -904,51 +899,50 @@ function Page() {
                 </div>
               )}
               {/*  */}
-            </div>
-            {/* <div className={styles.content} id="positive-cash-flow">
-              <h1>Where can you improve the results? </h1>
-              <p>
-                The more you can increase your income and decrease your
-                expenses, the better. Here are some questions to ask yourself:
-              </p>
-              <ul className={modalStyles.list}>
-                <li>
-                  How can you increase your income? Do you have hobbies,
-                  interests, or skills that can generate extra cash for you?
-                </li>
-                <li>
-                  Can you get more paid overtime at work? How about a promotion
-                  or a job change?
-                </li>
-                <li>Where can you cut expenses?</li>
-                <li>
-                  Have you categorized your expenses as either “necessary” or
-                  “nonessential”?
-                </li>
-                <li>
-                  Can you lower your debt payments by refinancing or
-                  consolidating loans and credit card balances?
-                </li>
-                <li>
-                  Have you shopped around for lower insurance or telephone
-                  rates?
-                </li>
-                <li>
-                  Have you analyzed your tax withholdings in your paycheck to
-                  make sure that you’re not overpaying your taxes?
-                </li>
-              </ul>
-              <p style={{ marginTop: "20px" }}>
-                Just meeting our daily needs (rent, food, bills, clothing,
-                transportation, health) can take up a large portion of your
-                monthly income. But life doesn&apos;t stop there, we also have
-                medium and long term goals, travel or buying a house,
-                children&apos;s education, retirement and sometimes unplanned
-                emergencies to consider. Know that you can build your financial
-                future to achieve your goals while enjoying life with a
-                financial plan.
-              </p>
-            </div> */}
+            {/* </div> */}
+            {/* <div className={styles.content} id="positive-cash-flow"> */}
+            {/* <h1>Where can you improve the results? </h1>
+            <p>
+              The more you can increase your income and decrease your expenses,
+              the better. Here are some questions to ask yourself:
+            </p> */}
+            {/* <ul className={modalStyles.list}>
+              <li>
+                How can you increase your income? Do you have hobbies,
+                interests, or skills that can generate extra cash for you?
+              </li>
+              <li>
+                Can you get more paid overtime at work? How about a promotion or
+                a job change?
+              </li>
+              <li>Where can you cut expenses?</li>
+              <li>
+                Have you categorized your expenses as either “necessary” or
+                “nonessential”?
+              </li>
+              <li>
+                Can you lower your debt payments by refinancing or consolidating
+                loans and credit card balances?
+              </li>
+              <li>
+                Have you shopped around for lower insurance or telephone rates?
+              </li>
+              <li>
+                Have you analyzed your tax withholdings in your paycheck to make
+                sure that you’re not overpaying your taxes?
+              </li>
+            </ul> */}
+            {/* <p style={{ marginTop: "20px" }}>
+              Just meeting our daily needs (rent, food, bills, clothing,
+              transportation, health) can take up a large portion of your
+              monthly income. But life doesn&apos;t stop there, we also have
+              medium and long term goals, travel or buying a house,
+              children&apos;s education, retirement and sometimes unplanned
+              emergencies to consider. Know that you can build your financial
+              future to achieve your goals while enjoying life with a financial
+              plan.
+            </p> */}
+            {/* </div> */}
           </div>
         </div>
       </div>

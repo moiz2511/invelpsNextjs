@@ -214,9 +214,9 @@ function Page() {
         />
 
         <div>
-          <TableOfContent links={links} />
+          {/* <TableOfContent links={links} /> */}
           <div className={styles.contentContainer}>
-            <div className={styles.content} id="your-wants">
+            {/* <div className={styles.content} id="your-wants">
               <h1>Figure out what you want most</h1>
               <p>
                 Think broadly at first: start with your goals. Investing is a
@@ -241,7 +241,7 @@ function Page() {
                 It&apos;s important to take the time to name them and describe
                 them in as much detail as possible.
               </p>
-            </div>
+            </div> */}
             <div className={styles.content} id="investing-for">
               <h1>Set your investing goals:</h1>
               <p>Please answer all the below questions:</p>

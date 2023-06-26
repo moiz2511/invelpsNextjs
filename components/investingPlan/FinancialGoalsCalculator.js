@@ -1,4 +1,4 @@
-import { Button, InputAdornment, TextField } from "@mui/material";
+import { Button, Checkbox, InputAdornment, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -21,7 +21,13 @@ const textStyle = {
 };
 function FinancialGoalsCalculator() {
   const [values, setValues] = useState({
+    adjustedForInflation: false,
+    adjustedForInflationValue: "",
+    forcastedAnnualReturnRate: "",
+    goal: "",
     need: "",
+    needMonthy: "",
+    monthlyLongIncome: new Date(),
     when: new Date(),
     saving: "",
   });
@@ -34,6 +40,64 @@ function FinancialGoalsCalculator() {
         new Date(),
         dayjs.duration(dayjs(values.when).diff(new Date()))
       )} */}
+      <div style={containerStyle}>
+        <p style={textStyle}>What is your investment goal ?</p>
+        <TextField
+          value={values.goal}
+          sx={{
+            width: "300px",
+          }}
+          type="text"
+          onChange={(e) =>
+            setValues((prv) => ({ ...prv, goal: `${e.target.value}` }))
+          }
+        />
+      </div>
+      <div style={containerStyle}>
+        <p style={textStyle}>How much will you need monthly ?</p>
+        <TextField
+          value={values.needMonthy}
+          sx={{
+            width: "300px",
+          }}
+          InputProps={{
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+          }}
+          type="number"
+          onChange={(e) =>
+            setValues((prv) => ({ ...prv, needMonthy: `${e.target.value}` }))
+          }
+        />
+      </div>
+      <div style={containerStyle}>
+        <p style={textStyle}>How long will you need monthly income</p>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            onChange={(e) =>
+              setValues((prv) => ({ ...prv, monthlyLongIncome: e.$d }))
+            }
+            // value={values.when}
+            sx={{
+              width: "300px",
+            }}
+          />
+        </LocalizationProvider>
+
+        <TextField
+          value={`${
+            dayjs.duration(dayjs(values.monthlyLongIncome).diff(new Date())).$d
+              .years
+          } year ${
+            dayjs.duration(dayjs(values.monthlyLongIncome).diff(new Date())).$d
+              .days
+          } days `}
+          disabled={true}
+          sx={{
+            width: "150px",
+            marginLeft: "20px",
+          }}
+        />
+      </div>
       <div style={containerStyle}>
         <p style={textStyle}>How much will you need ?</p>
         <TextField
@@ -51,7 +115,40 @@ function FinancialGoalsCalculator() {
         />
       </div>
       <div style={containerStyle}>
-        <p style={textStyle}>When will you need the money ?</p>
+        <p style={textStyle}>Adjust for inflation?</p>
+        <Checkbox
+          checked={values.adjustedForInflation}
+          onChange={(e) =>
+            setValues((prv) => ({
+              ...prv,
+              adjustedForInflation: !prv.adjustedForInflation,
+            }))
+          }
+        />
+        {values.adjustedForInflation && (
+          <TextField
+            value={values.adjustedForInflationValue}
+            sx={{
+              width: "300px",
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">$</InputAdornment>
+              ),
+            }}
+            type="number"
+            onChange={(e) =>
+              setValues((prv) => ({
+                ...prv,
+                adjustedForInflationValue: `${e.target.value}`,
+              }))
+            }
+          />
+        )}
+      </div>
+
+      <div style={containerStyle}>
+        <p style={textStyle}>When will you need the monthly income ?</p>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
             onChange={(e) => setValues((prv) => ({ ...prv, when: e.$d }))}
@@ -76,6 +173,25 @@ function FinancialGoalsCalculator() {
         />
       </div>
       <div style={containerStyle}>
+        <p style={textStyle}>Forcasted annualized return rate</p>
+        <TextField
+          value={values.forcastedAnnualReturnRate}
+          disabled={true}
+          type="number"
+          sx={{
+            width: "150px",
+            marginLeft: "20px",
+          }}
+          onChange={(e) =>
+            setValues((prv) => ({
+              ...prv,
+              forcastedAnnualReturnRate: `${e.target.value}`,
+            }))
+          }
+        />
+      </div>
+
+      <div style={containerStyle}>
         <p style={textStyle}>Have you saved anything yet ? If no enter 0</p>
         <TextField
           value={values.saving}
@@ -98,6 +214,7 @@ function FinancialGoalsCalculator() {
             color: "var(--primary-blue) !important",
             fontSize: "700 !important",
             marginRight: "20px",
+            textTransform: "capitalize",
           }}
           onClick={() => {
             setValues({
@@ -117,7 +234,7 @@ function FinancialGoalsCalculator() {
             }
           }}
         >
-          View Results
+          Save and View Results
         </CustomButton>
       </div>
       <div

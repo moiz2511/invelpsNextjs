@@ -36,8 +36,11 @@ function Navbar({ toggleSidebarOnPhone, phoneSidebarOpen }) {
         <a href="#home" className={styles.achorStyle}>
           <li>Home</li>
         </a>
-        <a href="#services" className={styles.achorStyle}>
-          <li>Services</li>
+        <a href="#solutions" className={styles.achorStyle}>
+          <li>Solutions</li>
+        </a>
+        <a href="#applications" className={styles.achorStyle}>
+          <li>Applications</li>
         </a>
         <a href="#aboutus" className={styles.achorStyle}>
           <li>About Us</li>

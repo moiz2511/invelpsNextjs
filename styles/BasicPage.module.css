@@ -28,7 +28,7 @@
 /* forms */
 .formContainer {
   padding: 10px;
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
 }
 .formFieldContainer {
   margin-top: 10px;

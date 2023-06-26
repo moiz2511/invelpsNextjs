@@ -243,16 +243,16 @@ function Page() {
       />
       <div className={styles.container}>
         <InvestingPlanSideNav
-          activeHeadingId={1}
-          activeSubheadingId={1.2}
+          activeHeadingId={2}
+          activeSubheadingId={2.1}
           sidebarStyle={{
             left: displaySidebar ? "0px" : "-1000px",
           }}
         />
         <div>
-          <TableOfContent links={links} />
+          {/* <TableOfContent links={links} /> */}
           <div className={styles.contentContainer}>
-            <div className={styles.content} id="current-situation">
+            {/* <div className={styles.content} id="current-situation">
               <h1>Establish your current situation</h1>
               <p>
                 Regardless of the goals of your investment plan, the first step
@@ -270,7 +270,7 @@ function Page() {
                 determine your net worth, your total assets minus your total
                 liabilities.
               </p>
-            </div>
+            </div> */}
             {/* <div className={styles.content} id="emerygency-fund">
               <h1>Do you have an emergency fund?</h1>
               <p>
@@ -279,7 +279,7 @@ function Page() {
                 vitae luctus.{" "}
               </p>
             </div> */}
-            <div className={styles.content} id="asset-owned">
+            {/* <div className={styles.content} id="asset-owned">
               <h1>What do you own (assets)?</h1>
               <p>
                 Assets are things you own with economic value that can be
@@ -290,8 +290,8 @@ function Page() {
                 term)of liquidity. Liquidity refers to how quickly you can
                 convert a particular asset into cash.
               </p>
-            </div>
-            <div className={styles.content} id="liabilities-owed">
+            </div> */}
+            {/* <div className={styles.content} id="liabilities-owed">
               <h1>What do you owe (liabilities)?</h1>
               <p>
                 Liabilities are simply the bills that you have to pay or the
@@ -302,9 +302,9 @@ function Page() {
                 term to long term) of maturity. The maturity refers to how soon
                 you need to pay them.
               </p>
-            </div>
+            </div> */}
             <div className={styles.content}>
-              <h1> Net Worth calculator – Personal Balance sheet:</h1>
+              <h1>Personal Balance sheet:</h1>
               <p>Fill the different item to calculate your net worth</p>
               <div className={styles.calculatorContainer}>
                 <TotalAssetCalculator setTotalAssets={changeTotalAssets} />
