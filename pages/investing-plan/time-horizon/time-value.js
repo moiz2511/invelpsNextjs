@@ -24,28 +24,12 @@ import Link from "next/link";
 
 const links = [
   {
-    value: "Establish your current situation.",
-    link: "#current-situation",
+    value: "Time value of money.",
+    link: "#value",
   },
   {
-    value: "Do you have an emergency fund?",
-    link: "#emergency-fund",
-  },
-  {
-    value: "What do you own (assets)?",
-    link: "#asset-owned",
-  },
-  {
-    value: "What do you owe (liabilities)?",
-    link: "#liabilities-owed",
-  },
-  {
-    value: "What is your net worth?",
-    link: "#networth",
-  },
-  {
-    value: "Could you make any change to increase your net worth?",
-    link: "#increase-networth",
+    value: "What is your required rate of return (Internal rate of return)?",
+    link: "#return-rate",
   },
 ];
 
@@ -290,58 +274,65 @@ function Page() {
           }}
         />
         <div>
-          {/* <TableOfContent links={links} /> */}
+          <TableOfContent links={links} />
           <div className={styles.contentContainer}>
             {/* for start */}
-            <div className={styles.formContainer} style={{ marginTop: "50px" }}>
-              {fields.map((field) => (
-                <div key={field.id} className={styles.formFieldContainer}>
-                  <p>{field.label}</p>
-                  <div className={styles.textFieldContainer}>
-                    {field.options ? (
-                      <TextField
-                        name={`${field.id}`}
-                        select
-                        size="small"
-                        value={field.value}
-                        onChange={handleFieldOnChange}
-                        className={styles.textField}
-                        style={{ width: "100%", padding: "0px" }}
-                      >
-                        {field.options.map((option) => (
-                          <MenuItem key={option.key} value={option.key}>
-                            {option.value}
-                          </MenuItem>
-                        ))}
-                      </TextField>
-                    ) : (
-                      <TextField
-                        name={`${field.id}`}
-                        fullWidth
-                        size="small"
-                        InputProps={field.inputProps}
-                        id={`${field.id}`}
-                        value={field.value}
-                        className={styles.textField}
-                        onChange={handleFieldOnChange}
-                      />
-                    )}
+            <div className={styles.content} id="value">
+              <h1>Time Value Of Money</h1>
+
+              <div
+                className={styles.formContainer}
+                style={{ marginTop: "-10px" }}
+              >
+                {fields.map((field) => (
+                  <div key={field.id} className={styles.formFieldContainer}>
+                    <p>{field.label}</p>
+                    <div className={styles.textFieldContainer}>
+                      {field.options ? (
+                        <TextField
+                          name={`${field.id}`}
+                          select
+                          size="small"
+                          value={field.value}
+                          onChange={handleFieldOnChange}
+                          className={styles.textField}
+                          style={{ width: "100%", padding: "0px" }}
+                        >
+                          {field.options.map((option) => (
+                            <MenuItem key={option.key} value={option.key}>
+                              {option.value}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                      ) : (
+                        <TextField
+                          name={`${field.id}`}
+                          fullWidth
+                          size="small"
+                          InputProps={field.inputProps}
+                          id={`${field.id}`}
+                          value={field.value}
+                          className={styles.textField}
+                          onChange={handleFieldOnChange}
+                        />
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              <div
+                style={{
+                  textAlign: "right",
+                  paddingTop: "10px",
+                  paddingBottom: "20px",
+                }}
+              >
+                <CustomButton onClick={handleOnCalculateClick}>
+                  Calculate
+                </CustomButton>
+              </div>
             </div>
-            <div
-              style={{
-                textAlign: "right",
-                paddingTop: "10px",
-                paddingBottom: "20px",
-              }}
-            >
-              <CustomButton onClick={handleOnCalculateClick}>
-                Calculate
-              </CustomButton>
-            </div>
-            <div className={styles.content}>
+            <div className={styles.content} id="return-rate">
               <h1>
                 What is your required rate of return (Internal rate of return)?
               </h1>

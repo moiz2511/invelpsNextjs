@@ -10,6 +10,16 @@ import { MenuItem, TextField } from "@mui/material";
 import NumberWithLabel from "@/components/NumberWithLabel";
 import PieChart from "@/components/PieChart";
 import ManageInvestmentCard from "@/components/investingPlan/risk-and-return/ManageInvestmentCard";
+import TableOfContent from "@/components/TableOfContent";
+import Image1 from "../../../public/images/andrew-neel-cckf4TsHAuw-unsplash.jpg";
+
+const links = [
+  { value: "Risk Tolerance", link: "#tolerance" },
+  {
+    value: "How do you want to manage your investments ?",
+    link: "#manage",
+  },
+];
 
 const fields = () => (
   <div style={{ display: "flex", alignItems: "center" }}>
@@ -75,19 +85,21 @@ function tolerance() {
           }}
         />
         <div>
+          <TableOfContent links={links} />
           <div className={styles.contentContainer}>
             <div className={styles.content}>
               <h1>Risk Tolerance</h1>
               {fields()}
             </div>
 
-            <div className={styles.content} id="networth">
+            <div className={styles.content} id="tolerance">
               <div
                 style={{
                   display: "flex",
                   marginTop: "20px",
                   alignItems: "center",
                   justifyContent: "space-around",
+                  flexwrap: "wrap",
                 }}
               >
                 <div style={{ width: "400px" }}>
@@ -166,7 +178,7 @@ function tolerance() {
               </p>
             </div>
 
-            <div className={styles.content} id="networth">
+            <div className={styles.content} id="manage">
               <p style={{ fontWeight: "700", fontSize: "18px" }}>
                 How do you want to manage your investments ?
               </p>
@@ -175,10 +187,11 @@ function tolerance() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-around",
-                  marginTop: "20px",
+                  flexWrap: "wrap",
                 }}
               >
                 <ManageInvestmentCard
+                  img={Image1}
                   t1={"Prefer support from financial advisors"}
                   t2={"You do not have time"}
                   t3={"You may not have a lot of experience or interest"}
@@ -186,6 +199,7 @@ function tolerance() {
                   btnTxt={"Get help to manage my investments"}
                 />
                 <ManageInvestmentCard
+                  img={Image1}
                   t1={"You need little or no help managing your investments"}
                   t2={"You regularly spend time on your portfolio"}
                   t3={"You do all your own research"}

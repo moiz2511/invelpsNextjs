@@ -356,7 +356,10 @@ function index() {
               <h1>Global Market overview</h1>
               <div style={{ margin: "15px 0" }}>{globalMarketFields()}</div>
 
-              <div className={styles.content}>
+              <div
+                className={styles.content}
+                style={{ width: "calc(100vw - 450px)" }}
+              >
                 <GroupedColumnsTable
                   parentCols={[
                     { value: "Location", span: 2 },
@@ -442,7 +445,10 @@ function index() {
               <div style={{ margin: "15px 0" }}>
                 {returnGlobalMarketsFields()}
               </div>
-              <div className={styles.content}>
+              <div
+                className={styles.content}
+                style={{ width: "calc(100vw - 450px)" }}
+              >
                 <GroupedColumnsTable
                   parentCols={[
                     { value: "Location", span: 2 },
@@ -535,7 +541,10 @@ function index() {
                   bonds={mockYears.map((t) => Math.random() * 100)}
                 />
               </div> */}
-              <div className={styles.content}>
+              <div
+                className={styles.content}
+                style={{ width: "calc(100vw - 450px)" }}
+              >
                 <GroupedColumnsTable
                   parentCols={[
                     { value: "Location", span: 2 },

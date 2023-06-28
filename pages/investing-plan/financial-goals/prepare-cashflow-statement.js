@@ -16,32 +16,12 @@ import Link from "next/link";
 
 const links = [
   {
-    value: "Where do you get money to fund your Investment plan?",
-    link: "#fund-your-investment",
+    value: "Net Cash flow calculator – Cash flow statement.",
+    link: "#calculator",
   },
   {
-    value: "What is your gross income?",
-    link: "#gross-income",
-  },
-  {
-    value: "How much do you spend and in what?",
-    link: "#spend",
-  },
-  {
-    value: "What is your net Income?",
-    link: "#net-income",
-  },
-  {
-    value: "How much are coming in and going out?",
-    link: "#coming-in-going-out",
-  },
-  {
-    value: "Do you have a positive cash flow?",
-    link: "#positive-cash-flow",
-  },
-  {
-    value: "Where can you improve the results?",
-    link: "#improve-the-results",
+    value: "Do you have a positive net cash flow?",
+    link: "#positive-cashflow",
   },
 ];
 
@@ -403,7 +383,7 @@ function Page() {
           }}
         />
         <div>
-          {/* <TableOfContent links={links} /> */}
+          <TableOfContent links={links} />
           <div className={styles.contentContainer}>
             {/* <div className={styles.content} id="fund-your-investment">
               <h1>Where do you get money to fund your Investment plan ?</h1>
@@ -677,7 +657,7 @@ function Page() {
                 net cash flow.
               </p>
             </div> */}
-            <div className={styles.content} id="net-income">
+            <div className={styles.content} id="calculator">
               <h1>Net Cash flow calculator – Cash flow statement:</h1>
               <p>Fill the different item to calculate your net cash flow</p>
               <CashflowCalculator
@@ -686,7 +666,7 @@ function Page() {
               />
             </div>
 
-            <div className={styles.content} id="positive-cash-flow">
+            <div className={styles.content} id="positive-cashflow">
               <h1>Do you have a positive net cash flow?</h1>
               <p>
                 Doing a cash flow statement is not just about finding money in

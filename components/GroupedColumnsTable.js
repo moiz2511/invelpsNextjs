@@ -7,54 +7,87 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { tableCellClasses } from "@mui/material/TableCell";
 import React from "react";
+import { styled } from "@mui/material/styles";
 
-function GroupedColumnsTable({ columns, rows, parentCols }) {
+function GroupedColumnsTable({ primary = true, columns, rows, parentCols }) {
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: primary ? "white" : "var(--primary-orange)",
+      color: primary ? "var(--primary-orange)" : theme.palette.common.white,
+      fontWeight: primary ? "700" : "500",
+      // padding: "10px",
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      // backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
+
+  const StyledTableHead = styled(TableHead)(({ theme }) => ({
+    [`.MuiTableHead-root`]: {
+      backgroundColor: "var(--primary-orange)",
+    },
+  }));
+
   return (
-    <Paper style={{ maxWidth: "900px" }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {parentCols.map((p) => (
-                <TableCell align="center" colSpan={p.span}>
-                  {p.value}
-                </TableCell>
-              ))}
-            </TableRow>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ top: 57 }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => {
-              return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === "number"
-                          ? column.format(value)
-                          : value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Paper>
+    <TableContainer sx={{ maxHeight: 440 }} component={Paper}>
+      <Table stickyHeader aria-label="customized table">
+        <StyledTableHead>
+          <StyledTableRow>
+            {parentCols.map((p) => (
+              <StyledTableCell align="center" colSpan={p.span}>
+                {p.value}
+              </StyledTableCell>
+            ))}
+          </StyledTableRow>
+          <StyledTableRow>
+            {columns.map((column) => (
+              <StyledTableCell
+                key={column.id}
+                align={column.align}
+                style={{ top: 57 }}
+              >
+                {column.label}
+              </StyledTableCell>
+            ))}
+          </StyledTableRow>
+        </StyledTableHead>
+        <TableBody>
+          {rows.map((row) => {
+            return (
+              <StyledTableRow
+                hover
+                role="checkbox"
+                tabIndex={-1}
+                key={row.code}
+              >
+                {columns.map((column) => {
+                  const value = row[column.id];
+                  return (
+                    <StyledTableCell key={column.id} align={column.align}>
+                      {column.format && typeof value === "number"
+                        ? column.format(value)
+                        : value}
+                    </StyledTableCell>
+                  );
+                })}
+              </StyledTableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
 

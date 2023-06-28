@@ -16,20 +16,8 @@ import Link from "next/link";
 
 const links = [
   {
-    value: "Establish your current situation.",
-    link: "#current-situation",
-  },
-  // {
-  //   value: "Do you have an emergency fund?",
-  //   link: "#emergency-fund",
-  // },
-  {
-    value: "What do you own (assets)?",
-    link: "#asset-owned",
-  },
-  {
-    value: "What do you owe (liabilities)?",
-    link: "#liabilities-owed",
+    value: "Prepare balance sheet.",
+    link: "#prepare",
   },
   {
     value: "What is your net worth?",
@@ -79,6 +67,7 @@ function Page() {
         setOpenModal={setOpenModal}
         showMoreInfo={true}
       />
+
       <InfoModal
         open={openModal}
         setOpen={setOpenModal}
@@ -241,6 +230,7 @@ function Page() {
           </div>
         }
       />
+
       <div className={styles.container}>
         <InvestingPlanSideNav
           activeHeadingId={2}
@@ -250,7 +240,7 @@ function Page() {
           }}
         />
         <div>
-          {/* <TableOfContent links={links} /> */}
+          <TableOfContent links={links} />
           <div className={styles.contentContainer}>
             {/* <div className={styles.content} id="current-situation">
               <h1>Establish your current situation</h1>
@@ -303,7 +293,7 @@ function Page() {
                 you need to pay them.
               </p>
             </div> */}
-            <div className={styles.content}>
+            <div className={styles.content} id="prepare">
               <h1>Personal Balance sheet:</h1>
               <p>Fill the different item to calculate your net worth</p>
               <div className={styles.calculatorContainer}>

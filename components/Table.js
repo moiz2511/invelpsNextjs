@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const CustomTable = ({ primary, columns, rows }) => {
+const CustomTable = ({ primary, columns, rows, style }) => {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: primary ? "white" : "var(--primary-orange)",
@@ -38,7 +38,7 @@ const CustomTable = ({ primary, columns, rows }) => {
   }));
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} style={style}>
       <Table aria-label="customized table" stickyHeader>
         <StyledTableHead sx={{ background: "var(--primary-tan)" }}>
           <TableRow>

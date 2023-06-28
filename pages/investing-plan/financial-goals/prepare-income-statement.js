@@ -16,32 +16,12 @@ import Link from "next/link";
 
 const links = [
   {
-    value: "Where do you get money to fund your Investment plan?",
-    link: "#fund-your-investment",
-  },
-  {
-    value: "What is your gross income?",
-    link: "#gross-income",
-  },
-  {
-    value: "How much do you spend and in what?",
-    link: "#spend",
+    value: "Prepare income statement",
+    link: "#prepare",
   },
   {
     value: "What is your net Income?",
-    link: "#net-income",
-  },
-  {
-    value: "How much are coming in and going out?",
-    link: "#coming-in-going-out",
-  },
-  {
-    value: "Do you have a positive cash flow?",
-    link: "#positive-cash-flow",
-  },
-  {
-    value: "Where can you improve the results?",
-    link: "#improve-the-results",
+    link: "#netincome",
   },
 ];
 
@@ -403,7 +383,7 @@ function Page() {
           }}
         />
         <div>
-          {/* <TableOfContent links={links} /> */}
+          <TableOfContent links={links} />
           <div className={styles.contentContainer}>
             {/* <div className={styles.content} id="fund-your-investment">
               <h1>Where do you get money to fund your Investment plan ?</h1>
@@ -433,7 +413,7 @@ function Page() {
                 monthly and annually on each item.
               </p>
             </div> */}
-            <div className={styles.content} id="net-income">
+            <div className={styles.content} id="prepare">
               <h1>Prepare income statement:</h1>
               <p>Fill the different item to calculate your net income</p>
               <NetIncomeCalculator
@@ -441,7 +421,7 @@ function Page() {
                 setYearlyNetincome={setYearlyNetincome}
               />
             </div>
-            <div className={styles.content} id="net-income">
+            <div className={styles.content} id="netincome">
               <h1>What is your net Income?</h1>
               <p>
                 Your net income is the difference between the total value of all

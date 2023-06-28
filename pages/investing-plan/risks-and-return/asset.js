@@ -15,9 +15,26 @@ import CustomTable from "@/components/Table";
 import RiskVReturnChart from "@/components/investingPlan/risk-and-return/RiskVReturnChart";
 import { faker } from "@faker-js/faker";
 import BarChart from "@/components/BarChart";
+import TableOfContent from "@/components/TableOfContent";
 
 const mockYears = ["2019", "2020", "2021", "2022", "2023"];
-function asset() {
+const links = [
+  { value: "Asset classes return and risk (%)", link: "#return-and-risk" },
+  {
+    value: "Assets classes yearly return",
+    link: "#yearly-return",
+  },
+  {
+    value: "Capital growth - Backtest",
+    link: "#backtest",
+  },
+  { value: "Risk vs Returns", link: "#risk-v-return" },
+  {
+    value: "Risk adjusted return",
+    link: "#risk-adjusted",
+  },
+];
+function Asset() {
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
   const [displaySidebar, setDisplaySidebar] = useState(true);
   const [openModal, setOpenModal] = useState(false);
@@ -337,7 +354,8 @@ function asset() {
         />
         <div>
           <div className={styles.contentContainer}>
-            <div className={styles.content}>
+            <TableOfContent links={links} />
+            <div className={styles.content} id="return-and-risk">
               <h1>Asset classes return and risk (%)</h1>
               <div style={{ margin: "15px 0" }}>{returnRiskFields()}</div>
               <div
@@ -357,7 +375,10 @@ function asset() {
                   replicating those asset classes
                 </p>
               </div>
-              <div className={styles.content}>
+              <div
+                className={styles.content}
+                style={{ width: "calc(100vw - 400px)" }}
+              >
                 <GroupedColumnsTable
                   parentCols={[
                     { value: "Assets", span: 4 },
@@ -489,7 +510,7 @@ function asset() {
                 />
               </div>
             </div>
-            <div className={styles.content}>
+            <div className={styles.content} id="yearly-return">
               <h1>Assets classes yearly return</h1>
               <div style={{ margin: "15px 0" }}>{returnRiskYearlyFields()}</div>
               <div
@@ -509,7 +530,10 @@ function asset() {
                   replicating those asset classes
                 </p>
               </div>
-              <div className={styles.content}>
+              <div
+                className={styles.content}
+                style={{ width: "calc(100vw - 400px)" }}
+              >
                 <GroupedColumnsTable
                   parentCols={[
                     { value: "Assets", span: 4 },
@@ -597,8 +621,7 @@ function asset() {
                 />
               </div>
             </div>
-
-            <div className={styles.content}>
+            <div className={styles.content} id="backtest">
               <h1>Capital growth - Backtest</h1>
               <div style={{ margin: "15px 0" }}>{capitalBacktestFields()}</div>
               <div
@@ -640,8 +663,7 @@ function asset() {
                 />
               </div>
             </div>
-
-            <div className={styles.content}>
+            <div className={styles.content} id="risk-v-return">
               <h1>Risk vs Returns</h1>
               <div style={{ margin: "15px 0" }}>{riskVsReturnField()}</div>
               <div
@@ -708,8 +730,7 @@ function asset() {
                 />
               </div>
             </div>
-
-            <div className={styles.content}>
+            <div className={styles.content} id="risk-adjusted">
               <h1>Risk adjusted return</h1>
               <div style={{ margin: "15px 0" }}>{riskAdjustedField()}</div>
               <div className={styles.content}>
@@ -792,4 +813,4 @@ function asset() {
   );
 }
 
-export default asset;
+export default Asset;

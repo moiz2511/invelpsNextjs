@@ -74,17 +74,17 @@ function InvestingPlanSideNav({
     },
     {
       id: 5,
-      main: "5. Understand Risk And Return",
+      main: "5. Portfolio Settings",
       subs: [
         {
           id: 5.1,
-          value: "1. Learn investment vehicles",
-          link: "/investing-plan/financial-goals/investment-vehicle",
+          value: "1. Assert allocation model",
+          link: "/investing-plan/portfolio-settings/asset-allocation-model",
         },
         {
           id: 5.2,
-          value: "2. Define your risk tolerance",
-          link: "/investing-plan/financial-goals/risk-tolerance",
+          value: "2. Set your allocation",
+          link: "/investing-plan/portfolio-settings/set-your-allocation",
         },
       ],
     },
