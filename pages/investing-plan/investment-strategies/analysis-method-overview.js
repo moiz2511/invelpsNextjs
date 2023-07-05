@@ -15,6 +15,7 @@ import CustomTable from "@/components/Table";
 import RiskVReturnChart from "@/components/investingPlan/risk-and-return/RiskVReturnChart";
 import { faker } from "@faker-js/faker";
 import BarChart from "@/components/BarChart";
+import GlobalMarketAnnualizedChart from "@/components/investingPlan/investment-strategies/GlobalMarketAnnualizedChart";
 
 const mockYears = ["2019", "2020", "2021", "2022", "2023"];
 function index() {
@@ -353,7 +354,7 @@ function index() {
         <div>
           <div className={styles.contentContainer}>
             <div className={styles.content}>
-              <h1>Global Market overview</h1>
+              <h1>Global Market Overview</h1>
               <div style={{ margin: "15px 0" }}>{globalMarketFields()}</div>
 
               <div
@@ -445,6 +446,14 @@ function index() {
               <div style={{ margin: "15px 0" }}>
                 {returnGlobalMarketsFields()}
               </div>
+              <GlobalMarketAnnualizedChart
+                years={mockYears}
+                IVFValues={mockYears.map((t) => Math.random() * 100)}
+                IVKValues={mockYears.map((t) => Math.random() * 100)}
+                IYWValues={mockYears.map((t) => Math.random() * 100)}
+                FYZValues={mockYears.map((t) => Math.random() * 100)}
+                GSPCValues={mockYears.map((t) => Math.random() * 100)}
+              />
               <div
                 className={styles.content}
                 style={{ width: "calc(100vw - 450px)" }}
@@ -529,18 +538,14 @@ function index() {
             <div className={styles.content}>
               <h1>Capital growth - Backtest</h1>
               <div style={{ margin: "15px 0" }}>{capitalBacktestFields()}</div>
-              {/*       
-              <div className={styles.content}>
-                <CapitalGrowthChart
-                  years={mockYears}
-                  gold={mockYears.map((t) => Math.random() * 100)}
-                  stocks={mockYears.map((t) => Math.random() * 100)}
-                  cash={mockYears.map((t) => Math.random() * 100)}
-                  tBills={mockYears.map((t) => Math.random() * 100)}
-                  reit={mockYears.map((t) => Math.random() * 100)}
-                  bonds={mockYears.map((t) => Math.random() * 100)}
-                />
-              </div> */}
+              <GlobalMarketAnnualizedChart
+                years={mockYears}
+                IVFValues={mockYears.map((t) => Math.random() * 100)}
+                IVKValues={mockYears.map((t) => Math.random() * 100)}
+                IYWValues={mockYears.map((t) => Math.random() * 100)}
+                FYZValues={mockYears.map((t) => Math.random() * 100)}
+                GSPCValues={mockYears.map((t) => Math.random() * 100)}
+              />
               <div
                 className={styles.content}
                 style={{ width: "calc(100vw - 450px)" }}
