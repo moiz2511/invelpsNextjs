@@ -30,7 +30,8 @@ export function RollingReturnChart({ years, returns }) {
     responsive: true,
     plugins: {
       legend: {
-        position: "right",
+        position: "bottom",
+        display: false,
       },
       title: {
         display: true,
@@ -40,10 +41,9 @@ export function RollingReturnChart({ years, returns }) {
   };
 
   const data = {
-    years,
+    labels: years,
     datasets: [
       {
-        label: "",
         data: returns,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",

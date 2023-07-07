@@ -6,21 +6,19 @@ import PageHeader from "@/components/PageHeader";
 import InvestingPlanSideNav from "@/components/investingPlan/InvestingPlanSideNav";
 import styles from "@/styles/BasicPage.module.css";
 import Link from "next/link";
-import { MenuItem, Select, TextField } from "@mui/material";
+import { MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import GroupedColumnsTable from "@/components/GroupedColumnsTable";
-import CustomAccordion from "@/components/Accordion";
-import LineChart from "@/components/LineChart";
-import CapitalGrowthChart from "@/components/investingPlan/risk-and-return/CapitalGrowthChart";
 import CustomTable from "@/components/Table";
 import RiskVReturnChart from "@/components/investingPlan/risk-and-return/RiskVReturnChart";
 import { faker } from "@faker-js/faker";
 import BarChart from "@/components/BarChart";
 import TableOfContent from "@/components/TableOfContent";
 import NumberWithLabel from "@/components/NumberWithLabel";
-import PieChart from "@/components/PieChart";
-import NumberWithLabelBox from "@/components/NumberWithLabelBox";
 import YearlyReturnChart from "@/components/investingPlan/portfolioSettings/YearlyReturnChart";
 import { RollingReturnChart } from "@/components/investingPlan/portfolioSettings/RollingReturnChart";
+import CapitalGrowthBacktestChart from "@/components/investingPlan/portfolioSettings/CapitalGrowthBacktestChart";
+import PieChart from "@/components/PieChart";
+import NumberWithLabelBox from "@/components/NumberWithLabelBox";
 
 const mockYears = ["2019", "2020", "2021", "2022", "2023"];
 const links = [
@@ -43,6 +41,8 @@ function Asset() {
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
   const [displaySidebar, setDisplaySidebar] = useState(true);
   const [openModal, setOpenModal] = useState(false);
+  const [selectedRvR, setSelectedRvR] = useState([]);
+  const [selectedRA, setSelectedRA] = useState([]);
 
   const returnModelPortfolioOverviewFields = () => (
     <div style={{ display: "flex", alignItems: "center" }}>
@@ -77,6 +77,268 @@ function Asset() {
             30 years
           </MenuItem>
         </TextField>
+      </div>
+    </div>
+  );
+  const capitalBacktestFields = () => (
+    <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Starting Amount ($): </span>
+        <TextField
+          name={"startinAmount"}
+          select
+          size="small"
+          value={2000}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={2000}>
+            2000
+          </MenuItem>
+        </TextField>
+      </div>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Yearly Investment ($): </span>
+        <TextField
+          name={"yearlyInvestment"}
+          select
+          size="small"
+          value={2400}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={2400}>
+            2400
+          </MenuItem>
+        </TextField>
+      </div>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Time Horizon: </span>
+        <TextField
+          name={"timeHorizon"}
+          select
+          size="small"
+          value={2}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={2}>
+            2
+          </MenuItem>
+        </TextField>
+      </div>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Rate: </span>
+        <TextField
+          name={"rate"}
+          select
+          size="small"
+          value={"nominal"}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={"nominal"}>
+            Nominal
+          </MenuItem>
+        </TextField>
+      </div>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Add Inflation: </span>
+        <TextField
+          name={"addInflation"}
+          select
+          size="small"
+          value={"no"}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={"no"}>
+            No
+          </MenuItem>
+        </TextField>
+      </div>
+    </div>
+  );
+
+  const riskVsReturnField = () => (
+    <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Measure </span>
+        <TextField
+          name={"standardDev"}
+          select
+          size="small"
+          value={2000}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={"standardDev"}>
+            Standard Dev
+          </MenuItem>
+        </TextField>
+      </div>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Time Horizon </span>
+        <TextField
+          name={"timeHorizon"}
+          select
+          size="small"
+          value={20}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={20}>
+            20
+          </MenuItem>
+        </TextField>
+      </div>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Rate Type: </span>
+        <TextField
+          name={"rateType"}
+          select
+          size="small"
+          value={"nominal"}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={"nominal"}>
+            Nominal
+          </MenuItem>
+        </TextField>
+      </div>
+      <div
+        style={{
+          marginRight: "15px",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <span style={{ marginRight: "5px" }}>Compare to: </span>
+        <Select
+          labelId="demo-multiple-name-label"
+          id="demo-multiple-name"
+          size="small"
+          style={{
+            width: "200px",
+            padding: "0px",
+          }}
+          multiple
+          value={selectedRvR}
+          onChange={(e) => setSelectedRvR(e.target.value)}
+          input={<OutlinedInput />}
+        >
+          {[
+            "Stocks",
+            "Gold",
+            "REIT",
+            "Bonds",
+            "T.Bills",
+            "Cash",
+            "Dilbert's Portfolio",
+          ].map((name) => (
+            <MenuItem key={name} value={name}>
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </div>
+    </div>
+  );
+
+  const riskAdjustedReturnField = () => (
+    <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Measure </span>
+        <TextField
+          name={"sharpeRatio"}
+          select
+          size="small"
+          value={2000}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={"sharpeRatio"}>
+            Sharpe Ratio
+          </MenuItem>
+        </TextField>
+      </div>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Time Horizon </span>
+        <TextField
+          name={"timeHorizon"}
+          select
+          size="small"
+          value={20}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={20}>
+            20 years
+          </MenuItem>
+        </TextField>
+      </div>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Rate Type: </span>
+        <TextField
+          name={"rateType"}
+          select
+          size="small"
+          value={"nominal"}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={"nominal"}>
+            Nominal
+          </MenuItem>
+        </TextField>
+      </div>
+      <div
+        style={{
+          marginRight: "15px",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <span style={{ marginRight: "5px" }}>Compare to: </span>
+        <Select
+          labelId="demo-multiple-name-label"
+          id="demo-multiple-name"
+          size="small"
+          style={{
+            width: "200px",
+            padding: "0px",
+          }}
+          multiple
+          value={selectedRA}
+          onChange={(e) => setSelectedRA(e.target.value)}
+          input={<OutlinedInput />}
+        >
+          {[
+            "Stocks",
+            "Gold",
+            "REIT",
+            "Bonds",
+            "T.Bills",
+            "Cash",
+            "Dilbert's Portfolio",
+          ].map((name) => (
+            <MenuItem key={name} value={name}>
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
       </div>
     </div>
   );
@@ -402,8 +664,138 @@ function Asset() {
               <h1>Rolling Returns</h1>
               <RollingReturnChart
                 years={mockYears}
-                returns={mockYears.map((t) => Math.random() * 100)}
+                returns={mockYears.map((t) =>
+                  Math.random() > 0.5
+                    ? Math.random() * 100
+                    : Math.random() * -100
+                )}
               />
+            </div>
+            <div className={styles.content} id="backtest">
+              <h1>Capital Growth - Backtest</h1>
+              <div style={{ margin: "15px 0" }}>{capitalBacktestFields()}</div>
+              <p
+                style={{
+                  backgroundColor: "#f2f2f2",
+                  padding: "10px 25px",
+                }}
+              >
+                An <b>investment of $2,000</b> since 2003 with{" "}
+                <b>yearly contribution of $2,400,</b> at <b>nominal rate</b>{" "}
+                (rate not adjusted for inflation) now would be $335,520.00
+                invested on Stock which granted a{" "}
+                <b>annualized nominal return of 9.99%.</b>
+              </p>
+              <CapitalGrowthBacktestChart
+                years={mockYears}
+                allWeather={mockYears.map((t) =>
+                  Math.random() > 0.5
+                    ? Math.random() * 100
+                    : Math.random() * -100
+                )}
+                inflation={mockYears.map((t) =>
+                  Math.random() > 0.5
+                    ? Math.random() * 100
+                    : Math.random() * -100
+                )}
+              />
+            </div>
+            <div className={styles.content} id="risk-v-return">
+              <h1>Risk vs Returns</h1>
+              <div style={{ margin: "15px 0" }}>{riskVsReturnField()}</div>
+              <div
+                style={{
+                  backgroundColor: "#f2f2f2",
+                  padding: "10px 25px",
+                }}
+              >
+                <p>
+                  <b> Risk</b> is represented as the annualized{" "}
+                  <b>Standard Deviation</b> of average annual returns over{" "}
+                  <b>20 years</b>. <br />
+                  High values of Standard Deviation mean high fluctuations in
+                  prices (high volatility). <br />
+                  <b>Stocks</b> have higher return <b>(9.99%)</b> and are the{" "}
+                  <b>most volatile assets</b> with a return that deviates by
+                  17,63% from its average annual return
+                </p>
+              </div>
+              <div className={styles.content}>
+                <RiskVReturnChart
+                  years={mockYears}
+                  gold={Array.from({ length: mockYears.length }, () => ({
+                    x: faker.number.int({ min: -100, max: 100 }),
+                    y: faker.number.int({ min: -100, max: 100 }),
+                    r: faker.number.int({ min: 5, max: 20 }),
+                  }))}
+                  stocks={Array.from({ length: mockYears.length }, () => ({
+                    x: faker.number.int({ min: -100, max: 100 }),
+                    y: faker.number.int({ min: -100, max: 100 }),
+                    r: faker.number.int({ min: 5, max: 20 }),
+                  }))}
+                  cash={Array.from({ length: mockYears.length }, () => ({
+                    x: faker.number.int({ min: -100, max: 100 }),
+                    y: faker.number.int({ min: -100, max: 100 }),
+                    r: faker.number.int({ min: 5, max: 20 }),
+                  }))}
+                  tBills={Array.from({ length: mockYears.length }, () => ({
+                    x: faker.number.int({ min: -100, max: 100 }),
+                    y: faker.number.int({ min: -100, max: 100 }),
+                    r: faker.number.int({ min: 5, max: 20 }),
+                  }))}
+                  reit={Array.from({ length: mockYears.length }, () => ({
+                    x: faker.number.int({ min: -100, max: 100 }),
+                    y: faker.number.int({ min: -100, max: 100 }),
+                    r: faker.number.int({ min: 5, max: 20 }),
+                  }))}
+                  bonds={Array.from({ length: mockYears.length }, () => ({
+                    x: faker.number.int({ min: -100, max: 100 }),
+                    y: faker.number.int({ min: -100, max: 100 }),
+                    r: faker.number.int({ min: 5, max: 20 }),
+                  }))}
+                />
+              </div>
+            </div>
+            <div className={styles.content} id="risk-adjusted">
+              <h1>Risk Adjusted Return</h1>
+              <div style={{ margin: "15px 0" }}>
+                {riskAdjustedReturnField()}
+              </div>
+              <div className={styles.content}>
+                <RiskVReturnChart
+                  years={mockYears}
+                  gold={Array.from({ length: mockYears.length }, () => ({
+                    x: faker.number.int({ min: -100, max: 100 }),
+                    y: faker.number.int({ min: -100, max: 100 }),
+                    r: faker.number.int({ min: 5, max: 20 }),
+                  }))}
+                  stocks={Array.from({ length: mockYears.length }, () => ({
+                    x: faker.number.int({ min: -100, max: 100 }),
+                    y: faker.number.int({ min: -100, max: 100 }),
+                    r: faker.number.int({ min: 5, max: 20 }),
+                  }))}
+                  cash={Array.from({ length: mockYears.length }, () => ({
+                    x: faker.number.int({ min: -100, max: 100 }),
+                    y: faker.number.int({ min: -100, max: 100 }),
+                    r: faker.number.int({ min: 5, max: 20 }),
+                  }))}
+                  tBills={Array.from({ length: mockYears.length }, () => ({
+                    x: faker.number.int({ min: -100, max: 100 }),
+                    y: faker.number.int({ min: -100, max: 100 }),
+                    r: faker.number.int({ min: 5, max: 20 }),
+                  }))}
+                  reit={Array.from({ length: mockYears.length }, () => ({
+                    x: faker.number.int({ min: -100, max: 100 }),
+                    y: faker.number.int({ min: -100, max: 100 }),
+                    r: faker.number.int({ min: 5, max: 20 }),
+                  }))}
+                  bonds={Array.from({ length: mockYears.length }, () => ({
+                    x: faker.number.int({ min: -100, max: 100 }),
+                    y: faker.number.int({ min: -100, max: 100 }),
+                    r: faker.number.int({ min: 5, max: 20 }),
+                  }))}
+                />
+              </div>
             </div>
           </div>
         </div>
