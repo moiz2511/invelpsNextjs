@@ -762,38 +762,63 @@ function Asset() {
                 {riskAdjustedReturnField()}
               </div>
               <div className={styles.content}>
-                <RiskVReturnChart
-                  years={mockYears}
-                  gold={Array.from({ length: mockYears.length }, () => ({
-                    x: faker.number.int({ min: -100, max: 100 }),
-                    y: faker.number.int({ min: -100, max: 100 }),
-                    r: faker.number.int({ min: 5, max: 20 }),
-                  }))}
-                  stocks={Array.from({ length: mockYears.length }, () => ({
-                    x: faker.number.int({ min: -100, max: 100 }),
-                    y: faker.number.int({ min: -100, max: 100 }),
-                    r: faker.number.int({ min: 5, max: 20 }),
-                  }))}
-                  cash={Array.from({ length: mockYears.length }, () => ({
-                    x: faker.number.int({ min: -100, max: 100 }),
-                    y: faker.number.int({ min: -100, max: 100 }),
-                    r: faker.number.int({ min: 5, max: 20 }),
-                  }))}
-                  tBills={Array.from({ length: mockYears.length }, () => ({
-                    x: faker.number.int({ min: -100, max: 100 }),
-                    y: faker.number.int({ min: -100, max: 100 }),
-                    r: faker.number.int({ min: 5, max: 20 }),
-                  }))}
-                  reit={Array.from({ length: mockYears.length }, () => ({
-                    x: faker.number.int({ min: -100, max: 100 }),
-                    y: faker.number.int({ min: -100, max: 100 }),
-                    r: faker.number.int({ min: 5, max: 20 }),
-                  }))}
-                  bonds={Array.from({ length: mockYears.length }, () => ({
-                    x: faker.number.int({ min: -100, max: 100 }),
-                    y: faker.number.int({ min: -100, max: 100 }),
-                    r: faker.number.int({ min: 5, max: 20 }),
-                  }))}
+                <BarChart
+                  options={{
+                    plugins: {},
+                    responsive: true,
+                    indexAxis: "x",
+                  }}
+                  //           values.saving,
+                  //           values.need,
+                  //           values.need - values.saving,
+                  data={{
+                    labels: [""],
+                    datasets: [
+                      {
+                        label: "US Stocks",
+                        data: mockYears.map(() =>
+                          faker.number.int({ min: -100, max: 100 })
+                        ),
+                        backgroundColor: "purple",
+                      },
+
+                      {
+                        label: "Bonds",
+                        data: mockYears.map(() =>
+                          faker.number.int({ min: -100, max: 100 })
+                        ),
+                        backgroundColor: "red",
+                      },
+                      {
+                        label: "T Bills",
+                        data: mockYears.map(() =>
+                          faker.number.int({ min: -100, max: 100 })
+                        ),
+                        backgroundColor: "gray",
+                      },
+                      {
+                        label: "REIT",
+                        data: mockYears.map(() =>
+                          faker.number.int({ min: -100, max: 100 })
+                        ),
+                        backgroundColor: "lightblue",
+                      },
+                      {
+                        label: "Gold",
+                        data: mockYears.map(() =>
+                          faker.number.int({ min: -100, max: 100 })
+                        ),
+                        backgroundColor: "gold",
+                      },
+                      {
+                        label: "Cash",
+                        data: mockYears.map(() =>
+                          faker.number.int({ min: -100, max: 100 })
+                        ),
+                        backgroundColor: "green",
+                      },
+                    ],
+                  }}
                 />
               </div>
             </div>
