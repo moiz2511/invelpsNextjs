@@ -86,6 +86,11 @@ function InvestingPlanSideNav({
           value: "2. Set your allocation",
           link: "/investing-plan/portfolio-settings/set-your-allocation",
         },
+        {
+          id: 5.3,
+          value: "3. Portfolio Management",
+          link: "/investing-plan/portfolio-settings/portfolio-management",
+        },
       ],
     },
     {
@@ -101,6 +106,11 @@ function InvestingPlanSideNav({
           id: 6.2,
           value: "2. Analysis Method Comparison",
           link: "/investing-plan/investment-strategies/analysis-method-comparison",
+        },
+        {
+          id: 6.3,
+          value: "3. Investor Profile",
+          link: "/investing-plan/investment-strategies/investor-profile",
         },
       ],
     },

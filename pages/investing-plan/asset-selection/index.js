@@ -51,9 +51,9 @@ function Page() {
             Investing plan
           </Link>
         }
-        childHeading="Choose an investment vehicle"
+        childHeading="Asset Selection"
         setOpenModal={setOpenModal}
-        showMoreInfo={true}
+        showMoreInfo={false}
       />
       <AlertPopup
         open={showAlert.show}
