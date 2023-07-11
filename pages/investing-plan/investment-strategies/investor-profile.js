@@ -41,6 +41,7 @@ const links = [
     link: "#return-risk-overview",
   },
   { value: "Strategy models Annualized Returns", link: "#annualized-return" },
+  { value: "Strategy models Capital Growth -Backtest", link: "#backtest" },
   { value: "Strategy models Rolling return", link: "#rolling-return" },
   { value: "Strategy models Risk vs Returns", link: "#risk-v-return" },
   { value: "Strategy models Risk adjusted return", link: "#adjusted-return" },
@@ -53,6 +54,19 @@ const types = [
   "Airbus SE",
   "Air Liquids SA",
   "Credit Agricole",
+];
+const rvrData = [
+  "0.00%",
+  "1.00%",
+  "2.00%",
+  "3.00%",
+  "4.00%",
+  "5.00%",
+  "6.00%",
+  "7.00%",
+  "8.00%",
+  "9.00%",
+  "10.00%",
 ];
 function index() {
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
@@ -310,6 +324,22 @@ function index() {
         >
           <MenuItem key={1} value={20}>
             20 years
+          </MenuItem>
+        </TextField>
+      </div>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Rate Type: </span>
+        <TextField
+          name={"rateType"}
+          select
+          size="small"
+          value={"nominal"}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={"nominal"}>
+            Nominal
           </MenuItem>
         </TextField>
       </div>
@@ -862,7 +892,7 @@ function index() {
               </div>
             </div>
             {/*  */}
-            <div className={styles.content} id="usa-tech-backtest">
+            <div className={styles.content} id="backtest">
               <h1>Strategy models Capital Growth -Backtest</h1>
               <div style={{ margin: "15px 0" }}>{capitalBacktestFields()}</div>
               <GlobalMarketAnnualizedChart
@@ -954,7 +984,7 @@ function index() {
               </div>
             </div>
             {/*  */}
-            <div className={styles.content} id="usa-tech-rolling-return">
+            <div className={styles.content} id="rolling-return">
               <h1>Strategy models Rolling return</h1>
               <div style={{ margin: "15px 0" }}>{capitalBacktestFields()}</div>
               <RollingReturnChart
@@ -1006,7 +1036,7 @@ function index() {
               </div>
             </div>
             {/*  */}
-            <div className={styles.content} id="usa-tech-risk-v-return">
+            <div className={styles.content} id="risk-v-return">
               <h1>Strategy models Risk vs Returns</h1>
               <div style={{ margin: "15px 0" }}>{riskVsReturnField()}</div>
               <div className={styles.content}>
@@ -1014,7 +1044,7 @@ function index() {
                   years={rvrData}
                   dataset={[
                     {
-                      label: "Utilities",
+                      label: "US Stocks",
                       data: Array.from({ length: rvrData.length }, () => ({
                         x: faker.number.int({ min: -100, max: 100 }),
                         y: faker.number.int({ min: -100, max: 100 }),
@@ -1024,7 +1054,7 @@ function index() {
                       backgroundColor: "purple",
                     },
                     {
-                      label: "Technology",
+                      label: "Bonds",
                       data: Array.from({ length: rvrData.length }, () => ({
                         x: faker.number.int({ min: -100, max: 100 }),
                         y: faker.number.int({ min: -100, max: 100 }),
@@ -1034,7 +1064,7 @@ function index() {
                       backgroundColor: "red",
                     },
                     {
-                      label: "Industrials",
+                      label: "T.Bills",
                       data: Array.from({ length: rvrData.length }, () => ({
                         x: faker.number.int({ min: -100, max: 100 }),
                         y: faker.number.int({ min: -100, max: 100 }),
@@ -1044,7 +1074,7 @@ function index() {
                       backgroundColor: "yellow",
                     },
                     {
-                      label: "Consumer Staples",
+                      label: "REIT",
                       data: Array.from({ length: rvrData.length }, () => ({
                         x: faker.number.int({ min: -100, max: 100 }),
                         y: faker.number.int({ min: -100, max: 100 }),
@@ -1054,7 +1084,7 @@ function index() {
                       backgroundColor: "lightblue",
                     },
                     {
-                      label: "Customer Discretionary",
+                      label: "Gold",
                       data: Array.from({ length: rvrData.length }, () => ({
                         x: faker.number.int({ min: -100, max: 100 }),
                         y: faker.number.int({ min: -100, max: 100 }),
@@ -1064,7 +1094,7 @@ function index() {
                       backgroundColor: "gold",
                     },
                     {
-                      label: "Financials",
+                      label: "Cash",
                       data: Array.from({ length: rvrData.length }, () => ({
                         x: faker.number.int({ min: -100, max: 100 }),
                         y: faker.number.int({ min: -100, max: 100 }),
@@ -1089,8 +1119,8 @@ function index() {
               />
             </div>
             {/*  */}
-            {/* <div className={styles.content} id="usa-tech-risk-adjusted">
-              <h1>USA Technology industries Risk adjusted return</h1>
+            <div className={styles.content} id="adjusted-return">
+              <h1>Strategy models Risk adjusted return</h1>
               <div style={{ margin: "15px 0" }}>{riskVsReturnField()}</div>
               <div className={styles.content}>
                 <BarChart
@@ -1103,7 +1133,7 @@ function index() {
                     labels: [""],
                     datasets: [
                       {
-                        label: "Utilities",
+                        label: "Buffet Hagstrom",
                         data: mockYears.map(() =>
                           faker.number.int({ min: -100, max: 100 })
                         ),
@@ -1111,35 +1141,35 @@ function index() {
                       },
 
                       {
-                        label: "Technology",
+                        label: "Buffetology",
                         data: mockYears.map(() =>
                           faker.number.int({ min: -100, max: 100 })
                         ),
                         backgroundColor: "red",
                       },
                       {
-                        label: "Industrials",
+                        label: "Dreman Screen",
                         data: mockYears.map(() =>
                           faker.number.int({ min: -100, max: 100 })
                         ),
                         backgroundColor: "gray",
                       },
                       {
-                        label: "Consumer staples",
+                        label: "Phillip Fisher Screen",
                         data: mockYears.map(() =>
                           faker.number.int({ min: -100, max: 100 })
                         ),
                         backgroundColor: "lightblue",
                       },
                       {
-                        label: "Consumer discretionary",
+                        label: "Defensive Investor",
                         data: mockYears.map(() =>
                           faker.number.int({ min: -100, max: 100 })
                         ),
                         backgroundColor: "gold",
                       },
                       {
-                        label: "Financials",
+                        label: "Enterprise Investor",
                         data: mockYears.map(() =>
                           faker.number.int({ min: -100, max: 100 })
                         ),
@@ -1159,7 +1189,7 @@ function index() {
                 ]}
                 rows={[]}
               />
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
