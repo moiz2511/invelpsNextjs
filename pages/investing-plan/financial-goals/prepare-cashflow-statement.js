@@ -65,7 +65,7 @@ function Page() {
   };
   return (
     <Layout
-      nextUrl={"/investing-plan/financial-goals/time-value-of-money"}
+      nextUrl={"/investing-plan/time-horizon/saving-length"}
       toggleSidebarOnPhone={toggleSidebarOnPhone}
       phoneSidebarOpen={displaySidebar}
     >
@@ -75,7 +75,7 @@ function Page() {
             Investing plan
           </Link>
         }
-        childHeading="Prepare your cashflow statement"
+        childHeading="Funding Investment"
         setOpenModal={setOpenModal}
         showMoreInfo={true}
       />

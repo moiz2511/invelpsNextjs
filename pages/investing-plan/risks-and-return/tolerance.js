@@ -45,7 +45,7 @@ const fields = () => (
   </div>
 );
 
-function tolerance() {
+function Tolerance() {
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
   const [openModal, setOpenModal] = useState(false);
 
@@ -55,7 +55,7 @@ function tolerance() {
   };
   return (
     <Layout
-      nextUrl={"/investing-plan/risks-and-return/tolerance"}
+      nextUrl={"/investing-plan/portfolio-settings/asset-allocation-model"}
       toggleSidebarOnPhone={toggleSidebarOnPhone}
       phoneSidebarOpen={displaySidebar}
     >
@@ -215,4 +215,4 @@ function tolerance() {
   );
 }
 
-export default tolerance;
+export default Tolerance;

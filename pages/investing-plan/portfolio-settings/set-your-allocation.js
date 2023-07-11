@@ -21,7 +21,7 @@ function Allocation() {
   };
   return (
     <Layout
-      nextUrl={"/investing-plan/risks-and-return/tolerance"}
+      nextUrl={"/investing-plan/portfolio-settings/portfolio-management"}
       toggleSidebarOnPhone={toggleSidebarOnPhone}
       phoneSidebarOpen={displaySidebar}
     >
@@ -31,7 +31,7 @@ function Allocation() {
             Investing plan
           </Link>
         }
-        childHeading="Model Portfolio Overview"
+        childHeading="Asset Allocation"
         setOpenModal={setOpenModal}
         showMoreInfo={false}
       />

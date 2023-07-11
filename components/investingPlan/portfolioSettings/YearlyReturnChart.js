@@ -43,7 +43,7 @@ function YearlyReturnChart({ years, weatherReturn, inflationAdjustedReturn }) {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: "bottom",
       },
       title: {
         display: true,

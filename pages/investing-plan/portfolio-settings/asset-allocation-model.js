@@ -348,7 +348,7 @@ function Asset() {
   };
   return (
     <Layout
-      nextUrl={"/investing-plan/risks-and-return/tolerance"}
+      nextUrl={"/investing-plan/portfolio-settings/set-your-allocation"}
       toggleSidebarOnPhone={toggleSidebarOnPhone}
       phoneSidebarOpen={displaySidebar}
     >
@@ -495,7 +495,7 @@ function Asset() {
                 }}
               >
                 <b>Author:</b> Ray Dalio, the founder and chief investment
-                officer of the world's largest hedge fund, Bridgewater
+                officer of the world&apos;s largest hedge fund, Bridgewater
                 Associates.
               </p>
               <p
@@ -511,10 +511,10 @@ function Asset() {
                 }}
               >
                 The All Seasons portfolio is built on the philosophical
-                foundation of Dalio's All Weather Fund, a popular hedge fund
-                among institutional investors. According to the All Weather
-                Story , the fund's original purpose was to answer a deceptively
-                simple question: <br />
+                foundation of Dalio&apos;s All Weather Fund, a popular hedge
+                fund among institutional investors. According to the All Weather
+                Story , the fund&apos;s original purpose was to answer a
+                deceptively simple question: <br />
                 <i>
                   What type of investment portfolio would you hold that would
                   work well in any environment, whether it was a devaluation or

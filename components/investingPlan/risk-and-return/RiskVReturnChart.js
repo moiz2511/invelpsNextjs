@@ -7,10 +7,21 @@ import {
   Legend,
 } from "chart.js";
 import { Bubble } from "react-chartjs-2";
+import CustomTooltip from "@/components/CustomTooltip";
 
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
 
-function RiskVReturnChat({ years, stocks, bonds, tBills, reit, gold, cash }) {
+function RiskVReturnChat({
+  years,
+  stocks,
+  bonds,
+  tBills,
+  reit,
+  gold,
+  cash,
+  name,
+  tooltips,
+}) {
   const data = {
     labels: years,
     datasets: [
@@ -56,16 +67,32 @@ function RiskVReturnChat({ years, stocks, bonds, tBills, reit, gold, cash }) {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: "bottom",
       },
       title: {
-        display: true,
-        text: "",
+        display: false,
+        text: name,
       },
     },
   };
 
-  return <Bubble options={options} data={data} />;
+  return (
+    <div>
+      <Bubble options={options} data={data} />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          width: "100%",
+          justifyContent: "center",
+          marginTop: "10px",
+        }}
+      >
+        <p style={{ marginRight: "5px", marginTop: "3px" }}>{name}</p>
+        {tooltips && <CustomTooltip values={tooltips} />}
+      </div>
+    </div>
+  );
 }
 
 export default RiskVReturnChat;

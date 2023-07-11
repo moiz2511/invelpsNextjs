@@ -19,7 +19,7 @@ function RiskVReturnChat({ years, dataset }) {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: "bottom",
       },
       title: {
         display: true,

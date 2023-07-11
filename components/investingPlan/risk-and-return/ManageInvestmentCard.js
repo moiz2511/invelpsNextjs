@@ -6,7 +6,7 @@ import { Card } from "@mui/material";
 function ManageInvestmentCard({ img, t1, t2, t3, t4, btnTxt, onClick }) {
   return (
     <Card className={styles.card}>
-      <Image src={img} />
+      <Image src={img} alt="" />
       <p>{t1}</p>
       <p>{t2}</p>
       <p>{t3}</p>

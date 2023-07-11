@@ -39,7 +39,7 @@ function Page() {
             Investing plan
           </Link>
         }
-        childHeading="Set your financial goals"
+        childHeading="Financial goals"
         setOpenModal={setOpenModal}
         showMoreInfo={true}
       />

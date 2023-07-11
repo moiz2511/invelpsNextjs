@@ -20,6 +20,8 @@ import ManageInvestmentCard from "@/components/investingPlan/risk-and-return/Man
 import TableOfContent from "@/components/TableOfContent";
 import { RollingReturnChart } from "@/components/investingPlan/investment-strategies/RollingReturnChart";
 import RiskVReturnChat from "@/components/investingPlan/investment-strategies/RiskReturnChart";
+import PieChart from "@/components/PieChart";
+import { BreakdownChart } from "@/components/investingPlan/investment-strategies/BreakdownChart";
 
 const mockYears = ["2019", "2020", "2021", "2022", "2023"];
 const links = [
@@ -55,6 +57,13 @@ const types = [
   "Air Liquids SA",
   "Credit Agricole",
 ];
+const breakdowns = [
+  "Cashflow",
+  "Return",
+  "Profitability",
+  "Valuation",
+  "Solvency",
+];
 const rvrData = [
   "0.00%",
   "1.00%",
@@ -68,7 +77,7 @@ const rvrData = [
   "9.00%",
   "10.00%",
 ];
-function index() {
+function Index() {
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
   const [displaySidebar, setDisplaySidebar] = useState(true);
   const [openModal, setOpenModal] = useState(false);
@@ -386,9 +395,7 @@ function index() {
   };
   return (
     <Layout
-      nextUrl={
-        "/investing-plan/investment-strategies/analysis-method-comparsion"
-      }
+      nextUrl={"/coming-soon"}
       toggleSidebarOnPhone={toggleSidebarOnPhone}
       phoneSidebarOpen={displaySidebar}
     >
@@ -429,20 +436,20 @@ function index() {
                 <h1>Warren Buffett profile</h1>
                 <p>
                   Warren Buffett is the most respected and successful investor
-                  in history, having been called "The Oracle of Omaha" for his
-                  impressive investing prowess. Buffett studied under the
-                  legendary Benjamin Graham at Columbia University; Graham had a
-                  major impact on Buffett's life and investment strategies.
-                  Buffett is Chairman of the miraculous Berkshire Hathaway,
-                  which he built from a textile company into a major insurance
-                  conglomerate.
+                  in history, having been called &quot;The Oracle of Omaha&quot;
+                  for his impressive investing prowess. Buffett studied under
+                  the legendary Benjamin Graham at Columbia University; Graham
+                  had a major impact on Buffett&apos;s life and investment
+                  strategies. Buffett is Chairman of the miraculous Berkshire
+                  Hathaway, which he built from a textile company into a major
+                  insurance conglomerate.
                 </p>
               </div>
               <div>
                 <h1>Warren Buffett philosophy</h1>
                 <p>
                   Warren Buffett follows a value investing strategy that is an
-                  adaptation of Benjamin Graham's approach. His investment
+                  adaptation of Benjamin Graham&apos;s approach. His investment
                   strategy of discipline, patience and value consistently
                   outperforms the market and his moves are followed by thousands
                   of investors worldwide. Buffett seeks to acquire great
@@ -450,10 +457,10 @@ function index() {
                   to hold them for a long time. Berkshire invests only in
                   businesses that Buffett understands, and always insists on a
                   margin of safety. Regarding the types of businesses Berkshire
-                  likes to purchase, Buffett stated, "We want businesses to be
-                  one (a) that we can understand; (b) with favorable long-term
-                  prospects; (c) operated by honest and competent people; and
-                  (d) available at a very attractive price."
+                  likes to purchase, Buffett stated, &quot;We want businesses to
+                  be one (a) that we can understand; (b) with favorable
+                  long-term prospects; (c) operated by honest and competent
+                  people; and (d) available at a very attractive price.&quot;
                 </p>
               </div>
             </div>
@@ -565,8 +572,45 @@ function index() {
             {/*  */}
             <div className={styles.content} id="breakdown">
               <h1>Selection criterias Measures and Categories breakdown</h1>
-              <div>
-                <h1>HAHHAAH</h1>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                }}
+              >
+                <div style={{ width: "250px", marginRight: "20px" }}>
+                  <PieChart
+                    data={{
+                      labels: [
+                        "Company Performance Measures",
+                        "Company Risk Measures",
+                      ],
+                      datasets: [
+                        {
+                          label: "",
+                          data: [100, 200],
+                          backgroundColor: ["#ec7d31", "#407879"],
+                          hoverOffset: 4,
+                        },
+                      ],
+                    }}
+                  />
+                </div>
+                <div
+                  style={{
+                    width: "800px",
+                  }}
+                >
+                  <BreakdownChart
+                    years={breakdowns}
+                    returns={breakdowns.map((t) =>
+                      Math.random() > 0.5
+                        ? Math.random() * 100
+                        : Math.random() * -100
+                    )}
+                  />
+                </div>
               </div>
             </div>
             {/*  */}
@@ -708,8 +752,71 @@ function index() {
             {/*  */}
             <div className={styles.content} id="return-risk-overview">
               <h1>Companies passing criterias breakdown</h1>
-              <div>
-                <h1>HAHHAAH</h1>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ width: "250px", marginRight: "20px" }}>
+                  <PieChart
+                    data={{
+                      labels: ["Paris"],
+                      datasets: [
+                        {
+                          label: "",
+                          data: [100],
+                          backgroundColor: ["#4472c4"],
+                          hoverOffset: 4,
+                        },
+                      ],
+                    }}
+                  />
+                </div>
+                <div style={{ width: "300px", marginRight: "20px" }}>
+                  <PieChart
+                    data={{
+                      labels: [
+                        "Financial Services",
+                        "Basic Materials",
+                        "Industrials",
+                        "Consumer Defensive",
+                        "Technology",
+                      ],
+                      datasets: [
+                        {
+                          label: "",
+                          data: [100, 300, 200, 200, 300],
+                          backgroundColor: [
+                            "#4472c4",
+                            "#5b9ad5",
+                            "#ffbf00",
+                            "#a5a5a5",
+                            "#ec7d31",
+                          ],
+                          hoverOffset: 4,
+                        },
+                      ],
+                    }}
+                  />
+                </div>
+                <div style={{ width: "250px" }}>
+                  <PieChart
+                    data={{
+                      labels: ["Large Cap", "Mid Cap", "Mega Cap"],
+                      datasets: [
+                        {
+                          label: "",
+                          data: [100, 300, 200],
+                          backgroundColor: ["#4472c4", "#5b9ad5", "#ffbf00"],
+                          hoverOffset: 4,
+                        },
+                      ],
+                    }}
+                  />
+                </div>
               </div>
             </div>
             {/*  */}
@@ -1197,4 +1304,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

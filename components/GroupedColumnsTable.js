@@ -45,8 +45,8 @@ function GroupedColumnsTable({ primary = true, columns, rows, parentCols }) {
       <Table stickyHeader aria-label="customized table">
         <StyledTableHead>
           <StyledTableRow>
-            {parentCols.map((p) => (
-              <StyledTableCell align="center" colSpan={p.span}>
+            {parentCols.map((p, key) => (
+              <StyledTableCell align="center" colSpan={p.span} key={key}>
                 {p.value}
               </StyledTableCell>
             ))}

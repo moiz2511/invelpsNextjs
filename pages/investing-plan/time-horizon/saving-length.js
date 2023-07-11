@@ -216,7 +216,7 @@ function Page() {
   };
   return (
     <Layout
-      nextUrl={"/investing-plan/financial-goals/investment-vehicle"}
+      nextUrl={"/investing-plan/time-horizon/time-value"}
       toggleSidebarOnPhone={toggleSidebarOnPhone}
       phoneSidebarOpen={displaySidebar}
     >
@@ -274,6 +274,11 @@ function Page() {
             </div>
             <div className={styles.content}>
               <SavingLengthTable />
+              <div style={{ marginTop: "20px" }}>
+                <CustomButton style={{ float: "right" }}>
+                  Discover how
+                </CustomButton>
+              </div>
             </div>
           </div>
         </div>

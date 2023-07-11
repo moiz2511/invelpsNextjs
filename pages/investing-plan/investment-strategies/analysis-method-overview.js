@@ -17,9 +17,28 @@ import { faker } from "@faker-js/faker";
 import BarChart from "@/components/BarChart";
 import GlobalMarketAnnualizedChart from "@/components/investingPlan/investment-strategies/GlobalMarketAnnualizedChart";
 import ManageInvestmentCard from "@/components/investingPlan/risk-and-return/ManageInvestmentCard";
+import TableOfContent from "@/components/TableOfContent";
 
 const mockYears = ["2019", "2020", "2021", "2022", "2023"];
-function index() {
+const links = [
+  {
+    value: "Analysis Method Overview",
+    link: "#overview",
+  },
+  {
+    value: "Global Markets Annualized Returns",
+    link: "#returns",
+  },
+  {
+    value: "Capital growth - Backtest",
+    link: "#backtest",
+  },
+  {
+    value: "Global Markets Rolling return",
+    link: "#rolling-return",
+  },
+];
+function Index() {
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
   const [displaySidebar, setDisplaySidebar] = useState(true);
   const [openModal, setOpenModal] = useState(false);
@@ -323,16 +342,21 @@ function index() {
   const toggleSidebarOnPhone = () => {
     setDisplaySidebar(!displaySidebar);
   };
+
   return (
     <Layout
       nextUrl={
-        "/investing-plan/investment-strategies/analysis-method-comparsion"
+        "/investing-plan/investment-strategies/analysis-method-comparison"
       }
       toggleSidebarOnPhone={toggleSidebarOnPhone}
       phoneSidebarOpen={displaySidebar}
     >
       <PageHeader
-        parentHeading={<Link href="#">Analysis Method</Link>}
+        parentHeading={
+          <Link href="/investing-plan/portfolio-settings/set-your-allocation">
+            Investing plan
+          </Link>
+        }
         childHeading="Overview"
         setOpenModal={setOpenModal}
         showMoreInfo={false}
@@ -353,8 +377,9 @@ function index() {
           }}
         />
         <div>
+          <TableOfContent links={links} />
           <div className={styles.contentContainer}>
-            <div className={styles.content}>
+            <div className={styles.content} id="overview">
               <h1>Global Market Overview</h1>
               <div style={{ margin: "15px 0" }}>{globalMarketFields()}</div>
 
@@ -442,7 +467,7 @@ function index() {
                 />
               </div>
             </div>
-            <div className={styles.content}>
+            <div className={styles.content} id="returns">
               <h1>Global Markets Annualized Returns</h1>
               <div style={{ margin: "15px 0" }}>
                 {returnGlobalMarketsFields()}
@@ -535,8 +560,7 @@ function index() {
                 />
               </div>
             </div>
-
-            <div className={styles.content}>
+            <div className={styles.content} id="backtest">
               <h1>Capital growth - Backtest</h1>
               <div style={{ margin: "15px 0" }}>{capitalBacktestFields()}</div>
               <GlobalMarketAnnualizedChart
@@ -627,8 +651,7 @@ function index() {
                 />
               </div>
             </div>
-
-            <div className={styles.content}>
+            <div className={styles.content} id="rolling-return">
               <h1>Global Markets Rolling return</h1>
               <div style={{ margin: "15px 0" }}>{capitalBacktestFields()}</div>
               <GlobalMarketAnnualizedChart
@@ -726,4 +749,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

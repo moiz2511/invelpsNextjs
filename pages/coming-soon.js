@@ -5,7 +5,7 @@ import InProgressImage from "../public/images/undraw_building_blocks_re_5ahy.svg
 import Image from "next/image";
 import Layout from "@/components/Layout";
 
-function index() {
+function Index() {
   const router = useRouter();
   const [email, setEmail] = useState("");
 
@@ -41,4 +41,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

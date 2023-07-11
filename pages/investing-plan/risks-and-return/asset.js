@@ -16,6 +16,7 @@ import RiskVReturnChart from "@/components/investingPlan/risk-and-return/RiskVRe
 import { faker } from "@faker-js/faker";
 import BarChart from "@/components/BarChart";
 import TableOfContent from "@/components/TableOfContent";
+import CustomTooltip from "@/components/CustomTooltip";
 
 const mockYears = ["2019", "2020", "2021", "2022", "2023"];
 const links = [
@@ -473,26 +474,26 @@ function Asset() {
                   details={
                     <ul style={{ margin: "0 10px" }}>
                       <li style={{ margin: "10px" }}>
-                        <b>Annualized Portfolio Return:</b> it's the annualized
-                        geometric mean return of the portfolio
+                        <b>Annualized Portfolio Return:</b> it&apos;s the
+                        annualized geometric mean return of the portfolio
                       </li>
                       <li style={{ margin: "10px" }}>
-                        <b>Standard Deviation:</b> it's a measure of the
+                        <b>Standard Deviation:</b> it&apos;s a measure of the
                         dispersion of returns around the mean
                       </li>
                       <li style={{ margin: "10px" }}>
-                        <b>Sharpe Ratio:</b> it's a measure of risk-adjusted
-                        performance of the portfolio. It's calculated by
-                        dividing the excess return of the portfolio over the
-                        risk-free rate by the portfolio standard deviation. The
-                        risk-free rate here considered is the 1-3 Mth T-Bill
-                        return.
+                        <b>Sharpe Ratio:</b> it&apos;s a measure of
+                        risk-adjusted performance of the portfolio. It&apos;s
+                        calculated by dividing the excess return of the
+                        portfolio over the risk-free rate by the portfolio
+                        standard deviation. The risk-free rate here considered
+                        is the 1-3 Mth T-Bill return.
                       </li>
                       <li style={{ margin: "10px" }}>
                         <b>Sortino Ratio:</b> another measure of risk-adjusted
-                        performance of the portfolio. It's a modification of the
-                        Sharpe Ratio (same formula but the denominator is the
-                        portfolio downside standard deviation).
+                        performance of the portfolio. It&apos;s a modification
+                        of the Sharpe Ratio (same formula but the denominator is
+                        the portfolio downside standard deviation).
                       </li>
                       <li style={{ margin: "10px" }}>
                         <b>Maximum Drawdown:</b> a drawdown refers to the
@@ -684,6 +685,42 @@ function Asset() {
               <div className={styles.content}>
                 <RiskVReturnChart
                   years={mockYears}
+                  name="Standard Deviation"
+                  tooltips={[
+                    {
+                      type: "Metric:",
+                      value: "Standard deviation",
+                    },
+                    {
+                      type: "Description:",
+                      value:
+                        "Measures the dispersion of a dataset relative to its mean",
+                    },
+                    {
+                      type: "Formula:",
+                      value: "",
+                    },
+                    {
+                      type: "Interpretation:",
+                      value:
+                        "A large dispersion shows how much the return is deviating from the expected normal returns. A lower standard deviation isn't necessarily preferable. It all depends on the investments and the investor's willingness to assume risk.",
+                    },
+                    {
+                      type: "Limitation:",
+                      value:
+                        "The standard deviation does not actually measure how far a data point is from the mean. Instead, it compares the square of the differences, a subtle but notable difference from actual dispersion from the mean.",
+                    },
+                    {
+                      type: "Good range:",
+                      value:
+                        "None, It depends on investor's willingness to assume risk",
+                    },
+                    {
+                      type: "Band range:",
+                      value:
+                        "None, It depends on investor's willingness to assume risk.",
+                    },
+                  ]}
                   gold={Array.from({ length: mockYears.length }, () => ({
                     x: faker.number.int({ min: -100, max: 100 }),
                     y: faker.number.int({ min: -100, max: 100 }),
@@ -736,7 +773,11 @@ function Asset() {
               <div className={styles.content}>
                 <BarChart
                   options={{
-                    plugins: {},
+                    plugins: {
+                      legend: {
+                        position: "bottom",
+                      },
+                    },
                     responsive: true,
                     indexAxis: "x",
                   }}
@@ -792,6 +833,59 @@ function Asset() {
                     ],
                   }}
                 />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100%",
+                    justifyContent: "center",
+                    marginTop: "10px",
+                  }}
+                >
+                  <p style={{ marginRight: "5px", marginTop: "3px" }}>
+                    Sharpe Ratio
+                  </p>
+                  {
+                    <CustomTooltip
+                      values={[
+                        {
+                          type: "Metric:",
+                          value: "Sharpe Ratio",
+                        },
+                        {
+                          type: "Description:",
+                          value:
+                            "Measures the risk-adjusted return of a portfolio or individual asset",
+                        },
+                        {
+                          type: "Formula:",
+                          value:
+                            "(Annual return – Risk free rate)/ Standard deviation",
+                        },
+                        {
+                          type: "Interpretation:",
+                          value:
+                            "A higher ratio is preferred when comparing across assets.  A negative Sharpe ratio means the risk-free or benchmark rate is greater than the asset’s historical or projected return, or else the asset's return is expected to be negative.",
+                        },
+                        {
+                          type: "Limitation:",
+                          value:
+                            "Use of standard deviation as proxy for risk which is an oversimplified assumption since upside deviation are good for investors. Sortino ratio is an alternative to account risk in different way. The Sharpe ratio tends to be more applicable to portfolios with low volatility.",
+                        },
+                        {
+                          type: "Good range:",
+                          value:
+                            "> 1, Good compared to risk free rate investment",
+                        },
+                        {
+                          type: "Band range:",
+                          value:
+                            "< 1, Sub optimal compared to risk free rate investment",
+                        },
+                      ]}
+                    />
+                  }
+                </div>
               </div>
               <div className={styles.content}>
                 <CustomTable

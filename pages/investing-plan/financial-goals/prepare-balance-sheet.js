@@ -53,7 +53,7 @@ function Page() {
   }, [totalLiabilities, totalAssets]);
   return (
     <Layout
-      nextUrl={"/investing-plan/financial-goals/prepare-cashflow-statement"}
+      nextUrl={"/investing-plan/financial-goals/prepare-income-statement"}
       toggleSidebarOnPhone={toggleSidebarOnPhone}
       phoneSidebarOpen={displaySidebar}
     >
@@ -63,7 +63,7 @@ function Page() {
             Investing plan
           </Link>
         }
-        childHeading="Prepare your balance sheet"
+        childHeading="Funding Investment"
         setOpenModal={setOpenModal}
         showMoreInfo={true}
       />

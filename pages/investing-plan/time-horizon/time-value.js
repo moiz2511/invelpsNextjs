@@ -199,7 +199,7 @@ function Page() {
   };
   return (
     <Layout
-      nextUrl={"/investing-plan/financial-goals/investment-vehicle"}
+      nextUrl={"/investing-plan/risks-and-return/asset"}
       toggleSidebarOnPhone={toggleSidebarOnPhone}
       phoneSidebarOpen={displaySidebar}
     >
@@ -209,7 +209,7 @@ function Page() {
             Investing plan
           </Link>
         }
-        childHeading="Time value of money"
+        childHeading="Time Horizon"
         setOpenModal={setOpenModal}
         showMoreInfo={true}
       />

@@ -56,7 +56,7 @@ function RiskAdjustedChart({ years, stocks, bonds, tBills, reit, gold, cash }) {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: "bottom",
       },
       title: {
         display: true,

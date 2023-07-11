@@ -31,13 +31,13 @@ function Page() {
 
   return (
     <Layout
-      nextUrl={"/stock-investing/approaches/active-vs-passive-investing"}
+      nextUrl={"/investing-plan/investment-strategies/analysis-method-overview"}
       toggleSidebarOnPhone={toggleSidebarOnPhone}
       phoneSidebarOpen={displaySidebar}
     >
       <PageHeader
         parentHeading="Stock Investing"
-        childHeading="Portfolio management choices"
+        childHeading="Active vs Passive Investing"
         setOpenModal={setOpenModal}
         showMoreInfo={true}
       />

@@ -115,7 +115,7 @@ const links3 = [
     link: "#model-risk-adjusted",
   },
 ];
-function index() {
+function Index() {
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
   const [displaySidebar, setDisplaySidebar] = useState(true);
   const [openModal, setOpenModal] = useState(false);
@@ -437,14 +437,16 @@ function index() {
   };
   return (
     <Layout
-      nextUrl={
-        "/investing-plan/investment-strategies/analysis-method-comparsion"
-      }
+      nextUrl={"/investing-plan/investment-strategies/investor-profile"}
       toggleSidebarOnPhone={toggleSidebarOnPhone}
       phoneSidebarOpen={displaySidebar}
     >
       <PageHeader
-        parentHeading={<Link href="#">Analysis Method</Link>}
+        parentHeading={
+          <Link href="/investing-plan/portfolio-settings/set-your-allocation">
+            Investing plan
+          </Link>
+        }
         childHeading="Overview"
         setOpenModal={setOpenModal}
         showMoreInfo={false}
@@ -2027,4 +2029,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;
