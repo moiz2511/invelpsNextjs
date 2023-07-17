@@ -19,7 +19,7 @@ const textStyle = {
   fontSize: "18px",
   marginRight: "20px",
 };
-function FinancialGoalsCalculator() {
+function FinancialGoalsCalculator({ scrollRef }) {
   const [values, setValues] = useState({
     adjustedForInflation: false,
     adjustedForInflationValue: "",
@@ -231,6 +231,7 @@ function FinancialGoalsCalculator() {
           onClick={() => {
             if (values.need.length > 0 && values.saving.length > 0) {
               setShowChart(true);
+              scrollRef.current.scrollIntoView({ behavior: "smooth" });
             }
           }}
         >
@@ -242,8 +243,9 @@ function FinancialGoalsCalculator() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: "20px",
+          paddingTop: "80px",
         }}
+        ref={scrollRef}
       >
         <div style={{ width: "800px" }}>
           {showChart && values.need && values.saving && (

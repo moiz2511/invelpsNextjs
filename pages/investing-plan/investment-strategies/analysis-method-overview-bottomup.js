@@ -20,49 +20,16 @@ import ManageInvestmentCard from "@/components/investingPlan/risk-and-return/Man
 import TableOfContent from "@/components/TableOfContent";
 import { RollingReturnChart } from "@/components/investingPlan/investment-strategies/RollingReturnChart";
 import RiskVReturnChat from "@/components/investingPlan/investment-strategies/RiskReturnChart";
-import PieChart from "@/components/PieChart";
-import { BreakdownChart } from "@/components/investingPlan/investment-strategies/BreakdownChart";
 
 const mockYears = ["2019", "2020", "2021", "2022", "2023"];
-const links = [
-  { value: "Investor Profile", link: "#profile" },
-  { value: "Strategy Model", link: "#strategy-model" },
-  { value: "Buffet Hagstrom screen", link: "#buffet-hagstrom-screen" },
-  {
-    value: "Selection criterias Measures and Categories breakdown",
-    link: "#breakdown",
-  },
-  { value: "Screen", link: "#screen" },
-  { value: "Companies passing criterias", link: "#companies-passing-criteria" },
-  {
-    value: "Companies passing criterias breakdown",
-    link: "#criteria-breakdown",
-  },
-  {
-    value: "Companies passing criterias return and risk overview",
-    link: "#return-risk-overview",
-  },
-  { value: "Strategy models Annualized Returns", link: "#annualized-return" },
-  { value: "Strategy models Capital Growth -Backtest", link: "#backtest" },
-  { value: "Strategy models Rolling return", link: "#rolling-return" },
-  { value: "Strategy models Risk vs Returns", link: "#risk-v-return" },
-  { value: "Strategy models Risk adjusted return", link: "#adjusted-return" },
-];
-const types = [
-  "Carrefour",
-  "BNP Paribas",
-  "Danone SA",
-  "Alstorm SA",
-  "Airbus SE",
-  "Air Liquids SA",
-  "Credit Agricole",
-];
-const breakdowns = [
-  "Cashflow",
-  "Return",
-  "Profitability",
-  "Valuation",
-  "Solvency",
+const materials = [
+  "Basic Materials",
+  "Financial Services",
+  "Consumer Discretionary",
+  "Consumer Staples",
+  "Industrials",
+  "Technology",
+  "Utilities",
 ];
 const rvrData = [
   "0.00%",
@@ -77,147 +44,34 @@ const rvrData = [
   "9.00%",
   "10.00%",
 ];
+const links3 = [
+  { value: "Strategy models overview", link: "#model-overview" },
+  {
+    value: "Strategy models Annualized Returns",
+    link: "#model-annualized-returns",
+  },
+  {
+    value: "Strategy models Capital Growth-Backtest",
+    link: "#model-backtest",
+  },
+  {
+    value: "Strategy models Rolling return",
+    link: "#model-rolling-return",
+  },
+  {
+    value: "Strategy models Risk vs Returns",
+    link: "#model-risk-v-return",
+  },
+  {
+    value: "Strategy models Risk adjusted return",
+    link: "#model-risk-adjusted",
+  },
+];
 function Index() {
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
   const [displaySidebar, setDisplaySidebar] = useState(true);
   const [openModal, setOpenModal] = useState(false);
 
-  const globalMarketFields = () => (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <div style={{ marginRight: "15px" }}>
-        <span style={{ marginRight: "5px" }}>Region: </span>
-        <TextField
-          name={"region"}
-          select
-          size="small"
-          value={"all"}
-          onChange={(v) => console.log(v)}
-          className={styles.textField}
-          style={{ width: "100%", padding: "0px" }}
-        >
-          <MenuItem key={1} value={"all"}>
-            All
-          </MenuItem>
-        </TextField>
-      </div>
-      <div style={{ marginRight: "15px" }}>
-        <span style={{ marginRight: "5px" }}>Country: </span>
-        <TextField
-          name={"country"}
-          select
-          size="small"
-          value={"all"}
-          onChange={(v) => console.log(v)}
-          className={styles.textField}
-          style={{ width: "100%", padding: "0px" }}
-        >
-          <MenuItem key={1} value={"all"}>
-            All
-          </MenuItem>
-        </TextField>
-      </div>
-      <div style={{ marginRight: "15px" }}>
-        <span style={{ marginRight: "5px" }}>Rate Type: </span>
-        <TextField
-          name={"rateType"}
-          select
-          size="small"
-          value={"nominal"}
-          onChange={(v) => console.log(v)}
-          className={styles.textField}
-          style={{ width: "100%", padding: "0px" }}
-        >
-          <MenuItem key={1} value={"nominal"}>
-            Nominal
-          </MenuItem>
-        </TextField>
-      </div>
-      <div style={{ marginRight: "15px" }}>
-        <span style={{ marginRight: "5px" }}>Time Horizon: </span>
-        <TextField
-          name={"timeHorizon"}
-          select
-          size="small"
-          value={"20"}
-          onChange={(v) => console.log(v)}
-          className={styles.textField}
-          style={{ width: "100%", padding: "0px" }}
-        >
-          <MenuItem key={1} value={"20"}>
-            20
-          </MenuItem>
-        </TextField>
-      </div>
-    </div>
-  );
-  const returnGlobalMarketsFields = () => (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <div style={{ marginRight: "15px" }}>
-        <span style={{ marginRight: "5px" }}>Region: </span>
-        <TextField
-          name={"region"}
-          select
-          size="small"
-          value={"all"}
-          onChange={(v) => console.log(v)}
-          className={styles.textField}
-          style={{ width: "100%", padding: "0px" }}
-        >
-          <MenuItem key={1} value={"all"}>
-            All
-          </MenuItem>
-        </TextField>
-      </div>
-      <div style={{ marginRight: "15px" }}>
-        <span style={{ marginRight: "5px" }}>Country: </span>
-        <TextField
-          name={"country"}
-          select
-          size="small"
-          value={"all"}
-          onChange={(v) => console.log(v)}
-          className={styles.textField}
-          style={{ width: "100%", padding: "0px" }}
-        >
-          <MenuItem key={1} value={"all"}>
-            All
-          </MenuItem>
-        </TextField>
-      </div>
-      <div style={{ marginRight: "15px" }}>
-        <span style={{ marginRight: "5px" }}>Rate Type: </span>
-        <TextField
-          name={"rateType"}
-          select
-          size="small"
-          value={"nominal"}
-          onChange={(v) => console.log(v)}
-          className={styles.textField}
-          style={{ width: "100%", padding: "0px" }}
-        >
-          <MenuItem key={1} value={"nominal"}>
-            Nominal
-          </MenuItem>
-        </TextField>
-      </div>
-      <div style={{ marginRight: "15px" }}>
-        <span style={{ marginRight: "5px" }}>Time Horizon: </span>
-        <TextField
-          name={"timeHorizon"}
-          select
-          size="small"
-          value={"20"}
-          onChange={(v) => console.log(v)}
-          className={styles.textField}
-          style={{ width: "100%", padding: "0px" }}
-        >
-          <MenuItem key={1} value={"20"}>
-            20
-          </MenuItem>
-        </TextField>
-      </div>
-    </div>
-  );
   const capitalBacktestFields = () => (
     <div style={{ display: "flex", alignItems: "center" }}>
       <div style={{ marginRight: "15px" }}>
@@ -336,10 +190,83 @@ function Index() {
           </MenuItem>
         </TextField>
       </div>
+    </div>
+  );
+
+  const toggleSidebarOnPhone = () => {
+    setDisplaySidebar(!displaySidebar);
+  };
+
+  const usaMarketFields = () => (
+    <div style={{ display: "flex", alignItems: "center" }}>
       <div style={{ marginRight: "15px" }}>
-        <span style={{ marginRight: "5px" }}>Rate Type: </span>
+        <span style={{ marginRight: "5px" }}>Investor: </span>
         <TextField
-          name={"rateType"}
+          name={"investor"}
+          select
+          size="small"
+          value={"all"}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={"all"}>
+            All
+          </MenuItem>
+        </TextField>
+      </div>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Strategy: </span>
+        <TextField
+          name={"strategy"}
+          select
+          size="small"
+          value={"all"}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={"all"}>
+            All
+          </MenuItem>
+        </TextField>
+      </div>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Factors: </span>
+        <TextField
+          name={"factors"}
+          select
+          size="small"
+          value={"all"}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={"all"}>
+            All
+          </MenuItem>
+        </TextField>
+      </div>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Time Horizon: </span>
+        <TextField
+          name={"timeHorizon"}
+          select
+          size="small"
+          value={"all"}
+          onChange={(v) => console.log(v)}
+          className={styles.textField}
+          style={{ width: "100%", padding: "0px" }}
+        >
+          <MenuItem key={1} value={"all"}>
+            All
+          </MenuItem>
+        </TextField>
+      </div>
+      <div style={{ marginRight: "15px" }}>
+        <span style={{ marginRight: "5px" }}>Rate: </span>
+        <TextField
+          name={"rate"}
           select
           size="small"
           value={"nominal"}
@@ -354,58 +281,22 @@ function Index() {
       </div>
     </div>
   );
-  const riskAdjustedField = () => (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <div style={{ marginRight: "15px" }}>
-        <span style={{ marginRight: "5px" }}>Select a measure: </span>
-        <TextField
-          name={"measure"}
-          select
-          size="small"
-          value={"soritinoRatio"}
-          onChange={(v) => console.log(v)}
-          className={styles.textField}
-          style={{ width: "100%", padding: "0px" }}
-        >
-          <MenuItem key={1} value={"soritinoRatio"}>
-            Sortino Ratio
-          </MenuItem>
-        </TextField>
-      </div>
-      <div style={{ marginRight: "15px" }}>
-        <span style={{ marginRight: "5px" }}>Time Horizon: </span>
-        <TextField
-          name={"timeHorizon"}
-          select
-          size="small"
-          value={20}
-          onChange={(v) => console.log(v)}
-          className={styles.textField}
-          style={{ width: "100%", padding: "0px" }}
-        >
-          <MenuItem key={1} value={20}>
-            20 years
-          </MenuItem>
-        </TextField>
-      </div>
-    </div>
-  );
-  const toggleSidebarOnPhone = () => {
-    setDisplaySidebar(!displaySidebar);
-  };
+
   return (
     <Layout
-      nextUrl={"/coming-soon"}
+      nextUrl={
+        "/investing-plan/investment-strategies/analysis-method-comparison"
+      }
       toggleSidebarOnPhone={toggleSidebarOnPhone}
       phoneSidebarOpen={displaySidebar}
     >
       <PageHeader
         parentHeading={
-          <Link href="/investing-plan/investment-strategies/analysis-method-overview-bottomup">
-            Strategy Models
+          <Link href="/investing-plan/investment-strategies/analysis-method">
+            Analysis Method
           </Link>
         }
-        childHeading="Investor Profile"
+        childHeading="Botton Up Analysis"
         setOpenModal={setOpenModal}
         showMoreInfo={false}
       />
@@ -419,465 +310,89 @@ function Index() {
       <div className={styles.container}>
         <InvestingPlanSideNav
           activeHeadingId={6}
-          activeSubheadingId={6.2}
+          activeSubheadingId={6.1}
           sidebarStyle={{
             left: displaySidebar ? "0px" : "-1000px",
           }}
         />
         <div>
-          <TableOfContent links={links} />
+          {/* bottom up analysis */}
+          <TableOfContent links={links3} />
           <div className={styles.contentContainer}>
-            <div
-              className={styles.content}
-              id="profile"
-              style={{
-                display: "flex",
-                alignItems: "flex-start",
-                justifyContent: "space-between",
-              }}
-            >
-              <div style={{ marginRight: "20px" }}>
-                <h1>Warren Buffett profile</h1>
-                <p>
-                  Warren Buffett is the most respected and successful investor
-                  in history, having been called &quot;The Oracle of Omaha&quot;
-                  for his impressive investing prowess. Buffett studied under
-                  the legendary Benjamin Graham at Columbia University; Graham
-                  had a major impact on Buffett&apos;s life and investment
-                  strategies. Buffett is Chairman of the miraculous Berkshire
-                  Hathaway, which he built from a textile company into a major
-                  insurance conglomerate.
-                </p>
-              </div>
-              <div>
-                <h1>Warren Buffett philosophy</h1>
-                <p>
-                  Warren Buffett follows a value investing strategy that is an
-                  adaptation of Benjamin Graham&apos;s approach. His investment
-                  strategy of discipline, patience and value consistently
-                  outperforms the market and his moves are followed by thousands
-                  of investors worldwide. Buffett seeks to acquire great
-                  companies trading at a discount to their intrinsic value, and
-                  to hold them for a long time. Berkshire invests only in
-                  businesses that Buffett understands, and always insists on a
-                  margin of safety. Regarding the types of businesses Berkshire
-                  likes to purchase, Buffett stated, &quot;We want businesses to
-                  be one (a) that we can understand; (b) with favorable
-                  long-term prospects; (c) operated by honest and competent
-                  people; and (d) available at a very attractive price.&quot;
-                </p>
-              </div>
-            </div>
-            {/*  */}
-            <div className={styles.content} id="strategy-model">
-              <h1>Strategy Models</h1>
+            <div className={styles.content} id="model-overview">
+              <h1>Strategy models overview</h1>
+              <div style={{ margin: "15px 0" }}>{usaMarketFields()}</div>
+
               <div
                 className={styles.content}
                 style={{ width: "calc(100vw - 450px)" }}
               >
                 <GroupedColumnsTable
                   parentCols={[
-                    { value: "Location", span: 2 },
+                    { value: "Strategy Models", span: 3 },
                     { value: "Return %", span: 4 },
                     { value: "Risk %", span: 3 },
                     { value: "Risk adjusted return %", span: 4 },
                   ]}
-                  rows={[]}
-                  columns={[
-                    {
-                      id: "region",
-                      label: "Region",
-                      align: "left",
-                    },
-                    {
-                      id: "country",
-                      label: "Country",
-                      align: "left",
-                    },
-
-                    {
-                      id: "annualizeReturn",
-                      label: "Annualize Return",
-                      align: "left",
-                    },
-                    {
-                      id: "rollingReturn",
-                      label: "Rolling Return",
-                      align: "left",
-                    },
-                    {
-                      id: "bestReturn",
-                      label: "Best Return",
-                      align: "left",
-                    },
-                    {
-                      id: "worstReturn",
-                      label: "Worst Return",
-                      align: "left",
-                    },
-                    {
-                      id: "standardDeviation",
-                      label: "Standard Deviation",
-                      align: "left",
-                    },
-                    {
-                      id: "downsideDeviation",
-                      label: "Downside Deviation",
-                      align: "left",
-                    },
-                    {
-                      id: "maxDrawdown",
-                      label: "Max Drawdown",
-                      align: "left",
-                    },
-
-                    {
-                      id: "annReturn",
-                      label: "Ann.ret/STD",
-                      align: "left",
-                    },
-                    {
-                      id: "annReturn2",
-                      label: "Ann.ret/MDD",
-                      align: "left",
-                    },
-                    {
-                      id: "sharpeRation",
-                      label: "Sharpe Ratio",
-                      align: "left",
-                    },
-                    {
-                      id: "sordinoRatio",
-                      label: "Sortino Ratio",
-                      align: "left",
-                    },
-                  ]}
-                />
-              </div>
-            </div>
-            {/*  */}
-            <div className={styles.content} id="buffet-hagstrom-screen">
-              <h1>Buffett Hagstrom screen</h1>
-              <p
-                style={{
-                  backgroundColor: "#f2f2f2",
-                  padding: "10px 25px",
-                }}
-              >
-                Buffett Hagstrom screen represent is an interpretation of the
-                Warren Buffett investment approach described by Robert Hagstrom
-                in  ’’ The Essential Buffett: Timeless Principles for the New
-                Economy’’. Hagstrom argues that it is possible to duplicate
-                Buffett’s approach within your personal area of expertise. He
-                presents the approach through an accessible series of questions
-                that should be explored with any potential investment.
-              </p>
-            </div>
-            {/*  */}
-            <div className={styles.content} id="breakdown">
-              <h1>Selection criterias Measures and Categories breakdown</h1>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                }}
-              >
-                <div style={{ width: "250px", marginRight: "20px" }}>
-                  <PieChart
-                    data={{
-                      labels: [
-                        "Company Performance Measures",
-                        "Company Risk Measures",
-                      ],
-                      datasets: [
-                        {
-                          label: "",
-                          data: [100, 200],
-                          backgroundColor: ["#ec7d31", "#407879"],
-                          hoverOffset: 4,
-                        },
-                      ],
-                    }}
-                  />
-                </div>
-                <div
-                  style={{
-                    width: "800px",
-                  }}
-                >
-                  <BreakdownChart
-                    years={breakdowns}
-                    returns={breakdowns.map((t) =>
-                      Math.random() > 0.5
-                        ? Math.random() * 100
-                        : Math.random() * -100
-                    )}
-                  />
-                </div>
-              </div>
-            </div>
-            {/*  */}
-            <div className={styles.content} id="screen">
-              <h1>Screen</h1>
-              <div
-                className={styles.content}
-                style={{ width: "calc(100vw - 450px)" }}
-              >
-                <GroupedColumnsTable
-                  parentCols={[
-                    { value: "Selection criteria", span: 3 },
-                    { value: "", span: 3 },
-                  ]}
-                  rows={[]}
-                  columns={[
-                    {
-                      id: "mesure",
-                      label: "Mesure",
-                      align: "left",
-                    },
-                    {
-                      id: "category",
-                      label: "Category",
-                      align: "left",
-                    },
-                    {
-                      id: "metric",
-                      label: "Metric",
-                      align: "left",
-                    },
-                    {
-                      id: "description",
-                      label: "Description",
-                      align: "left",
-                    },
-                    {
-                      id: "range",
-                      label: "Range",
-                      align: "left",
-                    },
-                    {
-                      id: "interpretation",
-                      label: "Interpretation",
-                      align: "left",
-                    },
-                  ]}
-                />
-              </div>
-            </div>
-            {/*  */}
-            <div className={styles.content} id="companies-passing-criteria">
-              <h1>Companies passing criterias: 10</h1>
-              <div
-                className={styles.content}
-                style={{ width: "calc(100vw - 450px)" }}
-              >
-                <GroupedColumnsTable
-                  parentCols={[
-                    { value: "Company Profile", span: 5 },
-                    { value: "Selection Criteria", span: 10 },
-                  ]}
                   rows={[
                     {
-                      companyName: (
+                      investor: (
                         <Link
-                          href="/investing-plan/investment-strategies/investor-profile-financial-analysis"
+                          href="/investing-plan/investment-strategies/investor-profile"
                           style={{
                             color: "#1890ff",
                             whiteSpace: "nowrap",
                             cursor: "pointer",
                           }}
                         >
-                          Danone SA
+                          Warren Buffet
                         </Link>
                       ),
-                      ticker: "AAPL",
-                      exchange: "NASDAQ",
-                      sector: "Technology",
-                      industry: "Consumer Electronics",
-                      roeTtm: "0.92",
-                      indRoeY1: "0.92",
-                      "5Roy": "0.92",
-                      npmTtm: "0.92",
-                      indNpmY1: "0.92",
-                      "5Npm": "0.92",
+                      strategy: (
+                        <Link
+                          href="/investing-plan/investment-strategies/investor-profile#strategy-model"
+                          style={{
+                            color: "#1890ff",
+                            whiteSpace: "nowrap",
+                            cursor: "pointer",
+                          }}
+                        >
+                          Buffet Hagstrom
+                        </Link>
+                      ),
+                      factors: "V;G;Q",
+                      annualizedReturn: "10.00%",
+                      rollingReturn: "10.00%",
+                      bestReturn: "10.00%",
+                      worstReturn: "10.00%",
+                      standardDeviation: "10.00%",
+                      downsideDeviation: "10.00%",
+                      maxDrawDown: "10.00%",
+                      sharpeRatio: "10.00%",
+                      sortinoRatio: "10.00%",
+                      treynorRatio: "10.00%",
                     },
                   ]}
                   columns={[
                     {
-                      id: "companyName",
-                      label: "Company Name",
+                      id: "investor",
+                      label: "Investor",
                       align: "left",
                     },
                     {
-                      id: "ticker",
-                      label: "Ticker",
-                      align: "left",
-                    },
-                    {
-                      id: "exchange",
-                      label: "Exchange",
-                      align: "left",
-                    },
-                    {
-                      id: "sector",
-                      label: "Sector",
-                      align: "left",
-                    },
-                    {
-                      id: "industry",
-                      label: "Industry",
-                      align: "left",
-                    },
-                    {
-                      id: "roeTtm",
-                      label: "ROE TTM",
-                      align: "left",
-                    },
-                    {
-                      id: "indRoeY1",
-                      label: "Ind. ROE - Y1",
-                      align: "left",
-                    },
-                    {
-                      id: "5Roy",
-                      label: "5Y ROE",
-                      align: "left",
-                    },
-                    {
-                      id: "npmTtm",
-                      label: "NPM TTM",
-                      align: "left",
-                    },
-                    {
-                      id: "indNpmTtm",
-                      label: "Ind. NPM TTM",
-                      align: "left",
-                    },
-                    {
-                      id: "pe",
-                      label: "PE",
-                      align: "left",
-                    },
-                    {
-                      id: "price",
-                      label: "Price / FCFPS",
-                      align: "left",
-                    },
-                    {
-                      id: "pfcf",
-                      label: "PFCF / FCF growth",
-                      align: "left",
-                    },
-                    {
-                      id: "cfGrowth",
-                      label: "5Y FCF growth",
-                      align: "left",
-                    },
-                  ]}
-                />
-              </div>
-            </div>
-            {/*  */}
-            <div className={styles.content} id="return-risk-overview">
-              <h1>Companies passing criterias breakdown</h1>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div style={{ width: "250px", marginRight: "20px" }}>
-                  <PieChart
-                    data={{
-                      labels: ["Paris"],
-                      datasets: [
-                        {
-                          label: "",
-                          data: [100],
-                          backgroundColor: ["#4472c4"],
-                          hoverOffset: 4,
-                        },
-                      ],
-                    }}
-                  />
-                </div>
-                <div style={{ width: "300px", marginRight: "20px" }}>
-                  <PieChart
-                    data={{
-                      labels: [
-                        "Financial Services",
-                        "Basic Materials",
-                        "Industrials",
-                        "Consumer Defensive",
-                        "Technology",
-                      ],
-                      datasets: [
-                        {
-                          label: "",
-                          data: [100, 300, 200, 200, 300],
-                          backgroundColor: [
-                            "#4472c4",
-                            "#5b9ad5",
-                            "#ffbf00",
-                            "#a5a5a5",
-                            "#ec7d31",
-                          ],
-                          hoverOffset: 4,
-                        },
-                      ],
-                    }}
-                  />
-                </div>
-                <div style={{ width: "250px" }}>
-                  <PieChart
-                    data={{
-                      labels: ["Large Cap", "Mid Cap", "Mega Cap"],
-                      datasets: [
-                        {
-                          label: "",
-                          data: [100, 300, 200],
-                          backgroundColor: ["#4472c4", "#5b9ad5", "#ffbf00"],
-                          hoverOffset: 4,
-                        },
-                      ],
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-            {/*  */}
-            <div className={styles.content} id="return-risk-overview">
-              <h1>Companies passing criterias return and risk overview</h1>
-              <div
-                className={styles.content}
-                style={{ width: "calc(100vw - 450px)" }}
-              >
-                <GroupedColumnsTable
-                  parentCols={[
-                    { value: "Location", span: 2 },
-                    { value: "Return %", span: 4 },
-                    { value: "Risk %", span: 3 },
-                    { value: "Risk adjusted return %", span: 4 },
-                  ]}
-                  rows={[]}
-                  columns={[
-                    {
-                      id: "region",
-                      label: "Region",
-                      align: "left",
-                    },
-                    {
-                      id: "country",
-                      label: "Country",
+                      id: "strategy",
+                      label: "Strategy",
                       align: "left",
                     },
 
                     {
-                      id: "annualizeReturn",
-                      label: "Annualize Return",
+                      id: "factors",
+                      label: "Factors",
+                      align: "left",
+                    },
+                    {
+                      id: "annualizedReturn",
+                      label: "Annualized Return",
                       align: "left",
                     },
                     {
@@ -935,8 +450,7 @@ function Index() {
                 />
               </div>
             </div>
-            {/*  */}
-            <div className={styles.content} id="annualized-return">
+            <div className={styles.content} id="model-annualized-returns">
               <h1>Strategy models Annualized Returns</h1>
               <div style={{ margin: "15px 0" }}>{capitalBacktestFields()}</div>
               <GlobalMarketAnnualizedChart
@@ -1027,9 +541,8 @@ function Index() {
                 />
               </div>
             </div>
-            {/*  */}
-            <div className={styles.content} id="backtest">
-              <h1>Strategy models Capital Growth -Backtest</h1>
+            <div className={styles.content} id="model-backtest">
+              <h1>Strategy models Capital Growth-Backtest</h1>
               <div style={{ margin: "15px 0" }}>{capitalBacktestFields()}</div>
               <GlobalMarketAnnualizedChart
                 years={mockYears}
@@ -1119,13 +632,12 @@ function Index() {
                 />
               </div>
             </div>
-            {/*  */}
-            <div className={styles.content} id="rolling-return">
+            <div className={styles.content} id="model-rolling-return">
               <h1>Strategy models Rolling return</h1>
               <div style={{ margin: "15px 0" }}>{capitalBacktestFields()}</div>
               <RollingReturnChart
-                years={types}
-                returns={types.map((t) =>
+                years={materials}
+                returns={materials.map((t) =>
                   Math.random() > 0.5
                     ? Math.random() * 100
                     : Math.random() * -100
@@ -1171,8 +683,7 @@ function Index() {
                 />
               </div>
             </div>
-            {/*  */}
-            <div className={styles.content} id="risk-v-return">
+            <div className={styles.content} id="model-risk-v-return">
               <h1>Strategy models Risk vs Returns</h1>
               <div style={{ margin: "15px 0" }}>{riskVsReturnField()}</div>
               <div className={styles.content}>
@@ -1180,7 +691,7 @@ function Index() {
                   years={rvrData}
                   dataset={[
                     {
-                      label: "US Stocks",
+                      label: "Utilities",
                       data: Array.from({ length: rvrData.length }, () => ({
                         x: faker.number.int({ min: -100, max: 100 }),
                         y: faker.number.int({ min: -100, max: 100 }),
@@ -1190,7 +701,7 @@ function Index() {
                       backgroundColor: "purple",
                     },
                     {
-                      label: "Bonds",
+                      label: "Technology",
                       data: Array.from({ length: rvrData.length }, () => ({
                         x: faker.number.int({ min: -100, max: 100 }),
                         y: faker.number.int({ min: -100, max: 100 }),
@@ -1200,7 +711,7 @@ function Index() {
                       backgroundColor: "red",
                     },
                     {
-                      label: "T.Bills",
+                      label: "Industrials",
                       data: Array.from({ length: rvrData.length }, () => ({
                         x: faker.number.int({ min: -100, max: 100 }),
                         y: faker.number.int({ min: -100, max: 100 }),
@@ -1210,7 +721,7 @@ function Index() {
                       backgroundColor: "yellow",
                     },
                     {
-                      label: "REIT",
+                      label: "Consumer Staples",
                       data: Array.from({ length: rvrData.length }, () => ({
                         x: faker.number.int({ min: -100, max: 100 }),
                         y: faker.number.int({ min: -100, max: 100 }),
@@ -1220,7 +731,7 @@ function Index() {
                       backgroundColor: "lightblue",
                     },
                     {
-                      label: "Gold",
+                      label: "Customer Discretionary",
                       data: Array.from({ length: rvrData.length }, () => ({
                         x: faker.number.int({ min: -100, max: 100 }),
                         y: faker.number.int({ min: -100, max: 100 }),
@@ -1230,7 +741,7 @@ function Index() {
                       backgroundColor: "gold",
                     },
                     {
-                      label: "Cash",
+                      label: "Financials",
                       data: Array.from({ length: rvrData.length }, () => ({
                         x: faker.number.int({ min: -100, max: 100 }),
                         y: faker.number.int({ min: -100, max: 100 }),
@@ -1254,8 +765,7 @@ function Index() {
                 rows={[]}
               />
             </div>
-            {/*  */}
-            <div className={styles.content} id="adjusted-return">
+            <div className={styles.content} id="model-risk-adjusted">
               <h1>Strategy models Risk adjusted return</h1>
               <div style={{ margin: "15px 0" }}>{riskVsReturnField()}</div>
               <div className={styles.content}>
@@ -1269,7 +779,7 @@ function Index() {
                     labels: [""],
                     datasets: [
                       {
-                        label: "Buffet Hagstrom",
+                        label: "Utilities",
                         data: mockYears.map(() =>
                           faker.number.int({ min: -100, max: 100 })
                         ),
@@ -1277,35 +787,35 @@ function Index() {
                       },
 
                       {
-                        label: "Buffetology",
+                        label: "Technology",
                         data: mockYears.map(() =>
                           faker.number.int({ min: -100, max: 100 })
                         ),
                         backgroundColor: "red",
                       },
                       {
-                        label: "Dreman Screen",
+                        label: "Industrials",
                         data: mockYears.map(() =>
                           faker.number.int({ min: -100, max: 100 })
                         ),
                         backgroundColor: "gray",
                       },
                       {
-                        label: "Phillip Fisher Screen",
+                        label: "Consumer staples",
                         data: mockYears.map(() =>
                           faker.number.int({ min: -100, max: 100 })
                         ),
                         backgroundColor: "lightblue",
                       },
                       {
-                        label: "Defensive Investor",
+                        label: "Consumer discretionary",
                         data: mockYears.map(() =>
                           faker.number.int({ min: -100, max: 100 })
                         ),
                         backgroundColor: "gold",
                       },
                       {
-                        label: "Enterprise Investor",
+                        label: "Financials",
                         data: mockYears.map(() =>
                           faker.number.int({ min: -100, max: 100 })
                         ),

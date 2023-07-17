@@ -9,6 +9,8 @@ import InvestingPlanSideNav from "@/components/investingPlan/InvestingPlanSideNa
 import CustomTable from "@/components/Table";
 import ManageInvestmentCard from "@/components/investingPlan/risk-and-return/ManageInvestmentCard";
 import Image1 from "../../../public/images/andrew-neel-cckf4TsHAuw-unsplash.jpg";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const links = [
   {
@@ -22,6 +24,7 @@ const links = [
 ];
 
 function Page() {
+  const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
   const [displaySidebar, setDisplaySidebar] = useState(true);
 
@@ -36,7 +39,9 @@ function Page() {
       phoneSidebarOpen={displaySidebar}
     >
       <PageHeader
-        parentHeading="Stock Investing"
+        parentHeading={
+          <Link href="/investing-plan/introduction">Investing plan</Link>
+        }
         childHeading="Active vs Passive Investing"
         setOpenModal={setOpenModal}
         showMoreInfo={true}
@@ -231,6 +236,11 @@ function Page() {
                 t3={"You regularly spend time on your portfolio"}
                 t4={"You do all your own research and analysis"}
                 btnTxt={"Select your stock"}
+                onClick={() => {
+                  router.push(
+                    "/investing-plan/investment-strategies/analysis-method"
+                  );
+                }}
               />
               <ManageInvestmentCard
                 img={Image1}
@@ -239,6 +249,9 @@ function Page() {
                 t3={"You do not have time for research"}
                 t4={"You may not have a lot of experience or interest"}
                 btnTxt={"Select your funds"}
+                onClick={() => {
+                  router.push("/coming-soon");
+                }}
               />
             </div>
           </div>

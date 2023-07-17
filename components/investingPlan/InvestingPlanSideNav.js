@@ -100,17 +100,12 @@ function InvestingPlanSideNav({
         {
           id: 6.1,
           value: "1. Analysis Method Overview",
-          link: "/investing-plan/investment-strategies/analysis-method-overview",
+          link: "/investing-plan/investment-strategies/analysis-method",
         },
         {
           id: 6.2,
           value: "2. Analysis Method Comparison",
           link: "/investing-plan/investment-strategies/analysis-method-comparison",
-        },
-        {
-          id: 6.3,
-          value: "3. Investor Profile",
-          link: "/investing-plan/investment-strategies/investor-profile",
         },
       ],
     },

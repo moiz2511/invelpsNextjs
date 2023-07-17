@@ -37,50 +37,17 @@ const links = [
     link: "#risk-adjusted",
   },
 ];
-function Asset() {
+function WeatherPortfolio() {
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
   const [displaySidebar, setDisplaySidebar] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const [selectedRvR, setSelectedRvR] = useState([]);
   const [selectedRA, setSelectedRA] = useState([]);
-  const scrollRef = useRef(null);
 
-  const returnModelPortfolioOverviewFields = () => (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <div style={{ marginRight: "15px" }}>
-        <span style={{ marginRight: "5px" }}>Risk Level: </span>
-        <TextField
-          name={"riskLevel"}
-          select
-          size="small"
-          value={"all"}
-          onChange={(v) => console.log(v)}
-          className={styles.textField}
-          style={{ width: "100%", padding: "0px" }}
-        >
-          <MenuItem key={1} value={"all"}>
-            All
-          </MenuItem>
-        </TextField>
-      </div>
-      <div style={{ marginRight: "15px" }}>
-        <span style={{ marginRight: "5px" }}>Time Horizon: </span>
-        <TextField
-          name={"timeHorizon"}
-          select
-          size="small"
-          value={30}
-          onChange={(v) => console.log(v)}
-          className={styles.textField}
-          style={{ width: "100%", padding: "0px" }}
-        >
-          <MenuItem key={1} value={30}>
-            30 years
-          </MenuItem>
-        </TextField>
-      </div>
-    </div>
-  );
+  const toggleSidebarOnPhone = () => {
+    setDisplaySidebar(!displaySidebar);
+  };
+
   const capitalBacktestFields = () => (
     <div style={{ display: "flex", alignItems: "center" }}>
       <div style={{ marginRight: "15px" }}>
@@ -344,25 +311,19 @@ function Asset() {
     </div>
   );
 
-  const toggleSidebarOnPhone = () => {
-    setDisplaySidebar(!displaySidebar);
-  };
-  const goToDetails = () => {
-    scrollRef.current.scrollIntoView({ behavior: "smooth" });
-  };
   return (
     <Layout
-      nextUrl={"/investing-plan/portfolio-settings/set-your-allocation"}
+      nextUrl={""}
       toggleSidebarOnPhone={toggleSidebarOnPhone}
       phoneSidebarOpen={displaySidebar}
     >
       <PageHeader
         parentHeading={
-          <Link href="/investing-plan/portfolio-settings/set-your-allocation">
-            Investing plan
+          <Link href="/investing-plan/portfolio-settings/asset-allocation-model">
+            Model Portfolio
           </Link>
         }
-        childHeading="Model Portfolio Overview"
+        childHeading="All Weather Portfolio"
         setOpenModal={setOpenModal}
         showMoreInfo={false}
       />
@@ -385,147 +346,8 @@ function Asset() {
           <div className={styles.contentContainer}>
             {/* <TableOfContent links={links} /> */}
             <div className={styles.content} id="overview">
-              <h1>Model portfolio overview</h1>
-              <div style={{ margin: "15px 0" }}>
-                {returnModelPortfolioOverviewFields()}
-              </div>
-
-              <div
-                className={styles.content}
-                style={{ width: "calc(100vw - 400px)" }}
-              >
-                <GroupedColumnsTable
-                  parentCols={[
-                    { value: "Portfolio", span: 2 },
-                    { value: "Allocation %", span: 6 },
-                    { value: "Return", span: 2 },
-                    { value: "Risk measure", span: 3 },
-                    { value: "Risk adjusted", span: 2 },
-                    { value: "Risk level", span: 1 },
-                  ]}
-                  rows={[
-                    {
-                      portfolioName: (
-                        <Link
-                          href="/investing-plan/portfolio-settings/weather-portfolio"
-                          style={{
-                            color: "#1890ff",
-                            whiteSpace: "nowrap",
-                            cursor: "pointer",
-                          }}
-                        >
-                          All weather portfolio
-                        </Link>
-                      ),
-                      author: (
-                        <Link
-                          href="/investing-plan/portfolio-settings/weather-portfolio"
-                          style={{
-                            color: "#1890ff",
-                            whiteSpace: "nowrap",
-                            cursor: "pointer",
-                          }}
-                        >
-                          Ray Dalio
-                        </Link>
-                      ),
-                      stocks: "30",
-                      bonds: "55",
-                      tBills: "-",
-                      gold: "15",
-                      reit: "0.55%",
-                      cagrReturn: "0.55%",
-                      rollingReturn: "0.55%",
-                      standardDeviation: "0.55%",
-                      standardDeviation: "0.55%",
-                      downsideDeviation: "0.55%",
-                      standardDeviation: "0.55%",
-                      riskLevel: "Medium",
-                    },
-                  ]}
-                  columns={[
-                    {
-                      id: "portfolioName",
-                      label: "Portfolio Name",
-                      align: "left",
-                    },
-                    {
-                      id: "author",
-                      label: "Author",
-                      align: "left",
-                    },
-                    {
-                      id: "stocks",
-                      label: "Stocks",
-                      align: "left",
-                    },
-                    {
-                      id: "bonds",
-                      label: "Bonds",
-                      align: "left",
-                    },
-                    {
-                      id: "tBills",
-                      label: "T Bills",
-                      align: "left",
-                    },
-                    {
-                      id: "gold",
-                      label: "Gold",
-                      align: "left",
-                    },
-                    {
-                      id: "reit",
-                      label: "REIT",
-                      align: "left",
-                    },
-                    {
-                      id: "cagrReturn",
-                      label: "CAGR Return",
-                      align: "left",
-                    },
-                    {
-                      id: "rollingReturn",
-                      label: "Rolling Return",
-                      align: "left",
-                    },
-                    {
-                      id: "standardDeviation",
-                      label: "Standard Dev",
-                      align: "left",
-                    },
-                    {
-                      id: "downsideDeviation",
-                      label: "Downside Dev",
-                      align: "left",
-                    },
-
-                    {
-                      id: "maxDrawdown",
-                      label: "Max Drawdown",
-                      align: "left",
-                    },
-                    {
-                      id: "sharpeRation",
-                      label: "Sharpe Ratio",
-                      align: "left",
-                    },
-
-                    {
-                      id: "sordinoRatio",
-                      label: "Sortino Ratio",
-                      align: "left",
-                    },
-                    {
-                      id: "riskLevel",
-                      label: "Risk Level",
-                      align: "left",
-                    },
-                  ]}
-                />
-              </div>
               {/* ------------ */}
-              {/* <div ref={scrollRef} style={{ paddingTop: "80px" }}>
+              <div>
                 <p
                   style={{
                     margin: "15px 0",
@@ -589,9 +411,8 @@ function Asset() {
                 >
                   The Ray Dalio All Weather Portfolio has the following assets
                 </p>
-              </div> */}
-              {/* 
-         
+              </div>
+              {/* ------------- */}
               <div className={styles.content}>
                 <div
                   style={{
@@ -644,7 +465,7 @@ function Asset() {
                   />
                 </div>
               </div>
-     
+              {/* -------------- */}
               <div
                 style={{
                   backgroundColor: "#f2f2f2",
@@ -658,7 +479,7 @@ function Asset() {
                   returns.
                 </p>
               </div>
-          
+              {/* --------- */}
               <div
                 style={{
                   display: "grid",
@@ -867,7 +688,6 @@ function Asset() {
                   }}
                 />
               </div>
-            </div> */}
             </div>
           </div>
         </div>
@@ -876,4 +696,4 @@ function Asset() {
   );
 }
 
-export default Asset;
+export default WeatherPortfolio;

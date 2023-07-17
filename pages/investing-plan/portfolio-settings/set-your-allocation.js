@@ -68,9 +68,11 @@ function Allocation() {
                 >
                   Add a new portfolio
                 </CustomButton>
-                <CustomButton onClick={() => console.log("handle add")}>
-                  Save portfolio
-                </CustomButton>
+                <Link href={"/investing-plan/asset-selection"}>
+                  <CustomButton onClick={() => console.log("handle add")}>
+                    Save portfolio
+                  </CustomButton>
+                </Link>
               </div>
               <div
                 className={styles.content}

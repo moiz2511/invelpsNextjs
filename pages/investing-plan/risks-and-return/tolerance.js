@@ -12,6 +12,7 @@ import PieChart from "@/components/PieChart";
 import ManageInvestmentCard from "@/components/investingPlan/risk-and-return/ManageInvestmentCard";
 import TableOfContent from "@/components/TableOfContent";
 import Image1 from "../../../public/images/andrew-neel-cckf4TsHAuw-unsplash.jpg";
+import { useRouter } from "next/router";
 
 const links = [
   { value: "Risk Tolerance", link: "#tolerance" },
@@ -46,6 +47,7 @@ const fields = () => (
 );
 
 function Tolerance() {
+  const router = useRouter();
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
   const [openModal, setOpenModal] = useState(false);
 
@@ -197,6 +199,9 @@ function Tolerance() {
                   t3={"You may not have a lot of experience or interest"}
                   t4={"Consult a list of investment or wealth advisors"}
                   btnTxt={"Get help to manage my investments"}
+                  onClick={() => {
+                    router.push("/coming-soon");
+                  }}
                 />
                 <ManageInvestmentCard
                   img={Image1}
@@ -205,6 +210,11 @@ function Tolerance() {
                   t3={"You do all your own research"}
                   t4={"You want to see a Model Portfolio"}
                   btnTxt={"Build your own portfolio"}
+                  onClick={() => {
+                    router.push(
+                      "/investing-plan/portfolio-settings/asset-allocation-model"
+                    );
+                  }}
                 />
               </div>
             </div>

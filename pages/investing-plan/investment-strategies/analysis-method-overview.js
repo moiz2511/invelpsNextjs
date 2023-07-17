@@ -353,11 +353,11 @@ function Index() {
     >
       <PageHeader
         parentHeading={
-          <Link href="/investing-plan/portfolio-settings/set-your-allocation">
-            Investing plan
+          <Link href="/investing-plan/investment-strategies/analysis-method">
+            Analysis Method
           </Link>
         }
-        childHeading="Overview"
+        childHeading="Top Down Analysis"
         setOpenModal={setOpenModal}
         showMoreInfo={false}
       />
@@ -394,7 +394,34 @@ function Index() {
                     { value: "Risk %", span: 3 },
                     { value: "Risk adjusted return %", span: 4 },
                   ]}
-                  rows={[]}
+                  rows={[
+                    {
+                      region: "America",
+                      country: (
+                        <Link
+                          href="/investing-plan/investment-strategies/analysis-method-comparison"
+                          style={{
+                            color: "#1890ff",
+                            whiteSpace: "nowrap",
+                            cursor: "pointer",
+                          }}
+                        >
+                          USA
+                        </Link>
+                      ),
+                      annualizeReturn: "10.00",
+                      rollingReturn: "10.00",
+                      bestReturn: "10.00",
+                      worstReturn: "10.00",
+                      standardDeviation: "10.00",
+                      downsideDeviation: "10.00",
+                      maxDrawdown: "10.00",
+                      annReturn: "10.00",
+                      annReturn2: "10.00",
+                      sharpeRation: "10.00",
+                      sordinoRatio: "10.00",
+                    },
+                  ]}
                   columns={[
                     {
                       id: "region",

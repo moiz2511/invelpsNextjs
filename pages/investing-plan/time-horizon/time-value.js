@@ -2,7 +2,7 @@ import InvestingPlanSideNav from "@/components/investingPlan/InvestingPlanSideNa
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import TableOfContent from "@/components/TableOfContent";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "@/styles/BasicPage.module.css";
 import {
   Alert,
@@ -34,6 +34,7 @@ const links = [
 ];
 
 function Page() {
+  const scrollRef = useRef(null);
   const [openModal, setOpenModal] = useState(false);
   const [fields, setFields] = useState([
     {
@@ -142,6 +143,7 @@ function Page() {
       setShowAlert({ show: true, message: "Please fill all the fields." });
       return;
     }
+    scrollRef.current.scrollIntoView({ behavior: "smooth" });
     let targetAmount = parseFloat(fields[0].value);
     let startingAmount = parseFloat(fields[2].value);
     let periodYear = parseInt(fields[1].value);
@@ -332,7 +334,7 @@ function Page() {
                 </CustomButton>
               </div>
             </div>
-            <div className={styles.content} id="return-rate">
+            <div className={styles.content} id="return-rate" ref={scrollRef}>
               <h1>
                 What is your required rate of return (Internal rate of return)?
               </h1>

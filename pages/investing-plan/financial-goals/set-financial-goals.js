@@ -1,7 +1,7 @@
 import InvestingPlanSideNav from "@/components/investingPlan/InvestingPlanSideNav";
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "@/styles/BasicPage.module.css";
 import modalStyles from "@/styles/InfoModal.module.css";
 import TableOfContent from "@/components/TableOfContent";
@@ -23,6 +23,7 @@ const links = [
 function Page() {
   const [openModal, setOpenModal] = useState(false);
   const [displaySidebar, setDisplaySidebar] = useState(true);
+  const scrollRef = useRef(null);
 
   const toggleSidebarOnPhone = () => {
     setDisplaySidebar(!displaySidebar);
@@ -245,16 +246,18 @@ function Page() {
             <div className={styles.content} id="investing-for">
               <h1>Set your investing goals:</h1>
               <p>Please answer all the below questions:</p>
-              <FinancialGoalsCalculator />
-              <p>
-                Whether it&apos;s a short-term or long-term goal, know that your
-                goal is the destination. Your current net worth is the starting
-                point. Identify your income, cash inflows and outflows and
-                you&apos;ll know how much money you have left - that&apos;s
-                money you can save. A close look at your spending can also help
-                you identify areas where you could spend less if you want to
-                spend more money on your goals.
-              </p>
+              <div>
+                <FinancialGoalsCalculator scrollRef={scrollRef} />
+                <p>
+                  Whether it&apos;s a short-term or long-term goal, know that
+                  your goal is the destination. Your current net worth is the
+                  starting point. Identify your income, cash inflows and
+                  outflows and you&apos;ll know how much money you have left -
+                  that&apos;s money you can save. A close look at your spending
+                  can also help you identify areas where you could spend less if
+                  you want to spend more money on your goals.
+                </p>
+              </div>
             </div>
           </div>
         </div>

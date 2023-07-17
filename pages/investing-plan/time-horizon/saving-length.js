@@ -275,9 +275,11 @@ function Page() {
             <div className={styles.content}>
               <SavingLengthTable />
               <div style={{ marginTop: "20px" }}>
-                <CustomButton style={{ float: "right" }}>
-                  Discover how
-                </CustomButton>
+                <Link href="/investing-plan/time-horizon/time-value">
+                  <CustomButton style={{ float: "right" }}>
+                    Discover how
+                  </CustomButton>
+                </Link>
               </div>
             </div>
           </div>
