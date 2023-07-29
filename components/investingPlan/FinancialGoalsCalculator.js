@@ -69,11 +69,11 @@ function FinancialGoalsCalculator({ scrollRef }) {
     adjustedForInflationValue: "",
     forcastedAnnualReturnRate: "",
     goal: "",
-    need: "",
-    needMonthy: "",
+    need: 0,
+    needMonthy: 0,
     monthlyLongIncome: new Date(),
-    when: new Date(),
-    saving: "",
+    when: null,
+    saving: 0,
     currentGap: "",
   });
   const [showChart, setShowChart] = useState(false);
@@ -123,7 +123,7 @@ function FinancialGoalsCalculator({ scrollRef }) {
             }}
             type="number"
             onChange={(e) =>
-              setValues((prv) => ({ ...prv, needMonthy: `${e.target.value}` }))
+              setValues((prv) => ({ ...prv, needMonthy: e.target.value }))
             }
           />
         </div>
@@ -233,7 +233,7 @@ function FinancialGoalsCalculator({ scrollRef }) {
       >
         <div style={{ ...containerStyle, marginRight: "20px" }}>
           <p style={textStyle}>When will you need the money ?</p>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               onChange={(e) => setValues((prv) => ({ ...prv, when: e.$d }))}
               // value={values.when}
@@ -241,15 +241,15 @@ function FinancialGoalsCalculator({ scrollRef }) {
                 width: "150px",
               }}
             />
-          </LocalizationProvider>
+          </LocalizationProvider> */}
 
           <TextField
-            value={`${
-              dayjs.duration(dayjs(values.when).diff(new Date())).$d.years
-            } year ${
-              dayjs.duration(dayjs(values.when).diff(new Date())).$d.days
-            } days `}
-            disabled={true}
+            value={values.when}
+            onChange={(e) =>
+              setValues((prv) => ({ ...prv, when: e.target.value }))
+            }
+            type="number"
+            disabled={false}
             sx={{
               width: "150px",
               marginLeft: "20px",
@@ -304,10 +304,11 @@ function FinancialGoalsCalculator({ scrollRef }) {
         <div style={containerStyle}>
           <p style={textStyle}>Current Gap</p>
           <TextField
-            value={values.currentGap}
+            value={values.need - values.saving}
             sx={{
               width: "150px",
             }}
+            disabledt={true}
             type="number"
             onChange={(e) =>
               setValues((prv) => ({ ...prv, currentGap: `${e.target.value}` }))
@@ -336,6 +337,14 @@ function FinancialGoalsCalculator({ scrollRef }) {
           Cancel
         </Button>
         <CustomButton
+          onClick={() => {}}
+          style={{
+            marginRight: "20px",
+          }}
+        >
+          Save
+        </CustomButton>
+        <CustomButton
           onClick={() => {
             if (values.need.length > 0 && values.saving.length > 0) {
               setShowChart(true);
@@ -343,7 +352,7 @@ function FinancialGoalsCalculator({ scrollRef }) {
             }
           }}
         >
-          Save and View Results
+          View Results
         </CustomButton>
       </div>
       <div
