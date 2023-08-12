@@ -63,20 +63,27 @@ const textStyle = {
   fontSize: "18px",
   marginRight: "20px",
 };
+const defaultValues = {
+  adjustedForInflation: false,
+  adjustedForInflationValue: "",
+  forcastedAnnualReturnRate: "",
+  goal: "",
+  need: 0,
+  needMonthy: 0,
+  monthlyLongIncome: new Date(),
+  when: null,
+  saving: 0,
+  currentGap: "",
+};
 function FinancialGoalsCalculator({ scrollRef }) {
-  const [values, setValues] = useState({
-    adjustedForInflation: false,
-    adjustedForInflationValue: "",
-    forcastedAnnualReturnRate: "",
-    goal: "",
-    need: 0,
-    needMonthy: 0,
-    monthlyLongIncome: new Date(),
-    when: null,
-    saving: 0,
-    currentGap: "",
-  });
+  const [values, setValues] = useState(defaultValues);
   const [showChart, setShowChart] = useState(false);
+
+  const getNeedForRegularIncome = () => {
+    if (values.monthlyLongIncome && values.needMonthy) {
+      return 12 * values.needMonthy * values.monthlyLongIncome;
+    }
+  };
   return (
     <div style={{ padding: "30px 0" }}>
       {/* {console.log(
@@ -93,7 +100,8 @@ function FinancialGoalsCalculator({ scrollRef }) {
           size="large"
           value={values.goal}
           onChange={(e) => {
-            setValues((prv) => ({ ...prv, goal: e.target.value }));
+            setValues((prv) => ({ ...defaultValues, goal: e.target.value }));
+            setShowChart(false);
           }}
           style={{ width: "300px", padding: "0px" }}
         >
@@ -131,7 +139,7 @@ function FinancialGoalsCalculator({ scrollRef }) {
       {values.goal === "regular-income" && (
         <div style={containerStyle}>
           <p style={textStyle}>How long will you need monthly income</p>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               onChange={(e) =>
                 setValues((prv) => ({ ...prv, monthlyLongIncome: e.$d }))
@@ -156,6 +164,22 @@ function FinancialGoalsCalculator({ scrollRef }) {
               width: "150px",
               marginLeft: "20px",
             }}
+          /> */}
+
+          <TextField
+            value={values.monthlyLongIncome}
+            onChange={(e) =>
+              setValues((prv) => ({
+                ...prv,
+                monthlyLongIncome: e.target.value,
+              }))
+            }
+            type="number"
+            disabled={false}
+            sx={{
+              width: "150px",
+              marginLeft: "20px",
+            }}
           />
         </div>
       )}
@@ -170,11 +194,7 @@ function FinancialGoalsCalculator({ scrollRef }) {
           <TextField
             value={
               values.goal === "regular-income"
-                ? 12 *
-                  values.needMonthy *
-                  dayjs.duration(
-                    dayjs(values.monthlyLongIncome).diff(new Date())
-                  ).$d.years
+                ? getNeedForRegularIncome()
                 : values.need
             }
             sx={{
@@ -233,7 +253,7 @@ function FinancialGoalsCalculator({ scrollRef }) {
       >
         <div style={{ ...containerStyle, marginRight: "20px" }}>
           <p style={textStyle}>When will you need the money ?</p>
-          {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               onChange={(e) => setValues((prv) => ({ ...prv, when: e.$d }))}
               // value={values.when}
@@ -241,9 +261,9 @@ function FinancialGoalsCalculator({ scrollRef }) {
                 width: "150px",
               }}
             />
-          </LocalizationProvider> */}
+          </LocalizationProvider>
 
-          <TextField
+          {/* <TextField
             value={values.when}
             onChange={(e) =>
               setValues((prv) => ({ ...prv, when: e.target.value }))
@@ -254,7 +274,7 @@ function FinancialGoalsCalculator({ scrollRef }) {
               width: "150px",
               marginLeft: "20px",
             }}
-          />
+          /> */}
         </div>
         <div style={containerStyle}>
           <p style={textStyle}>Forecasted annualized Inflation rate</p>
@@ -304,7 +324,11 @@ function FinancialGoalsCalculator({ scrollRef }) {
         <div style={containerStyle}>
           <p style={textStyle}>Current Gap</p>
           <TextField
-            value={values.need - values.saving}
+            value={
+              values.goal === "regular-income"
+                ? values.saving - getNeedForRegularIncome()
+                : values.saving - values.need
+            }
             sx={{
               width: "150px",
             }}
@@ -346,7 +370,11 @@ function FinancialGoalsCalculator({ scrollRef }) {
         </CustomButton>
         <CustomButton
           onClick={() => {
-            if (values.need.length > 0 && values.saving.length > 0) {
+            if (
+              values.goal === "regular-income"
+                ? getNeedForRegularIncome() && values.saving.length > 0
+                : values.need.length > 0 && values.saving.length > 0
+            ) {
               setShowChart(true);
               scrollRef.current.scrollIntoView({ behavior: "smooth" });
             }
@@ -365,59 +393,98 @@ function FinancialGoalsCalculator({ scrollRef }) {
         ref={scrollRef}
       >
         <div style={{ width: "800px" }}>
-          {showChart && values.need && values.saving && (
-            // <PieChart
-            //   data={{
-            //     labels: ["What you have", "What you need", "Current gap"],
-            //     datasets: [
-            //       {
-            //         label: "",
-            //         data: [
-            //           values.saving,
-            //           values.need,
-            //           values.need - values.saving,
-            //         ],
-            //         backgroundColor: ["#ccbf90", "#407879", "#cb6843"],
-            //         hoverOffset: 4,
-            //       },
-            //     ],
-            //   }}
-            // />
+          {showChart && values.goal === "regular-income"
+            ? getNeedForRegularIncome() &&
+              values.saving.length > 0 && (
+                <BarChart
+                  options={{
+                    plugins: {},
+                    responsive: true,
+                    indexAxis: "y",
+                    scales: {
+                      x: {
+                        stacked: true,
+                      },
+                      y: {
+                        stacked: true,
+                      },
+                    },
+                  }}
+                  //           values.saving,
+                  //           values.need,
+                  //           values.need - values.saving,
+                  data={{
+                    labels: [""],
+                    datasets: [
+                      {
+                        label: "What you have",
+                        data: [values.saving],
+                        backgroundColor: "#ccbf90",
+                      },
+                      {
+                        label: "Current gap",
+                        data: [values.saving - getNeedForRegularIncome()],
+                        backgroundColor: "#cb6843",
+                      },
+                    ],
+                  }}
+                />
+              )
+            : showChart &&
+              values.need.length > 0 &&
+              values.saving.length > 0 && (
+                // <PieChart
+                //   data={{
+                //     labels: ["What you have", "What you need", "Current gap"],
+                //     datasets: [
+                //       {
+                //         label: "",
+                //         data: [
+                //           values.saving,
+                //           values.need,
+                //           values.need - values.saving,
+                //         ],
+                //         backgroundColor: ["#ccbf90", "#407879", "#cb6843"],
+                //         hoverOffset: 4,
+                //       },
+                //     ],
+                //   }}
+                // />
 
-            <BarChart
-              options={{
-                plugins: {},
-                responsive: true,
-                indexAxis: "y",
-                scales: {
-                  x: {
-                    stacked: true,
-                  },
-                  y: {
-                    stacked: true,
-                  },
-                },
-              }}
-              //           values.saving,
-              //           values.need,
-              //           values.need - values.saving,
-              data={{
-                labels: [""],
-                datasets: [
-                  {
-                    label: "What you have",
-                    data: [values.saving],
-                    backgroundColor: "#ccbf90",
-                  },
-                  {
-                    label: "Current gap",
-                    data: [values.need - values.saving],
-                    backgroundColor: "#cb6843",
-                  },
-                ],
-              }}
-            />
-          )}
+                <BarChart
+                  options={{
+                    plugins: {},
+                    responsive: true,
+                    indexAxis: "y",
+                    scales: {
+                      x: {
+                        stacked: true,
+                      },
+                      y: {
+                        stacked: true,
+                      },
+                    },
+                  }}
+                  //           values.saving,
+                  //           values.need,
+                  //           values.need - values.saving,
+                  data={{
+                    labels: [""],
+                    datasets: [
+                      {
+                        label: "What you have",
+                        data: [values.saving],
+                        backgroundColor: "#ccbf90",
+                      },
+                      {
+                        label: "Current gap",
+                        data: [values.saving - values.need],
+                        backgroundColor: "#cb6843",
+                      },
+                    ],
+                  }}
+                />
+              )}
         </div>
       </div>
     </div>

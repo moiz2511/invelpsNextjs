@@ -22,6 +22,9 @@ import { RollingReturnChart } from "@/components/investingPlan/investment-strate
 import RiskVReturnChat from "@/components/investingPlan/investment-strategies/RiskReturnChart";
 import PieChart from "@/components/PieChart";
 import { BreakdownChart } from "@/components/investingPlan/investment-strategies/BreakdownChart";
+import YelloStar from "../../../public/images/yellow-star.png";
+import GrayStar from "../../../public/images/gray-star.png";
+import Image from "next/image";
 
 const mockYears = ["2019", "2020", "2021", "2022", "2023"];
 const links = [
@@ -77,6 +80,33 @@ const rvrData = [
   "9.00%",
   "10.00%",
 ];
+
+function getStars(numYellowStars) {
+  if (numYellowStars === undefined) {
+    return ""; // Return empty string if no argument is provided
+  }
+
+  if (numYellowStars < 0 || numYellowStars > 3) {
+    throw new Error("Number of yellow stars must be between 0 and 3.");
+  }
+
+  const maxStars = 3;
+  let starArrays = [];
+
+  for (let i = 0; i < maxStars; i++) {
+    if (i < numYellowStars) {
+      starArrays.push(YelloStar); // Yellow star
+    } else {
+      starArrays.push(GrayStar);
+    }
+  }
+  console.log(starArrays);
+
+  return starArrays.map((star, i) => (
+    <Image src={star} key={i} alt="star" height={20} width={20} />
+  ));
+}
+
 function Index() {
   const [showAlert, setShowAlert] = useState({ show: false, message: "" });
   const [displaySidebar, setDisplaySidebar] = useState(true);
@@ -617,6 +647,173 @@ function Index() {
                 </div>
               </div>
             </div>
+            {/* add here */}
+            {/* <CustomTable
+                primary={true}
+                columns={["Income sources", "Description"]}
+                rows={[
+                  {
+                    first: "Salary, Wages",
+                    second:
+                      "Salaries, Wages and bonuses received from employment or self-employment, Workers’ Compensation.",
+                  },
+                  {
+                    first: "Business income",
+                    second: "Income from side economic activities.",
+                  },
+                  {
+                    first: "Financial income",
+                    second:
+                      "Interest Income (e.g. Certificate of Deposit, Checking Account, Savings Account), Dividends and distributions received from investments, Rental receipts from real estate investments, Capital gain from investment, Proceeds from Life Insurance, Profit sharing from businesses",
+                  },
+                  {
+                    first: "Other income sources",
+                    second:
+                      "Royalties, pensions, Inheritance, Workers’ Compensation, Gifts, Voluntary Benefits.",
+                  },
+                ]}
+              /> */}
+
+            <div className={styles.content} id="screen">
+              <div
+                className={styles.content}
+                style={{ width: "calc(100vw - 450px)" }}
+              >
+                <GroupedColumnsTable
+                  parentCols={[
+                    {
+                      value: "Screen Focus Area / Receipt Expectations",
+                      span: 8,
+                    },
+                  ]}
+                  rows={[
+                    {
+                      receipt: "Banker",
+                      solvency: getStars(1),
+                      liquidity: getStars(0),
+                      profitability: getStars(),
+                      independence: getStars(),
+                      risk: getStars(1),
+                      valuation: getStars(),
+                      return: getStars(),
+                    },
+                    {
+                      receipt: "Lender",
+                      solvency: getStars(1),
+                      liquidity: getStars(0),
+                      profitability: getStars(),
+                      independence: getStars(),
+                      risk: getStars(1),
+                      valuation: getStars(),
+                      return: getStars(),
+                    },
+                    {
+                      receipt: "Shareholder",
+                      solvency: getStars(),
+                      liquidity: getStars(),
+                      profitability: getStars(3),
+                      independence: getStars(),
+                      risk: getStars(1),
+                      valuation: getStars(1),
+                      return: getStars(0),
+                    },
+                    {
+                      receipt: "Investor",
+                      solvency: getStars(),
+                      liquidity: getStars(),
+                      profitability: getStars(3),
+                      independence: getStars(0),
+                      risk: getStars(1),
+                      valuation: getStars(1),
+                      return: getStars(0),
+                    },
+                    {
+                      receipt: "Management",
+                      solvency: getStars(),
+                      liquidity: getStars(),
+                      profitability: getStars(3),
+                      independence: getStars(),
+                      risk: getStars(1),
+                      valuation: getStars(1),
+                      return: getStars(),
+                    },
+                    {
+                      receipt: "Employee",
+                      solvency: getStars(),
+                      liquidity: getStars(),
+                      profitability: getStars(3),
+                      independence: getStars(),
+                      risk: getStars(1),
+                      valuation: getStars(),
+                      return: getStars(),
+                    },
+                    {
+                      receipt: "Peers",
+                      solvency: getStars(1),
+                      liquidity: getStars(0),
+                      profitability: getStars(3),
+                      independence: getStars(0),
+                      risk: getStars(1),
+                      valuation: getStars(1),
+                      return: getStars(),
+                    },
+                    {
+                      receipt: "Analyst",
+                      solvency: getStars(1),
+                      liquidity: getStars(0),
+                      profitability: getStars(3),
+                      independence: getStars(0),
+                      risk: getStars(1),
+                      valuation: getStars(1),
+                      return: getStars(0),
+                    },
+                  ]}
+                  columns={[
+                    {
+                      id: "receipt",
+                      label: "Receipt",
+                      align: "left",
+                    },
+                    {
+                      id: "solvency",
+                      label: "Solvency",
+                      align: "left",
+                    },
+                    {
+                      id: "liquidity",
+                      label: "Liquidity",
+                      align: "left",
+                    },
+                    {
+                      id: "profitability",
+                      label: "Profitability",
+                      align: "left",
+                    },
+                    {
+                      id: "independence",
+                      label: "Independence",
+                      align: "left",
+                    },
+                    {
+                      id: "risk",
+                      label: "Risk",
+                      align: "left",
+                    },
+                    {
+                      id: "valuation",
+                      label: "Valuation",
+                      align: "left",
+                    },
+                    {
+                      id: "return",
+                      label: "Return",
+                      align: "left",
+                    },
+                  ]}
+                />
+              </div>
+            </div>
+
             {/*  */}
             <div className={styles.content} id="screen">
               <h1>Screen</h1>
