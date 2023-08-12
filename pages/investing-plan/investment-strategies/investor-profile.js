@@ -680,6 +680,9 @@ function Index() {
                 style={{ width: "calc(100vw - 450px)" }}
               >
                 <GroupedColumnsTable
+                  style={{
+                    maxHeight: "600px",
+                  }}
                   parentCols={[
                     {
                       value: "Screen Focus Area / Receipt Expectations",

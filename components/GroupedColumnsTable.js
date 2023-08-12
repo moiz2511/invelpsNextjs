@@ -11,7 +11,13 @@ import { tableCellClasses } from "@mui/material/TableCell";
 import React from "react";
 import { styled } from "@mui/material/styles";
 
-function GroupedColumnsTable({ primary = true, columns, rows, parentCols }) {
+function GroupedColumnsTable({
+  primary = true,
+  columns,
+  rows,
+  parentCols,
+  style,
+}) {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: primary ? "white" : "var(--primary-orange)",
@@ -41,7 +47,7 @@ function GroupedColumnsTable({ primary = true, columns, rows, parentCols }) {
   }));
 
   return (
-    <TableContainer sx={{ maxHeight: 440 }} component={Paper}>
+    <TableContainer sx={{ maxHeight: 440, ...style }} component={Paper}>
       <Table stickyHeader aria-label="customized table">
         <StyledTableHead>
           <StyledTableRow>
